@@ -1,12 +1,12 @@
-export interface Rule {
+interface Rule {
   order: number;
   title: string;
   value: string;
 }
 
-export class RuleBuilder {
-  rule: Rule;
-  constructor() {
+class RuleBuilder {
+  private rule: Rule;
+  constructor () {
     this.rule = {} as Rule;
   }
 
@@ -31,72 +31,61 @@ export class RuleBuilder {
   }
 }
 
-class Game {
-  id?: string;
-  name?: string;
-  description?: string;
-  imageURL?: string;
+export interface IGame {
+  id: string;
+  name: string;
+  description: string;
+  imageURL: string;
   rules: Array<Rule>;
+}
 
-  constructor() {
+export class Game {
+  private game: IGame;
+  private rules: Array<Rule>
+
+  constructor () {
+    this.game = {} as IGame
     this.rules = new Array<Rule>
   }
-}
 
-interface GameBuilder_inter {
-  setId(id: string): void;
-  setName(name: string): void;
-  setDescription(description: string): void;
-  setImage(imageURL: string): void;
-  setRules(title: string, value: string): void;
-  build(): Game;
-}
-
-export class GameBuilder implements GameBuilder_inter {
-  private game: Game;
-  
-  constructor() {
-    this.game = new Game();
-  }
- 
-  setId(id: string): GameBuilder {
+  setId(id: string) {
     this.game.id = id;
     return this;
   }
 
-  setName(name: string): GameBuilder {
+  setName(name: string) {
     this.game.name = name;
     return this;
   }
 
-  setDescription(description: string): GameBuilder {
+  setDescription(description: string) {
     this.game.description = description;
     return this;
   }
 
-  setImageURL(imageURL: string): GameBuilder {
+  setImageURL(imageURL: string) {
     this.game.imageURL = imageURL;
     return this;
   }
 
-  setRules(title: string, value: string): GameBuilder {
-   const rule = new RuleBuilder()
-    .setTitle(title)
-    .setValue(value)
-    .setOrder(this.game.rules.length)
-    .buildRule()
-   
-    this.game.rules.push(rule)
+  setRules(title: string, value: string) {
+    const rule = new RuleBuilder()
+      .setTitle(title)
+      .setValue(value)
+      .setOrder(this.rules.length)
+      .buildRule()
+
+    this.rules.push(rule)
 
     return this
   }
 
-  setImage(imageURL: string): GameBuilder{
+  setImage(imageURL: string) {
     this.game.imageURL = imageURL;
     return this;
   }
 
-  build(): Game {
+  build() {
     return this.game;
   }
 }

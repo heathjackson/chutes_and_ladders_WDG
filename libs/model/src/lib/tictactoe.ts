@@ -1,6 +1,9 @@
-import { GameBuilder } from "./model";
+import { Game, IGame } from "./model";
 
-export const TicTacToe =
-  new GameBuilder()
-    .setName("Tic Tac Toe")
-    .build()
+export const TicTacToe: IGame =
+        new Game()
+                .setId("2")
+                .setDescription("Tic Tac Toe")
+                .setName("Tic Tac Toe")
+                .setRules("Tic Tac Toe", "play Tic Tac Toe")
+                .build()
