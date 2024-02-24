@@ -27,52 +27,44 @@ export class RuleBuilder {
 
   buildRule() {
     const theRule = Object.assign({}, this.rule);
-    this.rule = {} as Rule;
     return theRule;
   }
 }
 
-export interface Game {
-  id: string;
-  name: string;
-  description: string;
-  imageURL: string;
+class Game {
+  id?: string;
+  name?: string;
+  description?: string;
+  imageURL?: string;
   rules: Array<Rule>;
-}
 
-interface IID {
-  setID(id: string): IName
-}
-
-interface IName {
-  setName(name: string): IDescription
-}
-
-interface IDescription {
-  setDescription(description: string): GameBuilder
-  buildGame(): Game
-}
-
-
-export class GameBuilder implements IID, IName, IDescription{
-  game: Game;
   constructor() {
-    this.game = { rules: new Array<Rule>() } as Game
+    this.rules = new Array<Rule>
   }
-  setID(id: string): IName {
-    throw new Error("Method not implemented.");
-  }
+}
 
-  static getInstance() {
-    return new GameBuilder() as IID
-  }
+interface GameBuilder_inter {
+  setId(id: string): void;
+  setName(name: string): void;
+  setDescription(description: string): void;
+  setImage(imageURL: string): void;
+  setRules(title: string, value: string): void;
+  build(): Game;
+}
 
-  setId(id: string): IName {
+export class GameBuilder implements GameBuilder_inter {
+  private game: Game;
+  
+  constructor() {
+    this.game = new Game();
+  }
+ 
+  setId(id: string): GameBuilder {
     this.game.id = id;
     return this;
   }
 
-  setName(name: string): IDescription {
+  setName(name: string): GameBuilder {
     this.game.name = name;
     return this;
   }
@@ -82,31 +74,30 @@ export class GameBuilder implements IID, IName, IDescription{
     return this;
   }
 
-  setImageURL(imageURL: string) {
+  setImageURL(imageURL: string): GameBuilder {
     this.game.imageURL = imageURL;
     return this;
   }
 
-  addRule(title: string, value: string) {
-    this.game.rules.push(
-      new RuleBuilder()
-      .setTitle(title)
-      .setValue(value)
-      .setOrder(this.game.rules.length)
-      .buildRule()
-    )
+  setRules(title: string, value: string): GameBuilder {
+   const rule = new RuleBuilder()
+    .setTitle(title)
+    .setValue(value)
+    .setOrder(this.game.rules.length)
+    .buildRule()
+   
+    this.game.rules.push(rule)
+
+    return this
+  }
+
+  setImage(imageURL: string): GameBuilder{
+    this.game.imageURL = imageURL;
     return this;
   }
 
-  buildGame() {
-    const theGame = Object.assign({}, this.game);
-    this.game = {} as Game;
-    return theGame as Game;
+  build(): Game {
+    return this.game;
   }
 }
-
-
-const g1 = GameBuilder.getInstance()
-g1.setID("1").setName("Heather").buildGame
-
 

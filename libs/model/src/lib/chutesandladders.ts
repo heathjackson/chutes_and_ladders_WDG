@@ -2,7 +2,12 @@ import { GameBuilder } from "./model";
 
 export const ChutesAndLadders = 
         new GameBuilder()
-                .addRule("total players", "between 2 to 4 players")
-                .addRule("test1", "value-test1")
-                .buildGame()
+        .setId("1")
+        .setDescription("chutes and ladders game")
+        .setName("Chutes and Ladders")
+        .setRules("chutes and ladders", "play game")
+        .build()
+                
+
+                
         
