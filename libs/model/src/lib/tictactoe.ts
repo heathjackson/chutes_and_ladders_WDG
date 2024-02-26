@@ -1,9 +1,9 @@
-import { Game, IGame } from "./model";
+import { BuildGame, IGame } from "./model";
 
 export const TicTacToe: IGame =
-        new Game()
+        new BuildGame()
                 .setId("2")
                 .setDescription("Tic Tac Toe")
                 .setName("Tic Tac Toe")
                 .addRule("Tic Tac Toe", "play Tic Tac Toe")
-                .build()
+                .buildGame()

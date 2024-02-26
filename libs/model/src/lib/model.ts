@@ -38,7 +38,7 @@ export interface IGame {
   rules: Array<Rule>;
 }
 
-export class Game {
+export class BuildGame {
   private game: IGame;
 
   constructor () {
@@ -83,8 +83,42 @@ export class Game {
     return this;
   }
 
-  build() {
+  buildGame() {
     return this.game;
+  }
+}
+
+export interface IPlayGame {
+  uuid: string;
+  dateCreated: Date;
+  dateModified: Date;
+}
+
+export class PlayGame extends BuildGame {
+  private playGame: IPlayGame;
+
+  constructor () {
+    super();
+    this.playGame = {} as IPlayGame;
+  }
+
+  setUUID(uuid: string) {
+    this.playGame.uuid = uuid
+    return this
+  }
+
+  setDateCreated(dateCreated: Date) {
+    this.playGame.dateCreated = dateCreated
+    return this
+  }
+
+  setDateModified(dateModified: Date) {
+    this.playGame.dateModified = dateModified
+    return this
+  }
+
+  buildPlay() {
+    return this.playGame
   }
 }
 

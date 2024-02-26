@@ -12,11 +12,11 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
   {
-    path: '/', //welcome page
-    Component: App,
+    path: '/', //welcome pag
     children: [
       {
-        index: true
+        index: true,
+        Component: App,
       },
       {
         path: "games",

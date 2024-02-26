@@ -3,7 +3,9 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <Outlet/>
+    <div>
+      <h1>Hello, this is a test!</h1>
+    </div>
   );
 }
 
