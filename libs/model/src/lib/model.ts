@@ -26,8 +26,7 @@ class RuleBuilder {
   }
 
   buildRule() {
-    const theRule = Object.assign({}, this.rule);
-    return theRule;
+    return this.rule;
   }
 }
 
@@ -41,11 +40,10 @@ export interface IGame {
 
 export class Game {
   private game: IGame;
-  private rules: Array<Rule>
 
   constructor () {
     this.game = {} as IGame
-    this.rules = new Array<Rule>
+    this.game.rules = new Array<Rule>
   }
 
   setId(id: string) {
@@ -68,16 +66,16 @@ export class Game {
     return this;
   }
 
-  setRules(title: string, value: string) {
+  addRule(title: string, value: string) {
     const rule = new RuleBuilder()
       .setTitle(title)
       .setValue(value)
-      .setOrder(this.rules.length)
+      .setOrder(this.game.rules.length)
       .buildRule()
 
-    this.rules.push(rule)
+    this.game.rules.push(rule)
 
-    return this
+    return this;
   }
 
   setImage(imageURL: string) {
