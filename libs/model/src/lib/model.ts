@@ -90,15 +90,15 @@ export class BuildGame {
 
 export interface IPlayGame {
   uuid: string;
-  dateCreated: Date;
-  dateModified: Date;
+  dateCreated: number;
+  dateModified: number;
 }
 
 export class PlayGame extends BuildGame {
   private playGame: IPlayGame;
 
   constructor () {
-    super();
+    super()
     this.playGame = {} as IPlayGame;
   }
 
@@ -107,12 +107,12 @@ export class PlayGame extends BuildGame {
     return this
   }
 
-  setDateCreated(dateCreated: Date) {
+  setDateCreated(dateCreated: number) {
     this.playGame.dateCreated = dateCreated
     return this
   }
 
-  setDateModified(dateModified: Date) {
+  setDateModified(dateModified: number) {
     this.playGame.dateModified = dateModified
     return this
   }

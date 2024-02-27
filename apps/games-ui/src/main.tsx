@@ -4,7 +4,8 @@ import {RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import App from './app/app';
 import GameList from './components/game_list';
-import { getGameList } from './services/game_service';
+import GamePlay from './components/game_play';
+import { getGameList, getGamePlay } from './services/game_service';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +13,7 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
   {
-    path: '/', //welcome pag
+    path: '/', //welcome page
     children: [
       {
         index: true,
@@ -21,7 +22,12 @@ const router = createBrowserRouter([
       {
         path: "games",
         Component: GameList, 
-        loader: getGameList
+        loader: getGameList,
+      },
+      {
+        path: "games/:id",
+        Component: GamePlay,
+        loader: getGamePlay,
       }
     ]
   }
