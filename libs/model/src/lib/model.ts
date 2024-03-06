@@ -78,6 +78,11 @@ export class BuildGame {
     return this;
   }
 
+  setImage(imageURL: string) {
+    this.game.imageURL = imageURL;
+    return this;
+  }
+
   buildGame() {
     return this.game;
   }
@@ -89,10 +94,11 @@ export interface IPlayGame {
   dateModified: number;
 }
 
-export class PlayGame {
+export class PlayGame extends BuildGame {
   private playGame: IPlayGame;
 
   constructor () {
+    super()
     this.playGame = {} as IPlayGame;
   }
 

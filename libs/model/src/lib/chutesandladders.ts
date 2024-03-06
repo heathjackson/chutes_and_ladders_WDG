@@ -13,12 +13,9 @@ export const ChutesAndLadders: IGame =
 export const PlayChutesAndLadders: IPlayGame =
         new PlayGame()
                 .setUUID(randomUUID())
-                .setDateCreated(Date.now())
-                .setDateModified(Date.now())
+                .setDateCreated(new Date().getHours())
+                .setDateModified(new Date().getHours())
                 .buildPlay()
-
-
-
 
 
 
