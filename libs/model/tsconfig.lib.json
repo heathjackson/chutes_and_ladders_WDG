@@ -5,6 +5,10 @@
     "declaration": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["src/**/*.ts", "src/lib/model.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/lib/model.js",
+    "../../apis/games-api/src/data/maps.ts"
+  ],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }

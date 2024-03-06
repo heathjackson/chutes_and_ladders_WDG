@@ -1,17 +1,29 @@
 import { Router, Request, Response } from 'express';
-import { PlayChutesAndLadders, TicTacToe } from '@hjackson/model';
+import { ChutesAndLadders, PlayChutesAndLadders, TicTacToe } from '@hjackson/model';
+import { mapArr, map2 } from '../data/maps';
 
 const listGames = (req: Request, resp: Response) => {
-  resp.json([PlayChutesAndLadders, TicTacToe]);
+  resp.json([ChutesAndLadders, TicTacToe]);
 }
 
-const playGame = (req: Request, resp: Response) => {
-  resp.json(req.params.id);
+const game = (req: Request, resp: Response) => {
+  resp.json(PlayChutesAndLadders);
 }
+
+const map1 = (req: Request, resp: Response) => {
+  resp.json(mapArr);
+}
+
+const map2Data = (req: Request, resp: Response) => {
+  resp.json(map2);
+}
+
 
 export class GameRoutes {
   constructor (router: Router) {
     router.get('/games', listGames);
-    router.get('/games/:id', playGame)
+    router.get('/games/:id', game);
+    router.get('/games/:id/map1', map1);
+    router.get('/games/:id/map2', map2Data);
   }
 }
