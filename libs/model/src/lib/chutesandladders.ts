@@ -1,21 +1,18 @@
-import { randomUUID } from "crypto";
-import { BuildGame, IGame, IPlayGame, PlayGame } from "./model";
+import { GameInfoBuilder, IGameInfo, IPlayGame, PlayGame } from "./model";
 
-export const ChutesAndLadders: IGame =
-        new BuildGame()
-                .setId("1")
-                .setDescription("chutes and ladders game")
+
+export const ChutesAndLaddersRules: IGameInfo =
+        new GameInfoBuilder()
+                .setID("1")
                 .setName("Chutes and Ladders")
-                .addRule("players", "no more than 4 players")
-                .addRule("roll", "each player must roll the dice")
-                .buildGame()
+                .setDescription("A virtual game of Chutes and Ladders")
+                .setImageURL("public/chutes_and_ladders.jpg")
+                .addRule("amount of players", "more than 2 and no more than 4")
+                .buildGameInfo()
 
 export const PlayChutesAndLadders: IPlayGame =
         new PlayGame()
-                .setUUID(randomUUID())
-                .setDateCreated(new Date().getHours())
-                .setDateModified(new Date().getHours())
-                .buildPlay()
+
 
 
 

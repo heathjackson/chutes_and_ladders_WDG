@@ -4,8 +4,3 @@ export const getGameList = async () => {
   const resp = await axios.get('http://localhost:3333/api/v1/games')
   return resp.data
 }
-
-export const getGamePlay = async () => {
-  const resp = await axios.get('http://localhost:3333/api/v1/games/:id')
-  return resp.data
-}

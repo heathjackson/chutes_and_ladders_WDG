@@ -1,9 +1,10 @@
-import { BuildGame, IGame } from "./model";
+import { GameInfoBuilder, IGameInfo } from "./model";
 
-export const TicTacToe: IGame =
-        new BuildGame()
-                .setId("2")
-                .setDescription("Tic Tac Toe")
+export const TicTacToe: IGameInfo =
+        new GameInfoBuilder()
+                .setID("2")
                 .setName("Tic Tac Toe")
-                .addRule("Tic Tac Toe", "play Tic Tac Toe")
-                .buildGame()
+                .setDescription("A virtual game of Tic Tac Toe")
+                .setImageURL("public/tic_tac_toe.jpg")
+                .addRule("amount of players", "only 2 players")
+                .buildGameInfo()

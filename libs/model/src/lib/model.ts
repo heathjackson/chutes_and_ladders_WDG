@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 interface Rule {
   order: number;
   title: string;
@@ -10,17 +12,17 @@ class RuleBuilder {
     this.rule = {} as Rule;
   }
 
-  setOrder(order: number) {
+  setOrder(order: number): RuleBuilder {
     this.rule.order = order;
     return this;
   }
 
-  setTitle(title: string) {
+  setTitle(title: string): RuleBuilder {
     this.rule.title = title;
     return this;
   }
 
-  setValue(value: string) {
+  setValue(value: string): RuleBuilder {
     this.rule.value = value;
     return this;
   }
@@ -30,7 +32,7 @@ class RuleBuilder {
   }
 }
 
-export interface IGame {
+export interface IGameInfo {
   id: string;
   name: string;
   description: string;
@@ -38,87 +40,77 @@ export interface IGame {
   rules: Array<Rule>;
 }
 
-export class BuildGame {
-  private game: IGame;
+export class GameInfoBuilder {
+  private gameRules: IGameInfo;
 
   constructor () {
-    this.game = {} as IGame
-    this.game.rules = new Array<Rule>
+    this.gameRules = {} as IGameInfo
+    this.gameRules.rules = new Array<Rule>
   }
 
-  setId(id: string) {
-    this.game.id = id;
+  setID(id: string): GameInfoBuilder {
+    this.gameRules.id = id;
     return this;
   }
 
-  setName(name: string) {
-    this.game.name = name;
+  setName(name: string): GameInfoBuilder {
+    this.gameRules.name = name;
     return this;
   }
 
-  setDescription(description: string) {
-    this.game.description = description;
+  setDescription(description: string): GameInfoBuilder {
+    this.gameRules.description = description;
     return this;
   }
 
-  setImageURL(imageURL: string) {
-    this.game.imageURL = imageURL;
+  setImageURL(imageURL: string): GameInfoBuilder {
+    this.gameRules.imageURL = imageURL;
     return this;
   }
 
-  addRule(title: string, value: string) {
+  addRule(title: string, value: string): GameInfoBuilder {
     const rule = new RuleBuilder()
       .setTitle(title)
       .setValue(value)
-      .setOrder(this.game.rules.length)
+      .setOrder(this.gameRules.rules.length)
       .buildRule()
 
-    this.game.rules.push(rule)
+    this.gameRules.rules.push(rule)
 
     return this;
   }
 
-  setImage(imageURL: string) {
-    this.game.imageURL = imageURL;
-    return this;
+  buildGameInfo() {
+    return this.gameRules;
   }
+}
 
-  buildGame() {
-    return this.game;
-  }
+export interface IGame {
+  name: string
+  instanceOfGame: object
+  gameMethods: Array<void>
 }
 
 export interface IPlayGame {
   uuid: string;
   dateCreated: number;
-  dateModified: number;
+  dateModified?: number;
 }
 
-export class PlayGame extends BuildGame {
-  private playGame: IPlayGame;
+export class PlayGame implements IPlayGame {
+  uuid: string;
+  dateCreated: number
+  dateModified?: number | undefined
 
   constructor () {
-    super()
-    this.playGame = {} as IPlayGame;
+    this.uuid = randomUUID()
+    this.dateCreated = Date.now()
+    this.dateModified
   }
 
-  setUUID(uuid: string) {
-    this.playGame.uuid = uuid
+  setDateModified(): PlayGame {
+    this.dateModified = Date.now()
     return this
-  }
-
-  setDateCreated(dateCreated: number) {
-    this.playGame.dateCreated = dateCreated
-    return this
-  }
-
-  setDateModified(dateModified: number) {
-    this.playGame.dateModified = dateModified
-    return this
-  }
-
-  buildPlay() {
-    return this.playGame
   }
 }
 
