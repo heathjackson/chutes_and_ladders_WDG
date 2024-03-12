@@ -1,9 +1,7 @@
-import { useLoaderData } from "react-router-dom";
-import { IGame } from "@hjackson/model";
-
-const PreLoader = () => {
-  const games = useLoaderData() as Array<IGame>
-  return(<ul>{games.map(g => <li>{g.name}</li>)}</ul>)
+const Welcome = () => {
+  return (
+    <div>This is a test, this is only a test</div>
+  )
 }
 
-export default PreLoader
+export default Welcome

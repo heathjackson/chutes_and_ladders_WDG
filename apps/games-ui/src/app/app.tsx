@@ -3,13 +3,17 @@ import { getGameList } from "../services/game_service";
 import GameLayout from "../components/game_layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GameInfo from "../components/game_info";
+import Welcome from "../pages/pre_loader";
 
 const router = createBrowserRouter (
   [
     {
-      path: '/', //welcome page
       Component: GameLayout,
       children: [
+        {
+          path: "/",
+          Component: Welcome, 
+        },
         {
           path: "games",
           Component: GameList, 
@@ -18,11 +22,11 @@ const router = createBrowserRouter (
         {
           path: "games/:id",
           Component: GameInfo,
-          loader: getGameList
-        }
+          loader: getGameList,
+        },
       ]
     }
-  ]
+  ]  
 )
 
 function App() {
