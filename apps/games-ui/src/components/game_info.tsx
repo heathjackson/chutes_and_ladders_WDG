@@ -1,22 +1,24 @@
 import { useLoaderData } from "react-router-dom"
 import { IGameInfo } from "@hjackson/model"
 import { useParams } from "react-router-dom"
-
-
+import { Button } from "@mui/material"
 
 const GameInfo = () => {
   const {id}  = useParams();
   const games = useLoaderData() as Array<IGameInfo>
-  const result = games.find(({name}) => name === id)
-  //need to figure out how to render all the rules - also ask about a better way to render the below info instead of using ?
+  const gameInfo = games.find(({name}) => name === id)
+  const rules = gameInfo?.rules[0]
 
   return(
     <div>
-      <h2>Rules for {result?.name}</h2>
+      <h2>Rules for {gameInfo?.name}</h2>
       <ul>
-        <li>{result?.description}</li>
-        <img src={result?.imageURL} alt="Game"/>
+        <li>{gameInfo?.description}</li>
+        <h4>{rules?.title}</h4>
+        <li>{rules?.value}</li>
+        <img src={gameInfo?.imageURL} alt="Game"/>
       </ul>
+      <Button variant="contained">Contained</Button>
     </div>
   )
 }

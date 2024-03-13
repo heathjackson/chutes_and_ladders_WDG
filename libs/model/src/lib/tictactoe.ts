@@ -5,6 +5,6 @@ export const TicTacToe: IGameInfo =
                 .setID("2")
                 .setName("Tic Tac Toe")
                 .setDescription("A virtual game of Tic Tac Toe")
-                .setImageURL("public/tic_tac_toe.jpg")
+                .setImageURL("/tic_tac_toe.jpg")
                 .addRule("amount of players", "only 2 players")
                 .buildGameInfo()
