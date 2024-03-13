@@ -26,7 +26,7 @@ const GameInfo = () => {
           {rulesMap}
         <img src={gameInfo?.imageURL} alt="Game"/>
       </ul>
-      <Button variant="contained">Contained</Button>
+      <Button variant="contained">Play Game</Button>
     </div>
   )
 }
