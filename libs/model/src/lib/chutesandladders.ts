@@ -1,5 +1,4 @@
-import { GameInfoBuilder, IGameInfo, IPlayGame, PlayGame } from "./model";
-
+import { GameInfoBuilder, IGameBuilder, IGameInfo, GameBuilder } from "./model";
 
 export const ChutesAndLaddersRules: IGameInfo =
         new GameInfoBuilder()
@@ -10,8 +9,13 @@ export const ChutesAndLaddersRules: IGameInfo =
                 .addRule("amount of players", "more than 2 and no more than 4")
                 .buildGameInfo()
 
-export const PlayChutesAndLadders: IPlayGame =
-        new PlayGame()
+export const CompleteChutesAndLadders: IGameBuilder =
+        new GameBuilder()
+                .setId("1")
+                .buildNewGame()
+
+
+
 
 
 

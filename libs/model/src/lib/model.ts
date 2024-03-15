@@ -85,32 +85,42 @@ export class GameInfoBuilder {
   }
 }
 
-export interface IGame {
-  name: string
-  instanceOfGame: object
-  gameMethods: Array<void>
-}
-
 export interface IPlayGame {
+  id: string;
   uuid: string;
   dateCreated: number;
-  dateModified?: number;
 }
 
-export class PlayGame implements IPlayGame {
-  uuid: string;
-  dateCreated: number
-  dateModified?: number | undefined
+export interface IGameBuilder extends IPlayGame {
+  lastModified: Date
+  gameMethodMap?: Map<string, () => string | undefined> //reducer will need to be used
+}
+
+export class GameBuilder {
+  private gameBuild: IGameBuilder;
 
   constructor () {
-    this.uuid = randomUUID()
-    this.dateCreated = Date.now()
-    this.dateModified
+    this.gameBuild = {
+      uuid: randomUUID(),
+      dateCreated: Date.now(),
+    } as IGameBuilder
   }
 
-  setDateModified(): PlayGame {
-    this.dateModified = Date.now()
+  setId(id: string): GameBuilder {
+    this.gameBuild.id = id;
     return this
   }
+
+  addMethods(title: string, value: () => string | undefined) {
+    this.gameBuild.gameMethodMap?.set(title, value)
+    return this
+  }
+
+  buildNewGame(): IGameBuilder {
+    return this.gameBuild
+  }
 }
+
+
+
 

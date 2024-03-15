@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom"
+import { Form, useLoaderData } from "react-router-dom"
 import { IGameInfo } from "@hjackson/model"
 import { useParams } from "react-router-dom"
 import { Button } from "@mui/material"
@@ -23,10 +23,19 @@ const GameInfo = () => {
       <h1>Rules for {gameInfo?.name}</h1>
       <ul>
         <li>{gameInfo?.description}</li>
-          {rulesMap}
+        <div>{rulesMap}</div>
         <img src={gameInfo?.imageURL} alt="Game"/>
       </ul>
-      <Button variant="contained">Play Game</Button>
+      <Form method="POST">
+        <Button
+          variant="contained"
+          value={gameInfo?.id}
+          name="id"
+          type="submit"
+        >
+          Play Game
+        </Button>
+      </Form>
     </div>
   )
 }

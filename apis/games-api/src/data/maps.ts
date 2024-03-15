@@ -1,13 +1,15 @@
-import { IPlayGame } from '@hjackson/model';
-import { PlayChutesAndLadders } from '@hjackson/model';
+import { IGameBuilder } from '@hjackson/model';
+import { CompleteChutesAndLadders } from '@hjackson/model';
 
-const map1 = new Map<string, IPlayGame>()
-const map2 = new Map<number, Array<string>>()
+const map1 = new Map<string, IGameBuilder>()
+const map2 = new Map<number, Array<string>>() //number = date Array = array of all the uuids
+
 const timeConversion = 60000 // 60000 milliseconds in a minute will convert Date.now() from milliseconds to minutes
+
 const deletedGames: Array<Array<string>> = []
 
-const gameMap1 = (gamePlaying: IPlayGame) => {
-  map1.set(gamePlaying.uuid, gamePlaying)
+const gameMap1 = (completeGame: IGameBuilder) => {
+  map1.set(completeGame.uuid, completeGame)
 }
 
 const minus_minutes = (minutes: number) => {
@@ -26,7 +28,7 @@ const deleteOldGames = (minutes: number) => {
   }
 }
 
-gameMap1(PlayChutesAndLadders)
+gameMap1(CompleteChutesAndLadders)
 
 deleteOldGames(1440)
 
