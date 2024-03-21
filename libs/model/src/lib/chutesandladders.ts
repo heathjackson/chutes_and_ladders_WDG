@@ -1,25 +1,23 @@
-import { GameInfoBuilder, IGameBuilder, IGameInfo, GameBuilder } from "./model";
+import { GameInfoBuilder, IGameBuilder, IGameInfo, GameBuilder } from './model';
+// import { Chutes_and_ladders } from './chutesandladders_gl/game_logic/cl_game';
 
-export const ChutesAndLaddersRules: IGameInfo =
-        new GameInfoBuilder()
-                .setID("1")
-                .setName("Chutes and Ladders")
-                .setDescription("A virtual game of Chutes and Ladders")
-                .setImageURL("/chutes_and_ladders.jpg")
-                .addRule("amount of players", "more than 2 and no more than 4")
-                .buildGameInfo()
+// const chutesAndLadders = new Chutes_and_ladders(5, 5);
 
-export const CompleteChutesAndLadders: IGameBuilder =
-        new GameBuilder()
-                .setId("1")
-                .buildNewGame()
+export const ChutesAndLaddersRules: IGameInfo = new GameInfoBuilder()
+  .setID('1')
+  .setName('Chutes and Ladders')
+  .setDescription('A virtual game of Chutes and Ladders')
+  .setImageURL('/chutes_and_ladders.jpg')
+  .addRule('amount of players', 'more than 2 and no more than 4')
+  .buildGameInfo();
 
-
-
-
-
-
-
-
-
-
+export const CompleteChutesAndLadders: IGameBuilder = new GameBuilder()
+  .setId('1')
+  // .addMethods('choose color', chutesAndLadders.chooseColor())
+  // // .addMethods('register player', chutesAndLadders.registerPlayer)
+  // // .addMethods('register player', chutesAndLadders.registerPlayer)
+  // // .addMethods('start game', chutesAndLadders.setUpGame)
+  // // .addMethods('reset game', chutesAndLadders.resetGame)
+  // // .addMethods('roll dice', chutesAndLadders.rollDice)
+  // // .addMethods('play turn', chutesAndLadders.playTurn)
+  .buildNewGame();

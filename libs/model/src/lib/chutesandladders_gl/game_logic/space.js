@@ -23,7 +23,7 @@ export class SpaceType {
 Object.freeze(SpaceType);
 
 export class Space {
-  #Value = "";
+  #Value = '';
   #Type = SpaceType.NORMAL;
   #Next = null;
   #Back = null;

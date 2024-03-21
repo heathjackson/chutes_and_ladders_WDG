@@ -7,6 +7,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
+  /* Testing UI re-render */
   <StrictMode>
     <App /*fallbackElement={<waiting/>*/ />
   </StrictMode>

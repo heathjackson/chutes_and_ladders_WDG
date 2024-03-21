@@ -1,5 +1,5 @@
 // The rules file contains rules and validation functions for the game.
-import { SpaceType } from "./model";
+import { SpaceType } from './model';
 /**
  *
  * @param {LinkedSpace} space the space to validate

@@ -1,9 +1,10 @@
 import GameList from "../components/game_list";
-import { getGameDetails, getGameList } from "../services/game_service";
+import { getGameList, getPlayId } from "../services/game_service";
 import GameLayout from "../components/game_layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GameInfo from "../components/game_info";
 import Welcome from "../pages/welcome";
+import GameUUID from "../components/game_uuid";
 
 const router = createBrowserRouter (
   [
@@ -15,14 +16,23 @@ const router = createBrowserRouter (
           Component: Welcome, 
         },
         {
-          path: "games",
-          Component: GameList, 
-          loader: getGameList,
-        },
-        {
-          path: "games/:id",
-          Component: GameInfo,
-          loader: getGameList,
+          children: [
+            {
+              path: "games",
+              Component: GameList, 
+              loader: getGameList,
+            },  
+            {
+              path: "games/:id",
+              Component: GameInfo,
+              loader: getGameList,
+            },
+            {
+              path: "games/:id",
+              Component: GameUUID,
+              loader: getPlayId
+            },
+          ]
         },
       ]
     }

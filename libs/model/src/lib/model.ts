@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from 'crypto';
 
 interface Rule {
   order: number;
@@ -8,7 +8,7 @@ interface Rule {
 
 class RuleBuilder {
   private rule: Rule;
-  constructor () {
+  constructor() {
     this.rule = {} as Rule;
   }
 
@@ -43,9 +43,9 @@ export interface IGameInfo {
 export class GameInfoBuilder {
   private gameRules: IGameInfo;
 
-  constructor () {
-    this.gameRules = {} as IGameInfo
-    this.gameRules.rules = new Array<Rule>
+  constructor() {
+    this.gameRules = {} as IGameInfo;
+    this.gameRules.rules = new Array<Rule>();
   }
 
   setID(id: string): GameInfoBuilder {
@@ -73,9 +73,9 @@ export class GameInfoBuilder {
       .setTitle(title)
       .setValue(value)
       .setOrder(this.gameRules.rules.length)
-      .buildRule()
+      .buildRule();
 
-    this.gameRules.rules.push(rule)
+    this.gameRules.rules.push(rule);
 
     return this;
   }
@@ -92,35 +92,36 @@ export interface IPlayGame {
 }
 
 export interface IGameBuilder extends IPlayGame {
-  lastModified: Date
-  gameMethodMap?: Map<string, () => string | undefined> //reducer will need to be used
+  lastModified: number;
+  gameMethodMap: Map<string, void>; //reducer will need to be used
 }
 
 export class GameBuilder {
   private gameBuild: IGameBuilder;
 
-  constructor () {
+  constructor() {
     this.gameBuild = {
       uuid: randomUUID(),
       dateCreated: Date.now(),
-    } as IGameBuilder
+    } as IGameBuilder;
   }
 
   setId(id: string): GameBuilder {
     this.gameBuild.id = id;
-    return this
+    return this;
   }
 
-  addMethods(title: string, value: () => string | undefined) {
-    this.gameBuild.gameMethodMap?.set(title, value)
-    return this
+  setLastModified(): GameBuilder {
+    this.gameBuild.lastModified = Date.now();
+    return this;
+  }
+
+  addMethods(title: string, func: void): GameBuilder {
+    this.gameBuild.gameMethodMap.set(title, func);
+    return this;
   }
 
   buildNewGame(): IGameBuilder {
-    return this.gameBuild
+    return this.gameBuild;
   }
 }
-
-
-
-
