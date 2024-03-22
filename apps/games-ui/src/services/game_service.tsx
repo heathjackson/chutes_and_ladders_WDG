@@ -1,12 +1,12 @@
 import axios from "axios";
-import { ActionFunctionArgs, redirect } from "react-router-dom";
+import { ActionFunctionArgs } from "react-router-dom";
 
 export const getGameList = async () => {
   const resp = await axios.get('http://localhost:3333/api/v1/games')
   return resp.data
 }
 
-export const getPlayId = async ({request}: ActionFunctionArgs) => {
+export const sendPlayId = async ({request}: ActionFunctionArgs) => {
   const form = await request.formData()
   const id = form.get('id')
   const formData = await axios
@@ -15,6 +15,11 @@ export const getPlayId = async ({request}: ActionFunctionArgs) => {
     .then((data) => {
       localStorage.setItem('actionData', JSON.stringify(data))
     })
-  redirect('/games/register')
   return formData
 }
+
+export const getUUID = async () => {
+  const resp = await axios.post('http://localhost:3333/api/v1/games/:id')
+  return resp.data
+}
+

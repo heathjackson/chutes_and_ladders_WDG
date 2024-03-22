@@ -102,7 +102,7 @@ export class GameBuilder {
   constructor() {
     this.gameBuild = {
       uuid: randomUUID(),
-      dateCreated: Date.now(),
+      dateCreated: Math.round(Date.now() / 60000),
     } as IGameBuilder;
   }
 

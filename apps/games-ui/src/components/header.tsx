@@ -23,6 +23,7 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Welcome to Old School Game Boards
           </Typography>
+          <Button color="inherit" href='/'>Home</Button>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>

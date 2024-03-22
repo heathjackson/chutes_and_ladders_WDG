@@ -1,8 +1,12 @@
-import { CompleteChutesAndLadders, IGameBuilder } from '@hjackson/model';
+import { IGameBuilder } from '@hjackson/model';
+
+let uuidArray = new Array<string>();
 
 export default function gameMaps() {
+  const minutes = 1440; //1440 minutes in a day used to subtract a day from the current time
   // 60000 milliseconds in a minute will convert Date.now() from milliseconds to minutes
   const timeConversion = 60000;
+  const currentTime = Math.round(Date.now() / timeConversion);
 
   //map uuid to game being played
   //map date and time to uuid so games can be deleted at intervals
@@ -14,16 +18,24 @@ export default function gameMaps() {
   const deletedGames: Array<Array<string>> = [];
 
   const gameMap1 = (completeGame: IGameBuilder) => {
+    //convert date created to time conversion chosen above
+    completeGame.dateCreated = currentTime;
     map1.set(completeGame.uuid, completeGame);
+    uuidArray.push(completeGame.uuid);
   };
 
-  const minus_minutes = (minutes: number) => {
+  const setGameMap2 = () => {
+    map2.set(currentTime, uuidArray);
+    uuidArray = [];
+  };
+
+  const minus_minutes = () => {
     const time = Math.round(Date.now() / timeConversion - minutes);
     return time;
   };
 
-  const deleteOldGames = (minutes: number) => {
-    const dayPrior: number = minus_minutes(minutes);
+  const deleteOldGames = () => {
+    const dayPrior: number = minus_minutes();
 
     for (const [key, value] of map2) {
       if (key < dayPrior) {
@@ -33,13 +45,18 @@ export default function gameMaps() {
     }
   };
 
-  const getMap1 = () => map1;
+  const getMap1 = () => {
+    // eslint-disable-next-line prefer-const
+    for (let [key, value] of map1) {
+      return { key, value };
+    }
+  };
 
-  const getMap2 = () => map2;
+  const getMap2 = () => {
+    for (const [key, value] of map2) {
+      return { key, value };
+    }
+  };
 
-  return { gameMap1, deleteOldGames, getMap1, getMap2 };
+  return { gameMap1, deleteOldGames, getMap1, getMap2, setGameMap2 };
 }
-
-gameMaps().gameMap1(CompleteChutesAndLadders);
-console.log(gameMaps().getMap1());
-console.log(gameMaps().getMap2());

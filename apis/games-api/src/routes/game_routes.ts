@@ -6,9 +6,6 @@ import {
   IGameBuilder,
   CompleteTicTacToe,
 } from '@hjackson/model';
-import gameMaps from '../data/maps';
-
-const createMaps = gameMaps();
 
 const path_method = (req: Request, resp: Response, next: NextFunction) => {
   console.log(req.path, req.method);
@@ -30,18 +27,11 @@ const gameInfo = (req: Request, resp: Response) => {
 
 const playableGame = (req: Request, resp: Response) => {
   const selectedGame = req.params.id;
-  let game: IGameBuilder;
   if (selectedGame === 'Chutes and Ladders') {
-    game = CompleteChutesAndLadders as IGameBuilder;
+    resp.json(CompleteChutesAndLadders as IGameBuilder);
   } else {
-    game = CompleteTicTacToe as IGameBuilder;
+    resp.json(CompleteTicTacToe as IGameBuilder);
   }
-
-  createMaps.gameMap1(game);
-  const map1 = createMaps.getMap1();
-  const map2 = createMaps.getMap2();
-
-  resp.json({ map1, map2 });
 };
 
 export class GameRoutes {

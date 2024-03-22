@@ -30,10 +30,11 @@ const GameInfo = () => {
         <Button
           variant="contained"
           value={gameInfo?.id}
-          name="id"
+          name={id}
           type="submit"
+          href={`games/${id}/play`}
         >
-          Play Game
+          Get Game Id
         </Button>
       </Form>
     </div>
