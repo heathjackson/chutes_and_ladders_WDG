@@ -1,11 +1,11 @@
-import { Form, useLoaderData } from "react-router-dom"
+import { useRouteLoaderData } from "react-router-dom"
 import { IGameInfo } from "@hjackson/model"
 import { useParams } from "react-router-dom"
 import { Button } from "@mui/material"
 
 const GameInfo = () => {
   const {id}  = useParams();
-  const games = useLoaderData() as Array<IGameInfo>
+  const games = useRouteLoaderData('game_list') as Array<IGameInfo>
   const gameInfo = games.find(({name}) => name === id)
   const rules = gameInfo?.rules
 
@@ -26,17 +26,15 @@ const GameInfo = () => {
         <div>{rulesMap}</div>
         <img src={gameInfo?.imageURL} alt="Game"/>
       </ul>
-      <Form method="POST">
-        <Button
-          variant="contained"
-          value={gameInfo?.id}
-          name={id}
-          type="submit"
-          href={`games/${id}/play`}
-        >
-          Get Game Id
-        </Button>
-      </Form>
+      <Button
+        variant="contained"
+        value={gameInfo?.id}
+        name={id}
+        type="submit"
+        href={`games/${id}/play`}
+      >
+        Get Game Id
+      </Button>
     </div>
   )
 }
