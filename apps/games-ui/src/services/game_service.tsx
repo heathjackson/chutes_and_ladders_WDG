@@ -24,13 +24,22 @@ export const playGame = async ({params}: ActionFunctionArgs) => {
     const resp = await axios.post(`http://localhost:3333/api/v1/games/${params.id}`)
       .then(resp => resp.data)
       .then(data => {
-        sessionStorage.setItem('current_game', JSON.stringify(data));
-        console.log(sessionStorage)
+        localStorage.setItem('current_game', JSON.stringify(data));
         return redirect(`/games/${params.id}/register`);
       })
       return resp
   }
   return null;
 }
+
+export const register = async ({params}: ActionFunctionArgs) => {
+    const resp = await axios.patch(`http://localhost:3333/api/v1/games/${params.id}/register`)
+      .then(resp => resp.data)
+      .then(data => {
+        localStorage.setItem('__register_info__', JSON.stringify(data));
+        console.log(localStorage)
+      })
+      return resp
+  }
  
 

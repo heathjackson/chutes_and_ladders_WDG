@@ -40,7 +40,7 @@ const playableGame = (req: Request, resp: Response) => {
     gameCreated = Complete_tic_tac_toe as IPlayGame;
   }
   newGameMaps.gameMap1(gameCreated);
-  console.log(newGameMaps.getMap1());
+  // console.log(newGameMaps.getMap1());
   resp.json(gameCreated);
 };
 
