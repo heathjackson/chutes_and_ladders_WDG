@@ -1,12 +1,8 @@
-import { IPlayGame } from "@hjackson/model";
-import { useLoaderData } from "react-router-dom";
-
-const GamePlay = () => {
-  const game = useLoaderData() as IPlayGame
+export const GamePlay = () => {
 
   return(
     <div>
-      <div /*how do you pass this in a header?*/>{game.uuid}</div> 
+      <div>this is a test</div> 
     </div>
   )
 };

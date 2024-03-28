@@ -1,10 +1,11 @@
 import GameList from "../components/game_list";
-import { getGameInfo, getGameList, playGame, register } from "../services/game_service";
+import { getGameInfo, getGameList, playGame, registerAction } from "../services/game_service";
 import GameLayout from "../components/game_layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GameInfo from "../components/game_info";
 import Welcome from "../pages/welcome";
-import { SignupForm } from "../components/form";
+import { Register } from "../components/form";
+import GamePlay from "../components/game_play";
 
 const router = createBrowserRouter (
   [
@@ -35,22 +36,23 @@ const router = createBrowserRouter (
                   action: playGame,
                 },
                 {
+                  index: true,
                   path: 'register',
-                  children: [
-                    {
-                      index: true,
-                      Component: SignupForm,
-                      action: register,
-                    }
-                  ]
-                } 
+                  Component: Register,
+                  action: registerAction,
+                },
+                {
+                  index: true,
+                  path: 'gamePlay',
+                  Component: GamePlay,
+                }
               ]
-            }
+            }  
           ]
         }
       ]
     }
-  ]
+  ]   
 )
 
 function App() {

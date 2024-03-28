@@ -24,7 +24,7 @@ export const playGame = async ({params}: ActionFunctionArgs) => {
     const resp = await axios.post(`http://localhost:3333/api/v1/games/${params.id}`)
       .then(resp => resp.data)
       .then(data => {
-        localStorage.setItem('current_game', JSON.stringify(data));
+        sessionStorage.setItem('current_game', JSON.stringify(data));
         return redirect(`/games/${params.id}/register`);
       })
       return resp
@@ -32,14 +32,12 @@ export const playGame = async ({params}: ActionFunctionArgs) => {
   return null;
 }
 
-export const register = async ({params}: ActionFunctionArgs) => {
-    const resp = await axios.patch(`http://localhost:3333/api/v1/games/${params.id}/register`)
-      .then(resp => resp.data)
-      .then(data => {
-        localStorage.setItem('__register_info__', JSON.stringify(data));
-        console.log(localStorage)
-      })
-      return resp
+export const registerAction = async ({request}: ActionFunctionArgs) => {
+    const form = await request.formData()
+    console.log(form)
+    //  form.get("value")
+    //  console.log(form.get("value"))
+    //  return null
   }
  
 

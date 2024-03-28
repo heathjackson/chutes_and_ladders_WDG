@@ -1,24 +1,55 @@
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Formik, Field, Form, FormikHelpers, useFormik} from 'formik';
+import * as yup from "yup";
+import { IPlayGame } from '@hjackson/model';
+import { useState, useMemo } from 'react';
+import { useSubmit } from 'react-router-dom';
 
-interface Values {
-  firstName: string;
-  lastName: string;
+type UserInfo = {
+  uuid?: string;
+  name: string;
   email: string;
 }
 
-export const SignupForm = () => {
+const validationSchema = yup.object({
+  name: yup.string(),
+  email: yup.string().required("Email is required")
+})
+
+export const Register = () => {
+  const [gameUUID, setGameUUID] = useState<IPlayGame>()
+  const submit = useSubmit()
+
+  useMemo(() => {
+    const stored = sessionStorage.getItem("current_game");
+    if(stored) {
+      setGameUUID(JSON.parse(stored))
+    }
+  }, [setGameUUID])
+
+  const formik = useFormik<UserInfo>({
+    initialValues: {
+      uuid: gameUUID?.uuid,
+      name: "",
+      email: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async(values) => {
+      submit(values, {method: "post"})
+    }
+  })
+
   return (
     <div>
       <h1>Signup</h1>
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: '',
+          uuid: '',
+          name: '',
           email: '',
         }}
         onSubmit={(
-          values: Values,
-          { setSubmitting }: FormikHelpers<Values>
+          values: UserInfo,
+          { setSubmitting }: FormikHelpers<UserInfo>
         ) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
@@ -26,12 +57,12 @@ export const SignupForm = () => {
           }, 500);
         }}
       >
-        <Form method="POST">
-          <label htmlFor="firstName">First Name</label>
-          <Field id="firstName" name="firstName" placeholder="John" />
+        <Form>
+          <label htmlFor="uuid">First Name</label>
+          <Field id="uuid" name="uuid" placeholder="John" />
 
-          <label htmlFor="lastName">Last Name</label>
-          <Field id="lastName" name="lastName" placeholder="Doe" />
+          <label htmlFor="name">Last Name</label>
+          <Field id="name" name="name" placeholder="Doe" />
 
           <label htmlFor="email">Email</label>
           <Field
