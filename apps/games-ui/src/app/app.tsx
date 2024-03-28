@@ -36,15 +36,15 @@ const router = createBrowserRouter (
                   action: playGame,
                 },
                 {
-                  index: true,
                   path: 'register',
+                  index: true,
                   Component: Register,
                   action: registerAction,
                 },
                 {
+                  path: 'playGame',
                   index: true,
-                  path: 'gamePlay',
-                  Component: GamePlay,
+                  Component: GamePlay
                 }
               ]
             }  

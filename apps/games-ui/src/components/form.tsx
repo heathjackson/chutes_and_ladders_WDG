@@ -1,19 +1,21 @@
-import { Formik, Field, Form, FormikHelpers, useFormik} from 'formik';
+import { useFormik } from 'formik';
 import * as yup from "yup";
 import { IPlayGame } from '@hjackson/model';
 import { useState, useMemo } from 'react';
 import { useSubmit } from 'react-router-dom';
+import { Button, TextField } from '@mui/material';
 
 type UserInfo = {
-  uuid?: string;
-  name: string;
-  email: string;
+  uuid?: string,
+  name: string,
+  email: string,
 }
 
-const validationSchema = yup.object({
-  name: yup.string(),
-  email: yup.string().required("Email is required")
-})
+// const validationSchema = yup.object({
+//   name: yup.string(),
+//   email: yup.string().required("Email is required"),
+//   intent: yup.string(),
+// })
 
 export const Register = () => {
   const [gameUUID, setGameUUID] = useState<IPlayGame>()
@@ -24,6 +26,7 @@ export const Register = () => {
     if(stored) {
       setGameUUID(JSON.parse(stored))
     }
+    console.log(`stored = ${stored}`)
   }, [setGameUUID])
 
   const formik = useFormik<UserInfo>({
@@ -32,8 +35,10 @@ export const Register = () => {
       name: "",
       email: "",
     },
-    validationSchema: validationSchema,
+
+    // validationSchema: validationSchema,
     onSubmit: async(values) => {
+      console.log(`values = ${values}`)
       submit(values, {method: "post"})
     }
   })
@@ -41,40 +46,20 @@ export const Register = () => {
   return (
     <div>
       <h1>Signup</h1>
-      <Formik
-        initialValues={{
-          uuid: '',
-          name: '',
-          email: '',
-        }}
-        onSubmit={(
-          values: UserInfo,
-          { setSubmitting }: FormikHelpers<UserInfo>
-        ) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
-        }}
-      >
-        <Form>
-          <label htmlFor="uuid">First Name</label>
-          <Field id="uuid" name="uuid" placeholder="John" />
-
-          <label htmlFor="name">Last Name</label>
-          <Field id="name" name="name" placeholder="Doe" />
-
-          <label htmlFor="email">Email</label>
-          <Field
-            id="email"
-            name="email"
-            placeholder="john@acme.com"
-            type="email"
-          />
-
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
+      <form method="POST" onSubmit={formik.handleSubmit}>
+        <input type="hidden" name="uuid" value={gameUUID?.uuid}/>
+        <TextField
+          id="name"
+          name="name"
+          label="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          // error={formik.errors.name !== undefined}
+          // helperText={formik.touched.name ? formik.errors.name : ""}
+          >
+        </TextField>
+        <Button type="submit" name="form_info" value="mui_formik">submit</Button>
+      </form>  
     </div>
   );
 };

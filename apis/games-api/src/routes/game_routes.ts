@@ -24,7 +24,7 @@ const listGames = (req: Request, resp: Response) => {
 
 const gameInfo = (req: Request, resp: Response) => {
   const selectedGameInfo = req.params.id;
-  if (selectedGameInfo === 'chutes_and_ladders') {
+  if (selectedGameInfo === 'chutes and ladders') {
     resp.json(ChutesAndLaddersRules as IGameInfo);
   } else {
     resp.json(tic_tac_toe as IGameInfo);
