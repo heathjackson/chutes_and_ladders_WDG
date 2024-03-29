@@ -32,11 +32,12 @@ export const playGame = async ({params}: ActionFunctionArgs) => {
   return null;
 }
 
-export const registerAction = async ({request, params}: ActionFunctionArgs) => {
+export const registerAction = async ({request}: ActionFunctionArgs) => {
     const form = await request.formData()
-    const name = form.get("name")
-    console.log(name)
-    return redirect (`/games/${params.id}/playGame`)
+    console.log(form.get("userName"))
+    console.log(form.get("uuid"))
+    console.log(form.get("gameId"))
+    return form
   }
  
 

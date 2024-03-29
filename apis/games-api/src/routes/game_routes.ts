@@ -44,6 +44,10 @@ const playableGame = (req: Request, resp: Response) => {
   resp.json(gameCreated);
 };
 
+
+
+//req.body
+
 export class GameRoutes {
   constructor(router: Router) {
     router.use(path_method);
