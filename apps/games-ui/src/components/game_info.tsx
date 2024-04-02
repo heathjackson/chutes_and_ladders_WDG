@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 
 const GameInfo = () => {
   const {id}  = useParams();
-  const games = useRouteLoaderData('game_list') as Array<IGameInfo>
+  const games = useRouteLoaderData("game_info") as Array<IGameInfo>
   const gameInfo = games.find(({name}) => name === id)
   const rules = gameInfo?.rules
 

@@ -19,17 +19,17 @@ const path_method = (req: Request, resp: Response, next: NextFunction) => {
 };
 
 const listGames = (req: Request, resp: Response) => {
-  resp.json([ChutesAndLaddersRules, tic_tac_toe]);
+  resp.json([ChutesAndLaddersRules.name, tic_tac_toe.name]);
 };
 
 const gameInfo = (req: Request, resp: Response) => {
   const selectedGameInfo = req.params.id;
-  if (selectedGameInfo === 'chutes and ladders') {
-    resp.json(ChutesAndLaddersRules as IGameInfo);
+  if (selectedGameInfo === 'chutes_and_ladders') {
+    resp.json([ChutesAndLaddersRules as IGameInfo]);
   } else {
-    resp.json(tic_tac_toe as IGameInfo);
+    resp.json([tic_tac_toe as IGameInfo]);
   }
-};
+}; //change this to variable
 
 const playableGame = (req: Request, resp: Response) => {
   let gameCreated;
@@ -44,15 +44,13 @@ const playableGame = (req: Request, resp: Response) => {
   resp.json(gameCreated);
 };
 
-
-
 //req.body
 
 export class GameRoutes {
   constructor(router: Router) {
     router.use(path_method);
     router.get('/games', listGames);
-    router.get('/games/:id', gameInfo);
+    router.post('/games/:id', gameInfo);
     router.post('/games/:id', playableGame);
   }
 }

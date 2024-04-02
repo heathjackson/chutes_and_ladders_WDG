@@ -1,67 +1,67 @@
-import { useFormik } from 'formik';
+import { Container } from "@mui/material";
+import { useFormik } from "formik";
+import { useSubmit } from "react-router-dom";
 import * as Yup from "yup";
-import { IPlayGame } from '@hjackson/model';
-import { useState, useMemo } from 'react';
-import { useSubmit } from 'react-router-dom';
-import { Button, TextField } from '@mui/material';
 
-type UserInfo = {
-  uuid?: string,
-  gameId?: string,
-  userName: string,
-}
-
-const validationSchema = Yup.object({
-  uuid: Yup.string(),
+const schema = Yup.object({
+  userName: Yup.string().required("Please enter a valid name"),
+  uuid: Yup
+  .string()
+  .min(4)
+  .required("required"),
   gameId: Yup.string(),
-  userName: Yup.string(),
-});
+})
 
-export const Register = () => {
-  const [gameUUID, setGameUUID] = useState<IPlayGame>()
+export const Register = () =>  {
   const submit = useSubmit()
-
-  useMemo(() => {
-    const stored = sessionStorage.getItem("current_game");
-    if(stored) {
-      setGameUUID(JSON.parse(stored))
-    }
-    console.log(`stored = ${stored}`)
-  }, [setGameUUID])
-
-  const formik = useFormik<UserInfo>({
+  const {values, errors, handleBlur, handleChange, handleSubmit, touched} = useFormik({
     initialValues: {
-      uuid: gameUUID?.uuid,
-      gameId: gameUUID?.id,
       userName: "",
+      uuid: "",
+      gameId: "",
     },
-
-
-    validationSchema: validationSchema,
-
+    validationSchema: schema,
     onSubmit: async(values) => {
-      console.log(values)
       submit(values, {method: "post"})
-    }
-  })
+    },
+  });
 
-  return (
-    <div>
-      <h1>Signup</h1>
-      <form method="POST" onSubmit={formik.handleSubmit}>
-        <input type="hidden" id="uuid" name="uuid" value={formik.values.uuid} onChange={formik.handleChange}/>
-        <TextField
+  return(
+    <Container>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="userName">User Name</label>
+        <input 
+          value={values.userName}
+          onChange={handleChange} 
           id="userName"
-          name="userName"
-          label="userName"
-          value={formik.values.userName}
-          onChange={formik.handleChange}
-          // error={formik.errors.userName !== undefined}
-          // helperText={formik.touched.userName ? formik.errors.userName : ""}
-          >
-        </TextField>
-        <Button type="submit" name="form_info" value="mui_formik">submit</Button>
-      </form>  
-    </div>
-  );
-};
+          type="text" 
+          placeholder="Enter your name"
+          onBlur={handleBlur}
+          className={errors.userName && touched.userName ? "input-error" : ""}/>
+        {errors.userName && touched.userName && <p className= "error">{errors.userName}</p>}
+        <label htmlFor="uuid">UUID Info</label>
+        <input 
+          value={values.uuid}
+          onChange={handleChange} 
+          id="uuid"
+          type="text" 
+          placeholder="Enter UUID"
+          onBlur={handleBlur}
+          className={errors.uuid && touched.uuid ? "input-error" : ""}/>
+          {errors.uuid && touched.uuid && <p className= "error">{errors.uuid}</p>}
+
+        <label htmlFor="gameId">Game ID</label>
+        <input 
+          value={values.gameId}
+          onChange={handleChange} 
+          id="gameId"
+          type="text" 
+          placeholder="Enter your gameId"
+          onBlur={handleBlur}
+          className={errors.gameId && touched.gameId ? "input-error" : ""}/>
+          {errors.gameId && touched.gameId && <p className= "error">{errors.gameId}</p>}
+          <button type="submit">Submit</button>
+      </form>
+    </Container>
+  )
+}

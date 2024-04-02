@@ -1,10 +1,9 @@
 import { useRouteLoaderData, Link } from "react-router-dom";
-import { IGameInfo } from "@hjackson/model";
 
 const GameList = () => {
-  const games = useRouteLoaderData('game_list') as Array<IGameInfo>
+  const games = useRouteLoaderData("game_list") as Array<string>
 
-  return(<ul>{games.map(g => <li><Link to={`/games/${g.name}`}>{g.name}</Link></li>)}</ul>)
+  return(<ul>{games.map(g => <li><Link to={`/games/${g}`}>{g}</Link></li>)}</ul>)
 } 
 
 export default GameList

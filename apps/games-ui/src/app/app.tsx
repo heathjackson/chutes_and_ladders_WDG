@@ -19,7 +19,7 @@ const router = createBrowserRouter (
         },
         {
           path: 'games',
-          id: 'game_list',
+          id: "game_list",
           loader: getGameList,
           children: [
             {
@@ -28,6 +28,7 @@ const router = createBrowserRouter (
             },
             {
               path: ':id',
+              id: "game_info",
               loader: getGameInfo,
               children: [
                 {
