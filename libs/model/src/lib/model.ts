@@ -85,15 +85,11 @@ export class GameInfoBuilder {
   }
 }
 
-export interface IPlayGame {
+export interface IGameBuilder {
   id: string;
   uuid: string;
   dateCreated: number;
-}
-
-export interface IGameBuilder extends IPlayGame {
   lastModified: number;
-  gameMethodMap: Map<string, void>; //reducer will need to be used
 }
 
 export class GameBuilder {
@@ -101,6 +97,7 @@ export class GameBuilder {
 
   constructor() {
     this.gameBuild = {
+      id: '',
       uuid: randomUUID(),
       dateCreated: Math.round(Date.now() / 60000),
     } as IGameBuilder;
@@ -116,12 +113,24 @@ export class GameBuilder {
     return this;
   }
 
-  addMethods(title: string, func: void): GameBuilder {
-    this.gameBuild.gameMethodMap.set(title, func);
-    return this;
+  getDateCreated() {
+    return this.gameBuild.dateCreated;
+  }
+
+  getUUID() {
+    return this.gameBuild.uuid;
+  }
+
+  getId() {
+    return this.gameBuild.id;
   }
 
   buildNewGame(): IGameBuilder {
     return this.gameBuild;
   }
 }
+
+//creates a new game class depending on the game being played
+// export class Game<G extends GameBuilder> {
+//   constructor(public readonly GameClass: new () => G) {}
+// }

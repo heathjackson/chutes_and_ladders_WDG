@@ -5,7 +5,7 @@ import { Player } from './player.js';
 import { Avatar, Color } from './avatar.js';
 import { Die } from './die.js';
 
-class Chutes_and_ladders {
+export class Chutes_and_ladders {
   MAX_PLAYERS = 4;
   MIN_PLAYERS = 2;
   TOTAL = 100;
@@ -93,6 +93,7 @@ class Chutes_and_ladders {
   }
 
   registerPlayer(playerName, color) {
+    let playerRegistered = false;
     if (this.registeredPlayers.length < this.MAX_PLAYERS) {
       const player = new Player(
         playerName,
@@ -101,9 +102,11 @@ class Chutes_and_ladders {
       );
       this.registeredPlayers.push(player);
       this.chooseColor(color);
+      playerRegistered = true;
     } else {
       console.log(`${playerName}, a max of four players are allowed`);
     }
+    return playerRegistered;
   }
 
   setUpGame() {
@@ -148,5 +151,3 @@ class Chutes_and_ladders {
     return player.avatar.winner;
   }
 }
-
-export { Chutes_and_ladders };

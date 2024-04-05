@@ -2,7 +2,7 @@ export const GamePlay = () => {
 
   return(
     <div>
-      <div>this is a test</div> 
+      <div>You have been registered</div> 
     </div>
   )
 };

@@ -5,20 +5,20 @@ import * as Yup from "yup";
 
 const schema = Yup.object({
   userName: Yup.string().required("Please enter a valid name"),
-  uuid: Yup
-  .string()
-  .min(4)
-  .required("required"),
-  gameId: Yup.string(),
+  uuid: Yup.string().uuid(),
+  avatar: Yup.string()
 })
 
 export const Register = () =>  {
   const submit = useSubmit()
+  const local = JSON.parse(localStorage.getItem("current_game") || "{}")
+  const storageUUID = local.uuid
+  
   const {values, errors, handleBlur, handleChange, handleSubmit, touched} = useFormik({
     initialValues: {
       userName: "",
-      uuid: "",
-      gameId: "",
+      uuid: storageUUID,
+      avatar: "",
     },
     validationSchema: schema,
     onSubmit: async(values) => {
@@ -39,27 +39,24 @@ export const Register = () =>  {
           onBlur={handleBlur}
           className={errors.userName && touched.userName ? "input-error" : ""}/>
         {errors.userName && touched.userName && <p className= "error">{errors.userName}</p>}
-        <label htmlFor="uuid">UUID Info</label>
+
+        <label htmlFor="avatar">avatar</label>
+        <input 
+          value={values.avatar}
+          onChange={handleChange} 
+          id="avatar"
+          type="text" 
+          placeholder="Enter color"
+          onBlur={handleBlur}
+          className={errors.avatar && touched.avatar ? "input-error" : ""}/>
+        {errors.avatar && touched.avatar && <p className= "error">{errors.avatar}</p>}
+      
         <input 
           value={values.uuid}
           onChange={handleChange} 
           id="uuid"
-          type="text" 
-          placeholder="Enter UUID"
-          onBlur={handleBlur}
-          className={errors.uuid && touched.uuid ? "input-error" : ""}/>
-          {errors.uuid && touched.uuid && <p className= "error">{errors.uuid}</p>}
-
-        <label htmlFor="gameId">Game ID</label>
-        <input 
-          value={values.gameId}
-          onChange={handleChange} 
-          id="gameId"
-          type="text" 
-          placeholder="Enter your gameId"
-          onBlur={handleBlur}
-          className={errors.gameId && touched.gameId ? "input-error" : ""}/>
-          {errors.gameId && touched.gameId && <p className= "error">{errors.gameId}</p>}
+          type="hidden"
+        />
           <button type="submit">Submit</button>
       </form>
     </Container>

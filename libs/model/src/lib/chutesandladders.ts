@@ -1,5 +1,4 @@
-import { GameInfoBuilder, IGameBuilder, IGameInfo, GameBuilder } from './model';
-// import { Chutes_and_ladders } from './chutesandladders_gl/game_logic/cl_game';
+import { GameInfoBuilder, IGameInfo, IGameBuilder, GameBuilder } from './model';
 
 // const chutesAndLadders = new Chutes_and_ladders(5, 5);
 
@@ -12,13 +11,11 @@ export const ChutesAndLaddersRules: IGameInfo = new GameInfoBuilder()
   .addRule('roll dice', 'each player takes turns rolling the dice')
   .buildGameInfo();
 
+// const chutesAndLaddersGame = new Game(Chutes_and_ladders);
+// export const CompleteChutesAndLadders = new chutesAndLaddersGame.GameClass()
+//   .setId('1')
+//   .buildNewGame();
+
 export const CompleteChutesAndLadders: IGameBuilder = new GameBuilder()
   .setId('1')
-  // .addMethods('choose color', chutesAndLadders.chooseColor())
-  // // .addMethods('register player', chutesAndLadders.registerPlayer)
-  // // .addMethods('register player', chutesAndLadders.registerPlayer)
-  // // .addMethods('start game', chutesAndLadders.setUpGame)
-  // // .addMethods('reset game', chutesAndLadders.resetGame)
-  // // .addMethods('roll dice', chutesAndLadders.rollDice)
-  // // .addMethods('play turn', chutesAndLadders.playTurn)
   .buildNewGame();

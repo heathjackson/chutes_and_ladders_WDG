@@ -1,8 +1,8 @@
-import { IPlayGame } from '../model';
+import { IGameBuilder } from '../model';
 
 export function gameMaps() {
   let uuidArray = new Array<string>();
-  const map1 = new Map<string, IPlayGame>();
+  const map1 = new Map<string, IGameBuilder>();
   const map2 = new Map<number, Array<string>>();
   const minutes = 1440; //1440 minutes in a day used to subtract a day from the current time
   // 60000 milliseconds in a minute will convert Date.now() from milliseconds to minutes
@@ -16,7 +16,7 @@ export function gameMaps() {
 
   const deletedGames: Array<Array<string>> = [];
 
-  const gameMap1 = (completeGame: IPlayGame) => {
+  const gameMap1 = (completeGame: IGameBuilder) => {
     //convert date created to time conversion chosen above
     completeGame.dateCreated = currentTime;
     map1.set(completeGame.uuid, completeGame);

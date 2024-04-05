@@ -7,31 +7,30 @@ export const getGameList = async () => {
   return res.data
 }
 
-
 export const getGameInfo = async({params}: LoaderFunctionArgs) => {
-  return axios.post(`http://localhost:3333/api/v1/games/${params.id}`)
-  .then(resp => resp.data)
-  .then(resp => {
-    return resp as IGameInfo[]
-  })
+  const res = await axios.get(`http://localhost:3333/api/v1/games/${params.id}`)
+  return res.data as IGameInfo[]
 }
 
 export const playGame = async ({params}: ActionFunctionArgs) => {
   if (params.id) {
-    const resp = await axios.post(`http://localhost:3333/api/v1/games/${params.id}`)
-      .then(resp => resp.data)
-      .then(data => {
-        sessionStorage.setItem('current_game', JSON.stringify(data));
+    const resp = await axios.post(`http://localhost:3333/api/v1/games/${params.id}/playGame`)
+        localStorage.setItem('current_game', JSON.stringify(resp.data));
         return redirect(`/games/${params.id}/register`);
-      })
-      return resp
   }
   return null;
 }
 
-export const registerAction = async ({request}: ActionFunctionArgs) => {
+export const registerAction = async ({request, params}: ActionFunctionArgs) => {
   const form = await request.formData()
-  console.log(form.get("uuid"))
-  return form
+
+  const registerInfo = {
+    userName: form.get("userName"),
+    avatar: form.get("avatar"),
+    uuid: form.get("uuid")
+  }
+
+  const res = await axios.put(`http://localhost:3333/api/v1/games/${params.id}/register`, registerInfo)
+  return res.data 
 }
 

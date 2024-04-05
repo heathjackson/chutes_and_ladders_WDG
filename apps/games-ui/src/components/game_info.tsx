@@ -31,7 +31,7 @@ const GameInfo = () => {
           name="id" 
           value={id}
           type="submit"
-        >Register
+        >Play Game
         </Button>
       </Form>
     </div>
