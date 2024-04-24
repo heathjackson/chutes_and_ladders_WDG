@@ -11,8 +11,8 @@ const schema = Yup.object({
 
 export const Register = () =>  {
   const submit = useSubmit()
-  const local = JSON.parse(localStorage.getItem("current_game") || "{}")
-  const storageUUID = local.uuid
+  const session = JSON.parse(sessionStorage.getItem("current_game") || "{}")
+  const storageUUID = session.uuid
   
   const {values, errors, handleBlur, handleChange, handleSubmit, touched} = useFormik({
     initialValues: {

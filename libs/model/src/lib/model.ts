@@ -129,8 +129,3 @@ export class GameBuilder {
     return this.gameBuild;
   }
 }
-
-//creates a new game class depending on the game being played
-// export class Game<G extends GameBuilder> {
-//   constructor(public readonly GameClass: new () => G) {}
-// }

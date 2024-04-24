@@ -1,9 +1,11 @@
 import { IGameBuilder } from '../model';
 
-export function gameMaps() {
+export function gameMaps(
+  map1: Map<string, IGameBuilder>,
+  map2: Map<number, Array<string>>
+) {
   let uuidArray = new Array<string>();
-  const map1 = new Map<string, IGameBuilder>();
-  const map2 = new Map<number, Array<string>>();
+
   const minutes = 1440; //1440 minutes in a day used to subtract a day from the current time
   // 60000 milliseconds in a minute will convert Date.now() from milliseconds to minutes
   const timeConversion = 60000;
@@ -44,15 +46,5 @@ export function gameMaps() {
     }
   };
 
-  const getMap1 = () => {
-    // eslint-disable-next-line prefer-const
-    return [...map1.entries()];
-  };
-
-  const getMap2 = () => {
-    // eslint-disable-next-line prefer-const
-    return [...map2.entries()];
-  };
-
-  return { gameMap1, deleteOldGames, getMap1, getMap2, setGameMap2 };
+  return { gameMap1, deleteOldGames, setGameMap2 };
 }

@@ -14,8 +14,8 @@ export const getGameInfo = async({params}: LoaderFunctionArgs) => {
 
 export const playGame = async ({params}: ActionFunctionArgs) => {
   if (params.id) {
-    const resp = await axios.post(`http://localhost:3333/api/v1/games/${params.id}/playGame`)
-        localStorage.setItem('current_game', JSON.stringify(resp.data));
+    const resp = await axios.post(`http://localhost:3333/api/v1/games/${params.id}`)
+        sessionStorage.setItem('current_game', JSON.stringify(resp.data));
         return redirect(`/games/${params.id}/register`);
   }
   return null;
@@ -30,7 +30,11 @@ export const registerAction = async ({request, params}: ActionFunctionArgs) => {
     uuid: form.get("uuid")
   }
 
-  const res = await axios.put(`http://localhost:3333/api/v1/games/${params.id}/register`, registerInfo)
-  return res.data 
+  const resp = await axios.put(`http://localhost:3333/api/v1/games/${params.id}/register`, registerInfo)
+   if(resp.data) {
+    return redirect(`/games/${params.id}/playGame`)
+   }
 }
+
+
 
