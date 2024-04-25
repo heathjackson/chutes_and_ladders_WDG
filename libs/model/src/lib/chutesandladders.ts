@@ -1,3 +1,4 @@
+import { Chutes_and_ladders } from './chutesandladders_gl/game_logic/cl_game';
 import { GameInfoBuilder, IGameInfo, IGameBuilder, GameBuilder } from './model';
 
 export const ChutesAndLaddersRules: IGameInfo = new GameInfoBuilder()
@@ -11,4 +12,5 @@ export const ChutesAndLaddersRules: IGameInfo = new GameInfoBuilder()
 
 export const CompleteChutesAndLadders: IGameBuilder = new GameBuilder()
   .setId('1')
+  .setGameInstance(new Chutes_and_ladders(5, 5))
   .buildNewGame();

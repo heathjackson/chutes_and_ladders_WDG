@@ -92,6 +92,10 @@ export class Chutes_and_ladders {
     );
   }
 
+  getBoard() {
+    return this.board;
+  }
+
   registerPlayer(playerName, color) {
     let playerRegistered = false;
     if (this.registeredPlayers.length < this.MAX_PLAYERS) {
@@ -151,3 +155,8 @@ export class Chutes_and_ladders {
     return player.avatar.winner;
   }
 }
+
+const game = new Chutes_and_ladders(5, 5);
+const board = game.getBoard();
+
+console.log(board);

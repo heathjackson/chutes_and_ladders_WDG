@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",
+  "type": "module",
   "module": "./index.mjs",
   "typings": "./index.d.ts"
 }

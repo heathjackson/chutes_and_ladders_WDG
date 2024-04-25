@@ -44,6 +44,7 @@ const router = createBrowserRouter (
                 },
                 {
                   path: 'playGame',
+                  loader: registerAction,
                   index: true,
                   Component: GamePlay
                 }

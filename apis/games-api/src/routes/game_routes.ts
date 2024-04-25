@@ -1,21 +1,14 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import {
   ChutesAndLaddersRules,
-  gameMaps,
   tic_tac_toe,
   CompleteChutesAndLadders,
   Complete_tic_tac_toe,
   IGameInfo,
   IGameBuilder,
-  Chutes_and_ladders,
 } from '@hjackson/model';
 
 const map1 = new Map();
-const map2 = new Map();
-
-const mapLogic = gameMaps(map1, map2);
-
-const gameLogic = new Chutes_and_ladders(5, 5);
 
 const path_method = (req: Request, resp: Response, next: NextFunction) => {
   console.log(req.path, req.method);
@@ -45,24 +38,19 @@ const gameID = (req: Request, resp: Response) => {
     gameCreated = Complete_tic_tac_toe;
   }
 
-  console.log(`gameCreated = ${JSON.stringify(gameCreated)}`);
   console.log(`uuid = ${gameCreated.uuid}`);
 
-  mapLogic.gameMap1(gameCreated);
-  // map1.set(gameCreated.uuid, gameCreated);
-
-  for (const game of map1) {
-    console.log(`game = ${game[0]}, ${game[1].dateCreated}`);
-  }
+  map1.set(gameCreated.uuid, gameCreated);
   resp.json(gameCreated);
 };
 
-const register = (req: Request, resp: Response) => {
-  const body = req.body;
-  const reg = gameLogic.registerPlayer(body.userName, body.avatar);
-  gameLogic.registerPlayer('Heather', 'blue');
-  resp.json(reg);
-};
+// const register = (req: Request, resp: Response) => {
+//   const body = req.body;
+//   gameLogic.registerPlayer(body.userName, body.avatar);
+//   gameLogic.registerPlayer('Heather', 'blue');
+//   gameLogic.setUpGame();
+//   resp.json(gameLogic.board);
+// };
 
 export class GameRoutes {
   constructor(router: Router) {
@@ -70,6 +58,6 @@ export class GameRoutes {
     router.get('/games', listGames);
     router.get('/games/:id', gameInfo);
     router.post('/games/:id', gameID);
-    router.put('/games/:id/register', register);
+    // router.put('/games/:id/register', register);
   }
 }

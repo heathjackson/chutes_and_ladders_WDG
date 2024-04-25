@@ -1,4 +1,4 @@
-import { SpaceType } from "./space.js";
+import { SpaceType } from './space.js';
 
 export class Board {
   start;
