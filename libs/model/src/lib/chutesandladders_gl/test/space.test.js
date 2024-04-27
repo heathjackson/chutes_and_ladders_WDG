@@ -1,22 +1,8 @@
-// Copyright 2023 YOUR NAME HERE
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+import { Space, SpaceType } from '../game_logic/space.js';
+import { Avatar } from '../game_logic/avatar.js';
 
-import { Space, SpaceType } from "../src/js/model/space.js";
-import { Avatar } from "../src/js/model/avatar.js";
-
-describe("#land(avatar)", () => {
-  test("test space", () => {
+describe('#land(avatar)', () => {
+  test('test space', () => {
     const start_1 = new Space(1, SpaceType.START);
     const normal_2 = new Space(2, SpaceType.NORMAL);
     const normal_3 = new Space(3, SpaceType.NORMAL);
@@ -43,8 +29,8 @@ describe("#land(avatar)", () => {
     normal_2.back = start_1;
     start_1.back = null;
 
-    const Heather = new Avatar("red");
-    const Jane = new Avatar("blue");
+    const Heather = new Avatar('red');
+    const Jane = new Avatar('blue');
 
     start_1.land(Heather);
     expect(Heather.location.value).toEqual(1);

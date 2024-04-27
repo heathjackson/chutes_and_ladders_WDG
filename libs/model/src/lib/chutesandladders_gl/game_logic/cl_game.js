@@ -15,18 +15,12 @@ export class Chutes_and_ladders {
   specialSpaces = [];
   uniqueValues = [];
   registeredPlayers = [];
-  board;
-  dice;
 
   constructor(ladders, chutes) {
     this.ladders = ladders;
     this.chutes = chutes;
-    this.initializeGame();
-  }
-
-  initializeGame() {
     this.createChutesAndLadders();
-    this.board = new Board(this.specialSpaces, this.TOTAL, this.createSpace);
+    this.board = new Board(this.specialSpaces, this.TOTAL);
     this.dice = new Die(6);
   }
 
@@ -92,10 +86,6 @@ export class Chutes_and_ladders {
     );
   }
 
-  getBoard() {
-    return this.board;
-  }
-
   registerPlayer(playerName, color) {
     let playerRegistered = false;
     if (this.registeredPlayers.length < this.MAX_PLAYERS) {
@@ -128,7 +118,7 @@ export class Chutes_and_ladders {
     this.specialSpaces = [];
     this.uniqueValues = [];
     this.createChutesAndLadders();
-    this.board = new Board(this.specialSpaces, this.TOTAL, this.createSpace);
+    this.board = new Board(this.specialSpaces, this.TOTAL);
     this.switchTurns();
     this.setUpGame();
   }
@@ -157,6 +147,6 @@ export class Chutes_and_ladders {
 }
 
 const game = new Chutes_and_ladders(5, 5);
-const board = game.getBoard();
-
-console.log(board);
+// console.log(game);
+const board = game.board.total_spaces_array;
+console.log([...board]);

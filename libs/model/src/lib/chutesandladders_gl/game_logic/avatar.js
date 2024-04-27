@@ -1,4 +1,3 @@
-import './space.js';
 import { SpaceType } from './space.js';
 
 // Add avatar implementations here

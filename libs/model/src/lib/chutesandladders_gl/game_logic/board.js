@@ -1,14 +1,17 @@
-import { SpaceType } from './space.js';
+import { SpaceType, Space } from './space.js';
 
 export class Board {
   start;
   finish;
   total_spaces_array = [];
-  constructor(specialArray, totalSpaces, spaceMaker) {
-    this.spaceMaker = spaceMaker;
+  constructor(specialArray, totalSpaces) {
     this.specialArray = specialArray;
     this.totalSpaces = totalSpaces;
     this.connectSpaces();
+  }
+
+  spaceMaker(startValue, type) {
+    return new Space(startValue, type);
   }
 
   createAllSpaces = () => {

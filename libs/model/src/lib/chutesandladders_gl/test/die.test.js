@@ -1,7 +1,7 @@
-import { Die } from "../src/js/model/die.js";
+import { Die } from '../game_logic/die';
 
-describe("Test die class", () => {
-  test("Test die class", () => {
+describe('Test die class', () => {
+  test('Test die class', () => {
     const d6 = new Die(6);
     for (let i = 0; i < 100; i++) {
       let rollValue = d6.roll();
@@ -11,18 +11,18 @@ describe("Test die class", () => {
   });
 });
 
-test("will not create die with less than 4 sides", () => {
-  expect(() => new Die(3)).toThrow("sides must be greater than or equal to 4");
+test('will not create die with less than 4 sides', () => {
+  expect(() => new Die(3)).toThrow('sides must be greater than or equal to 4');
 });
 
-test("Test the sum of rolling a 6-sided die 20 times lies between 20 and 120", () => {
+test('Test the sum of rolling a 6-sided die 20 times lies between 20 and 120', () => {
   const d = new Die(6);
   const s = d.sumOfRolls(20);
   expect(s).toBeGreaterThanOrEqual(20);
   expect(s).toBeLessThanOrEqual(120);
 });
 
-test("Test summing the rolls of different dice, so the total sum lies between the min and max possible", () => {
+test('Test summing the rolls of different dice, so the total sum lies between the min and max possible', () => {
   const d6 = new Die(6);
   const d4 = new Die(4);
   const s_1 = d6.sumOfRolls(20);

@@ -9,117 +9,66 @@ export class SpaceType {
 Object.freeze(SpaceType);
 
 export class Space {
-  #Value = '';
-  #Type = SpaceType.NORMAL;
-  #Next = null;
-  #Back = null;
-  #Special = null;
-  #Avatars = [];
+  value = '';
+  type = SpaceType.NORMAL;
+  next = null;
+  back = null;
+  special = null;
+  avatars = [];
 
   constructor(value, type) {
-    this.#Value = value;
-    this.#Type = type;
+    this.value = value;
+    this.type = type;
   }
 
   /**
    * Is a method to be invoked when an avatar leaves a space
    */
   leave() {
-    this.#Avatars.pop();
+    this.avatars.pop();
   }
 
-  /**
-   *
-   * @return {string}
-   */
-  get value() {
-    return this.#Value;
+  next(space) {
+    if (this.type !== 4) {
+      this.next = space;
+    } else {
+      this.next = null;
+    }
   }
 
-  /**
-   *
-   * @return {number}
-   */
-  get type() {
-    return this.#Type;
+  back(space) {
+    if (this.type !== 0) {
+      this.back = space;
+    } else {
+      this.next = null;
+    }
   }
 
-  /**
-   *
-   * @return {Space | null}
-   */
-  get next() {
-    return this.#Next;
+  special(space) {
+    if (this.type === 2 || this.type === 3) {
+      this.special = space;
+    } else {
+      this.special = null;
+    }
   }
-
-  /**
-   *
-   * @param location {Space}
-   * @return {Space} the current space
-   */
-  set next(space) {
-    this.#Next = space;
-  }
-
-  get back() {
-    return this.#Back;
-  }
-
-  set back(space) {
-    this.#Back = space;
-  }
-
-  /**
-   *
-   * @return {Space | null}
-   */
-  get special() {
-    return this.#Special;
-  }
-
-  /**
-   *
-   * @param location
-   * @return {Space} the current space
-   */
-  set special(space) {
-    this.#Special = space;
-  }
-
-  /**
-   *
-   * @return {*[]} a copy of the array of players
-   */
-  get avatars() {
-    // returns a copy of the players
-    return [...this.#Avatars];
-  }
-  /**
-   * @return boolean true if the space has players, false otherwise
-   */
 
   occupied() {
-    return this.#Avatars.length > 0;
+    return this.avatars.length > 0;
   }
 
-  /**
-   * Is a method to be invoked when an avatar lands (or stops) on a space.
-   * @param avatar
-   **/
-
   land(avatar) {
-    if (this.occupied() && this.#Type !== SpaceType.START) {
-      this.#Avatars[0].move(1);
+    if (this.occupied() && this.type !== SpaceType.START) {
+      this.avatars[0].move(1);
       this.leave();
-    } else if (this.#Special !== null) {
-      avatar.location = this.#Special;
-      avatar.location.#Avatars.push(avatar);
-    } else if (this.#Type === SpaceType.FINISH) {
+    } else if (this.special !== null) {
+      avatar.location = this.special;
+      avatar.location.avatars.push(avatar);
+    } else if (this.type === SpaceType.FINISH) {
       avatar.location = this;
       avatar.toggleWinner();
     } else {
       avatar.location = this;
-      this.#Avatars.push(avatar);
+      this.avatars.push(avatar);
     }
   }
 }

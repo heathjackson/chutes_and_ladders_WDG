@@ -41,7 +41,7 @@ const gameID = (req: Request, resp: Response) => {
   console.log(`uuid = ${gameCreated.uuid}`);
 
   map1.set(gameCreated.uuid, gameCreated);
-  resp.json(gameCreated);
+  resp.json(gameCreated.gameInstance.totalSpacesArray);
 };
 
 // const register = (req: Request, resp: Response) => {

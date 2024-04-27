@@ -1,19 +1,15 @@
-import { SpaceType, Space } from "../src/js/model/space";
-import { Board } from "../src/js/model/board";
+import { SpaceType, Space } from '../game_logic/space';
+import { Board } from '../game_logic/board';
 
-describe("check that the board is created correctly with the correct amount of spaces and a start and finish", () => {
-  const spaceMaker = (startValue, type) => {
-    return new Space(startValue, type);
-  };
-  const board = new Board([], 100, spaceMaker);
-  test("check board is set up correctly", () => {
-    expect(board).toBeTruthy();
-    expect(board.start).toBeTruthy();
-    expect(board.start.next).toBeTruthy();
-    expect(board.start.back).toBeFalsy();
-    expect(board.start.type).toEqual(SpaceType.START);
-    expect(board.finish.type).toEqual(SpaceType.FINISH);
-    expect(board.finish.next).toBeFalsy();
-    expect(board.finish.back).toBeTruthy();
+describe('check that the newBoard is created correctly with the correct amount of spaces and a start and finish', () => {
+  const newBoard = new Board([], 100);
+  test('check newBoard is set up correctly', () => {
+    expect(newBoard.start).toBeTruthy();
+    expect(newBoard.start.next).toBeTruthy();
+    expect(newBoard.start.back).toBeFalsy();
+    expect(newBoard.start.type).toEqual(SpaceType.START);
+    expect(newBoard.finish.type).toEqual(SpaceType.FINISH);
+    expect(newBoard.finish.next).toBeFalsy();
+    expect(newBoard.finish.back).toBeTruthy();
   });
 });

@@ -90,7 +90,7 @@ export interface IGameBuilder {
   uuid: string;
   dateCreated: number;
   lastModified: number;
-  gameInstance: object;
+  gameInstance: any;
 }
 
 export class GameBuilder {
@@ -114,7 +114,7 @@ export class GameBuilder {
     return this;
   }
 
-  setGameInstance(game: object): GameBuilder {
+  setGameInstance(game: any): GameBuilder {
     this.gameBuild.gameInstance = game;
     return this;
   }
