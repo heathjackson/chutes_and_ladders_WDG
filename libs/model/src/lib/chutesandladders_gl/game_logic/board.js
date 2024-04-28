@@ -4,10 +4,12 @@ export class Board {
   start;
   finish;
   total_spaces_array = [];
+  unlinked_total_spaces = [];
   constructor(specialArray, totalSpaces) {
     this.specialArray = specialArray;
     this.totalSpaces = totalSpaces;
     this.connectSpaces();
+    this.unlink();
   }
 
   spaceMaker(startValue, type) {
@@ -44,12 +46,17 @@ export class Board {
     }
   };
 
-  print() {
+  unlink() {
     while (this.start !== null) {
-      console.log(`value = ${this.start.value}, type = ${this.start.type}`);
-      if (this.start.special) {
-        console.log(`special = ${this.start.special.value}`);
-      }
+      let spaceObject = {
+        value: this.start.value,
+        type: this.start.type,
+        next: this.start.next,
+        back: this.start.back,
+        special: this.start.special,
+        avatars: this.start.avatars,
+      };
+      this.unlinked_total_spaces.push(spaceObject);
       this.start = this.start.next;
     }
   }
@@ -58,3 +65,8 @@ export class Board {
     this.start = null;
   }
 }
+
+const newBoard = new Board([], 10);
+newBoard.unlink();
+console.log(newBoard.unlinked_total_spaces);
+console.log(newBoard.total_spaces_array);
