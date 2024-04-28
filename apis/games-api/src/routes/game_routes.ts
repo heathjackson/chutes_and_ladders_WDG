@@ -37,11 +37,9 @@ const gameID = (req: Request, resp: Response) => {
   } else {
     gameCreated = Complete_tic_tac_toe;
   }
-
-  console.log(`uuid = ${gameCreated.uuid}`);
-
+  //map is used as a database to save the game uuid with the game created object which includes the instance of game
   map1.set(gameCreated.uuid, gameCreated);
-  resp.json(gameCreated.gameInstance.totalSpacesArray);
+  resp.json(gameCreated.gameInstance.allSpaces());
 };
 
 // const register = (req: Request, resp: Response) => {

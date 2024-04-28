@@ -30,6 +30,10 @@ export class Chutes_and_ladders {
     );
   }
 
+  allSpaces() {
+    return this.board.unlinked_total_spaces;
+  }
+
   createSpace(startValue, type) {
     return new Space(startValue, type);
   }
@@ -145,8 +149,3 @@ export class Chutes_and_ladders {
     return player.avatar.winner;
   }
 }
-
-const game = new Chutes_and_ladders(5, 5);
-// console.log(game);
-const board = game.board.total_spaces_array;
-console.log([...board]);

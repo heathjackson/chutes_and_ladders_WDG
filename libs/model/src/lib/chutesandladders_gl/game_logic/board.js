@@ -48,12 +48,15 @@ export class Board {
 
   unlink() {
     while (this.start !== null) {
+      let newSpecial = this.start.special;
+      if (newSpecial !== null) {
+        newSpecial = this.start.special.value;
+      }
+
       let spaceObject = {
         value: this.start.value,
         type: this.start.type,
-        next: this.start.next,
-        back: this.start.back,
-        special: this.start.special,
+        special: newSpecial,
         avatars: this.start.avatars,
       };
       this.unlinked_total_spaces.push(spaceObject);
@@ -65,8 +68,3 @@ export class Board {
     this.start = null;
   }
 }
-
-const newBoard = new Board([], 10);
-newBoard.unlink();
-console.log(newBoard.unlinked_total_spaces);
-console.log(newBoard.total_spaces_array);

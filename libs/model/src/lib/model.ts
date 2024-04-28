@@ -91,6 +91,7 @@ export interface IGameBuilder {
   dateCreated: number;
   lastModified: number;
   gameInstance: any;
+  gameBoard: Array<object>;
 }
 
 export class GameBuilder {
@@ -117,6 +118,15 @@ export class GameBuilder {
   setGameInstance(game: any): GameBuilder {
     this.gameBuild.gameInstance = game;
     return this;
+  }
+
+  setGameBoard(array: Array<object>): GameBuilder {
+    this.gameBuild.gameBoard = array;
+    return this;
+  }
+
+  getGameInstance() {
+    return this.gameBuild.gameInstance;
   }
 
   getDateCreated() {

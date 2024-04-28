@@ -1,3 +1,4 @@
+import { Board } from './chutesandladders_gl/game_logic/board';
 import { Chutes_and_ladders } from './chutesandladders_gl/game_logic/cl_game';
 import { GameInfoBuilder, IGameInfo, IGameBuilder, GameBuilder } from './model';
 
