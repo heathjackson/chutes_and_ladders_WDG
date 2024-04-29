@@ -32,10 +32,19 @@ export class Board {
     }
   };
 
-  getSpaceArray() {
+  getSpaceArray = () => {
     this.createAllSpaces();
-    this.unlinked_total_spaces = [...this.total_spaces_array];
-  }
+    this.total_spaces_array.map((space) => {
+      let newSpecial = space.special;
+      if (newSpecial !== null) {
+        newSpecial = space.special.value;
+      }
+      this.unlinked_total_spaces.push({
+        ...space,
+        special: newSpecial,
+      });
+    });
+  };
 
   connectSpaces = () => {
     this.getSpaceArray();
@@ -51,67 +60,7 @@ export class Board {
     }
   };
 
-  // // Actual clone method which returns head
-  // // reference of cloned linked list.
-  // clone() {
-  //   // Initialize two references, one with
-  //   // original list's head.
-  //   let origCurr = this.start;
-  //   let cloneCurr = null;
-
-  //   // Hash map which contains node to node
-  //   // mapping of original and clone linked list.
-  //   let map = new Map();
-
-  //   // Traverse the original list and make a
-  //   // copy of that in the clone linked list.
-  //   while (origCurr != null) {
-  //     cloneCurr = new Space(origCurr.data);
-  //     map.set(origCurr, cloneCurr);
-  //     origCurr = origCurr.next;
-  //   }
-
-  //   // Adjusting the original list reference
-  //   // again.
-  //   origCurr = this.start;
-
-  //   // Traversal of original list again to
-  //   // adjust the next and random references
-  //   // of clone list using hash map.
-  //   while (origCurr != null) {
-  //     cloneCurr = map.get(origCurr);
-  //     cloneCurr.next = map.get(origCurr.next);
-  //     cloneCurr.back = map.get(origCurr.back);
-  //     origCurr = origCurr.next;
-  //   }
-
-  //   // Return the head reference of the
-  //   // clone list.
-  //   this.unlinked_total_spaces.push(map.get(this.start));
-  // }
-
-  // unlink() {
-  //   let unlinked = this.unlinked_total_spaces;
-  //   while (unlinked.start !== null) {
-  //     let newSpecial = unlinked.start.special;
-  //     if (newSpecial !== null) {
-  //       newSpecial = unlinked.start.special.value;
-  //     }
-
-  //     let spaceObject = {
-  //       value: unlinked.start.value,
-  //       type: unlinked.start.type,
-  //       special: newSpecial,
-  //       avatars: unlinked.start.avatars,
-  //     };
-  //     unlinked.push(spaceObject);
-  //     unlinked.start = unlinked.start.next;
-  //   }
-  // }
-
   clear() {
     this.start = null;
   }
 }
-
-const newBoard = new Board([], 10);

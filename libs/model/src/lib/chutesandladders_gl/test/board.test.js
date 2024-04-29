@@ -11,5 +11,6 @@ describe('check that the newBoard is created correctly with the correct amount o
     expect(newBoard.finish.type).toEqual(SpaceType.FINISH);
     expect(newBoard.finish.next).toBeFalsy();
     expect(newBoard.finish.back).toBeTruthy();
+    expect(newBoard.unlinked_total_spaces.length).toBeGreaterThan(0);
   });
 });
