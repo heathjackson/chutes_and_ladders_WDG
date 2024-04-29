@@ -24,14 +24,14 @@ export class Chutes_and_ladders {
     this.dice = new Die(6);
   }
 
+  get allSpaces() {
+    return this.board.unlinked_total_spaces;
+  }
+
   chooseColor(color) {
     this.availableAvatars = this.availableAvatars.filter(
       (col) => col !== color
     );
-  }
-
-  allSpaces() {
-    return this.board.unlinked_total_spaces;
   }
 
   createSpace(startValue, type) {

@@ -1,4 +1,4 @@
-import { SpaceType, Space } from '../game_logic/space';
+import { SpaceType } from '../game_logic/space';
 import { Board } from '../game_logic/board';
 
 describe('check that the newBoard is created correctly with the correct amount of spaces and a start and finish', () => {

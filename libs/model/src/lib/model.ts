@@ -102,6 +102,7 @@ export class GameBuilder {
       id: '',
       uuid: randomUUID(),
       dateCreated: Math.round(Date.now() / 60000),
+      gameInstance: null,
     } as IGameBuilder;
   }
 

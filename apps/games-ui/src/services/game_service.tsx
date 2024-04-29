@@ -30,10 +30,8 @@ export const registerAction = async ({request, params}: ActionFunctionArgs) => {
     uuid: form.get("uuid")
   }
 
-  const resp = await axios.put(`http://localhost:3333/api/v1/games/${params.id}/register`, registerInfo)
-   if(resp.data) {
-    return redirect(`/games/${params.id}/playGame`)
-   }
+  await axios.put(`http://localhost:3333/api/v1/games/${params.id}/register`, registerInfo)
+  return redirect(`/games/${params.id}/playGame`); 
 }
 
 

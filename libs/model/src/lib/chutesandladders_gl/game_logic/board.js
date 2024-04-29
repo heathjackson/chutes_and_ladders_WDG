@@ -9,7 +9,7 @@ export class Board {
     this.specialArray = specialArray;
     this.totalSpaces = totalSpaces;
     this.connectSpaces();
-    this.unlink();
+    // this.unlink();
   }
 
   spaceMaker(startValue, type) {
@@ -30,11 +30,16 @@ export class Board {
           : this.total_spaces_array.push(this.spaceMaker(i, SpaceType.NORMAL));
       }
     }
-    return this.total_spaces_array;
   };
 
+  getSpaceArray() {
+    this.createAllSpaces();
+    this.unlinked_total_spaces = [...this.total_spaces_array];
+  }
+
   connectSpaces = () => {
-    let totalArray = this.createAllSpaces();
+    this.getSpaceArray();
+    let totalArray = this.total_spaces_array;
     this.start = totalArray[0];
     let cur = this.start;
 
@@ -46,25 +51,67 @@ export class Board {
     }
   };
 
-  unlink() {
-    while (this.start !== null) {
-      let newSpecial = this.start.special;
-      if (newSpecial !== null) {
-        newSpecial = this.start.special.value;
-      }
+  // // Actual clone method which returns head
+  // // reference of cloned linked list.
+  // clone() {
+  //   // Initialize two references, one with
+  //   // original list's head.
+  //   let origCurr = this.start;
+  //   let cloneCurr = null;
 
-      let spaceObject = {
-        value: this.start.value,
-        type: this.start.type,
-        special: newSpecial,
-        avatars: this.start.avatars,
-      };
-      this.unlinked_total_spaces.push(spaceObject);
-      this.start = this.start.next;
-    }
-  }
+  //   // Hash map which contains node to node
+  //   // mapping of original and clone linked list.
+  //   let map = new Map();
+
+  //   // Traverse the original list and make a
+  //   // copy of that in the clone linked list.
+  //   while (origCurr != null) {
+  //     cloneCurr = new Space(origCurr.data);
+  //     map.set(origCurr, cloneCurr);
+  //     origCurr = origCurr.next;
+  //   }
+
+  //   // Adjusting the original list reference
+  //   // again.
+  //   origCurr = this.start;
+
+  //   // Traversal of original list again to
+  //   // adjust the next and random references
+  //   // of clone list using hash map.
+  //   while (origCurr != null) {
+  //     cloneCurr = map.get(origCurr);
+  //     cloneCurr.next = map.get(origCurr.next);
+  //     cloneCurr.back = map.get(origCurr.back);
+  //     origCurr = origCurr.next;
+  //   }
+
+  //   // Return the head reference of the
+  //   // clone list.
+  //   this.unlinked_total_spaces.push(map.get(this.start));
+  // }
+
+  // unlink() {
+  //   let unlinked = this.unlinked_total_spaces;
+  //   while (unlinked.start !== null) {
+  //     let newSpecial = unlinked.start.special;
+  //     if (newSpecial !== null) {
+  //       newSpecial = unlinked.start.special.value;
+  //     }
+
+  //     let spaceObject = {
+  //       value: unlinked.start.value,
+  //       type: unlinked.start.type,
+  //       special: newSpecial,
+  //       avatars: unlinked.start.avatars,
+  //     };
+  //     unlinked.push(spaceObject);
+  //     unlinked.start = unlinked.start.next;
+  //   }
+  // }
 
   clear() {
     this.start = null;
   }
 }
+
+const newBoard = new Board([], 10);

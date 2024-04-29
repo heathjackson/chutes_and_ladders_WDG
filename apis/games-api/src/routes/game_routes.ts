@@ -39,16 +39,19 @@ const gameID = (req: Request, resp: Response) => {
   }
   //map is used as a database to save the game uuid with the game created object which includes the instance of game
   map1.set(gameCreated.uuid, gameCreated);
-  resp.json(gameCreated.gameInstance.allSpaces());
+  resp.json(gameCreated.uuid);
 };
 
-// const register = (req: Request, resp: Response) => {
-//   const body = req.body;
-//   gameLogic.registerPlayer(body.userName, body.avatar);
-//   gameLogic.registerPlayer('Heather', 'blue');
-//   gameLogic.setUpGame();
-//   resp.json(gameLogic.board);
-// };
+const register = (req: Request, resp: Response) => {
+  const body = req.body;
+  const uuid = body.uuid;
+  const getGame = map1.get(uuid);
+
+  getGame.gameInstance.registerPlayer(body.userName, body.avatar);
+  getGame.gameInstance.registerPlayer('Heather', 'blue');
+  getGame.gameInstance.setUpGame();
+  resp.json(getGame.gameInstance.board.allSpaces);
+};
 
 export class GameRoutes {
   constructor(router: Router) {
@@ -56,6 +59,6 @@ export class GameRoutes {
     router.get('/games', listGames);
     router.get('/games/:id', gameInfo);
     router.post('/games/:id', gameID);
-    // router.put('/games/:id/register', register);
+    router.put('/games/:id/register', register);
   }
 }
