@@ -50,7 +50,7 @@ const register = (req: Request, resp: Response) => {
   getGame.gameInstance.registerPlayer(body.userName, body.avatar);
   getGame.gameInstance.registerPlayer('Heather', 'blue');
   getGame.gameInstance.setUpGame();
-  resp.json(getGame.gameInstance.board.allSpaces);
+  resp.json(getGame.gameInstance.allSpaces);
 };
 
 export class GameRoutes {

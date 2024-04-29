@@ -8,8 +8,8 @@ export class Board {
   constructor(specialArray, totalSpaces) {
     this.specialArray = specialArray;
     this.totalSpaces = totalSpaces;
+    this.getSpaceArray();
     this.connectSpaces();
-    // this.unlink();
   }
 
   spaceMaker(startValue, type) {
@@ -40,14 +40,15 @@ export class Board {
         newSpecial = space.special.value;
       }
       this.unlinked_total_spaces.push({
-        ...space,
+        value: space.value,
+        type: space.type,
         special: newSpecial,
+        avatars: space.avatars,
       });
     });
   };
 
   connectSpaces = () => {
-    this.getSpaceArray();
     let totalArray = this.total_spaces_array;
     this.start = totalArray[0];
     let cur = this.start;
