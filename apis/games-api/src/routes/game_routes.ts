@@ -45,12 +45,11 @@ const gameID = (req: Request, resp: Response) => {
 const register = (req: Request, resp: Response) => {
   const body = req.body;
   const uuid = body.uuid;
-  const getGame = map1.get(uuid);
-
-  getGame.gameInstance.registerPlayer(body.userName, body.avatar);
-  getGame.gameInstance.registerPlayer('Heather', 'blue');
-  getGame.gameInstance.setUpGame();
-  resp.json(getGame.gameInstance.allSpaces);
+  console.log(`api uuid = ${uuid}`);
+  const game = map1.get(uuid) as IGameBuilder;
+  game.gameInstance.registerPlayer(body.userName, body.avatar);
+  console.log(JSON.stringify(game.gameInstance.getAllSpaces()));
+  resp.json(game.gameInstance.getAllSpaces());
 };
 
 export class GameRoutes {
@@ -59,6 +58,6 @@ export class GameRoutes {
     router.get('/games', listGames);
     router.get('/games/:id', gameInfo);
     router.post('/games/:id', gameID);
-    router.put('/games/:id/register', register);
+    router.post('/games/:id/register', register);
   }
 }

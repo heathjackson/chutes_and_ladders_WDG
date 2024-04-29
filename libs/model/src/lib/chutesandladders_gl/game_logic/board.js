@@ -35,15 +35,16 @@ export class Board {
   getSpaceArray = () => {
     this.createAllSpaces();
     this.total_spaces_array.map((space) => {
-      let newSpecial = space.special;
+      let newSpace = space.clone;
+      let newSpecial = newSpace.special;
       if (newSpecial !== null) {
-        newSpecial = space.special.value;
+        newSpecial = newSpace.special.value;
       }
       this.unlinked_total_spaces.push({
-        value: space.value,
-        type: space.type,
+        value: newSpace.value,
+        type: newSpace.type,
         special: newSpecial,
-        avatars: space.avatars,
+        avatars: newSpace.avatars,
       });
     });
   };

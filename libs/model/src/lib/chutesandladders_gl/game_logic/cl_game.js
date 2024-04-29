@@ -24,7 +24,7 @@ export class Chutes_and_ladders {
     this.dice = new Die(6);
   }
 
-  get allSpaces() {
+  getAllSpaces() {
     return this.board.unlinked_total_spaces;
   }
 

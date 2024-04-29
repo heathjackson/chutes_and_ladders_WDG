@@ -21,6 +21,11 @@ export class Space {
     this.type = type;
   }
 
+  //clone space so a linked list can be created, while creating the same spaces that are unlinked for passing back and forth through JASON
+
+  get clone() {
+    return new Space(this.value, this.type);
+  }
   /**
    * Is a method to be invoked when an avatar leaves a space
    */
