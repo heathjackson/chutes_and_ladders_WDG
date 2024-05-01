@@ -48,8 +48,9 @@ const register = (req: Request, resp: Response) => {
   console.log(`api uuid = ${uuid}`);
   const game = map1.get(uuid) as IGameBuilder;
   game.gameInstance.registerPlayer(body.userName, body.avatar);
-  console.log(JSON.stringify(game.gameInstance.getAllSpaces()));
-  resp.json(game.gameInstance.getAllSpaces());
+  const board = game.gameInstance.getAllSpaces();
+  console.log(`api board = ${JSON.stringify(board)}`);
+  resp.json(board);
 };
 
 export class GameRoutes {

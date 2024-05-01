@@ -20,6 +20,7 @@ export class Chutes_and_ladders {
     this.ladders = ladders;
     this.chutes = chutes;
     this.createChutesAndLadders();
+    console.log(`specialSpaces = ${JSON.stringify(this.specialSpaces)}`);
     this.board = new Board(this.specialSpaces, this.TOTAL);
     this.dice = new Die(6);
   }
