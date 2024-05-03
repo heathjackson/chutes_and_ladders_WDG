@@ -1,6 +1,13 @@
-// import { Board } from '../../../libs/model/src/lib/chutesandladders_gl/game_logic/board';
+/* eslint-disable */
 
 import axios from 'axios';
+
+module.exports = async function () {
+  // Configure axios for tests to use.
+  const host = process.env.HOST ?? 'localhost';
+  const port = process.env.PORT ?? '3000';
+  axios.defaults.baseURL = `http://${host}:${port}`;
+};
 
 describe('#getGameList', () => {
   test('gets a list of games playable', async () => {
@@ -10,10 +17,3 @@ describe('#getGameList', () => {
     expect(gameList).toBeTruthy();
   });
 });
-
-// describe('Play a game of Chutes and Ladders', () => {
-//   const gameID = 'CL1';
-
-//   let gameBoard = new Board([], 100);
-
-// });
