@@ -7,7 +7,6 @@ import {
   IGameInfo,
   IGameBuilder,
 } from '@hjackson/model';
-import { ContactSupportOutlined } from '@mui/icons-material';
 
 const map1 = new Map();
 

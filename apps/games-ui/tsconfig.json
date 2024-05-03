@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "jsx": "react-jsx",
     "allowJs": true,
     "esModuleInterop": false,
@@ -9,6 +10,7 @@
   },
   "files": [],
   "include": [],
+  "exclude": ["./dist/**/*"],
   "references": [
     {
       "path": "./tsconfig.app.json"
