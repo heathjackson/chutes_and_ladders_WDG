@@ -7,6 +7,7 @@ import {
   IGameInfo,
   IGameBuilder,
 } from '@hjackson/model';
+import { ContactSupportOutlined } from '@mui/icons-material';
 
 const map1 = new Map();
 
@@ -45,10 +46,11 @@ const gameID = (req: Request, resp: Response) => {
 const register = (req: Request, resp: Response) => {
   const body = req.body;
   const uuid = body.uuid;
-  console.log(`api uuid = ${uuid}`);
   const game = map1.get(uuid) as IGameBuilder;
+
+  //register player using their name and avatar chosen
   game.gameInstance.registerPlayer(body.userName, body.avatar);
-  const board = game.gameInstance.getAllSpaces();
+  const board = game.gameInstance.getUnlinkedArray();
   console.log(`api board = ${JSON.stringify(board)}`);
   resp.json(board);
 };

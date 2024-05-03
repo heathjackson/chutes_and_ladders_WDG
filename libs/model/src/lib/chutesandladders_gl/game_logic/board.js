@@ -8,7 +8,6 @@ export class Board {
   constructor(specialArray, totalSpaces) {
     this.specialArray = specialArray;
     this.totalSpaces = totalSpaces;
-    this.getSpaceArray();
     this.connectSpaces();
   }
 
@@ -33,22 +32,18 @@ export class Board {
     }
   };
 
-  getSpaceArray = () => {
+  unlinkSpaceArray = () => {
     this.createAllSpaces();
 
-    console.log(
-      `total space array = ${JSON.stringify(this.total_spaces_array)}`
-    );
     this.total_spaces_array.map((space) => {
-      let newSpace = space.clone;
-      if (newSpace.special !== null) {
-        newSpace.special = newSpace.special.value;
+      if (space.special) {
+        space.special = space.special.value;
       }
+
       this.unlinked_total_spaces.push({
-        value: newSpace.value,
-        type: newSpace.type,
-        special: newSpace.special,
-        avatars: newSpace.avatars,
+        value: space.value,
+        type: space.type,
+        special: space.special,
       });
     });
     console.log(
@@ -57,6 +52,7 @@ export class Board {
   };
 
   connectSpaces = () => {
+    this.unlinkSpaceArray();
     let totalArray = this.total_spaces_array;
     this.start = totalArray[0];
     let cur = this.start;
@@ -68,6 +64,10 @@ export class Board {
       cur = nextSpace;
     }
   };
+
+  getUnlinkedSpacesArray() {
+    return this.unlinked_total_spaces;
+  }
 
   clear() {
     this.start = null;

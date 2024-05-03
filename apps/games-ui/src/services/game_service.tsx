@@ -30,8 +30,6 @@ export const registerAction = async ({request, params}: ActionFunctionArgs) => {
     uuid: form.get("uuid")
   }
 
-  console.log(`gameService register info = ${JSON.stringify(registerInfo)}`)
-
   const res = await axios.post(`http://localhost:3333/api/v1/games/${params.id}/register`, registerInfo)
   console.log(`gameService res data = ${JSON.stringify(res.data)}`)
   return res.data 
