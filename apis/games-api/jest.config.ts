@@ -1,11 +1,11 @@
 /* eslint-disable */
 export default {
-  displayName: 'model',
+  displayName: 'games-api',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
+    '^.+\\.[tj]s$': '@swc/jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/games-ui',
+  coverageDirectory: '../../coverage/apis/games-api',
 };
