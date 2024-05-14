@@ -7,29 +7,25 @@ export const getGameList = async () => {
   return res.data
 }
 
-export const getGameInfo = async({params}: LoaderFunctionArgs) => {
-  const res = await axios.get(`http://localhost:3333/api/v1/games/${params.id}`)
-  return res.data as IGameInfo[]
-}
-
 export const playGame = async ({params}: ActionFunctionArgs) => {
+  console.log('called')
   if (params.id) {
     const resp = await axios.post(`http://localhost:3333/api/v1/games/${params.id}`)
-        sessionStorage.setItem('current_game', JSON.stringify(resp.data));
-        return redirect(`/games/${params.id}/register`);
+        sessionStorage.setItem('current_game', resp.data.gameID)
+        return null
   }
   return null;
 }
 
 export const registerAction = async ({request, params}: ActionFunctionArgs) => {
   const form = await request.formData()
-
+console.log(sessionStorage.getItem('current_game'))
   const registerInfo = {
     userName: form.get("userName"),
     avatar: form.get("avatar"),
-    uuid: form.get("uuid")
+    gameInstanceId: sessionStorage.getItem('current_game')//get rid of uuid completely - it's saved in session storage
   }
-
+    
   const res = await axios.post(`http://localhost:3333/api/v1/games/${params.id}/register`, registerInfo)
   console.log(`gameService res data = ${JSON.stringify(res.data)}`)
   return res.data 

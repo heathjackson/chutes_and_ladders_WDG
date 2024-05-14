@@ -4,13 +4,15 @@ import { Button } from "@mui/material";
 
 const GameInfo = () => {
   const {id}  = useParams();
-  const games = useRouteLoaderData("game_info") as Array<IGameInfo>
+  const games = useRouteLoaderData("game_list") as Array<IGameInfo>
   const gameInfo = games.find(({name}) => name === id)
-  const rules = gameInfo?.rules
+    const rules = gameInfo?.rules
+
+  
 
   const rulesMap = rules?.map((rule) => {
     return(
-      <div>
+      <div key={rule.order}>
         <h2>{rule.title}</h2>
         <div>{rule.value}</div>
       </div>
@@ -25,7 +27,7 @@ const GameInfo = () => {
         <div>{rulesMap}</div>
         <img src={gameInfo?.imageURL} alt="Game"/>
       </ul>
-      <Form method="POST">
+      <Form method="POST" action={`/games/${id}/register`}>
         <Button 
           variant="contained" 
           name="id" 

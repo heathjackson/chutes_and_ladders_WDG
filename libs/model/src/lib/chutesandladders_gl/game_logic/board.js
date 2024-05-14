@@ -25,8 +25,7 @@ export class Board {
       } else {
         let found = this.specialArray.find((e) => e.value === i);
         found
-          ? this.total_spaces_array.push(found) &&
-            console.log(`found = ${JSON.stringify(found)}`)
+          ? this.total_spaces_array.push(found)
           : this.total_spaces_array.push(this.spaceMaker(i, SpaceType.NORMAL));
       }
     }
@@ -46,9 +45,6 @@ export class Board {
         special: space.special,
       });
     });
-    console.log(
-      `inlinked spaces = ${JSON.stringify(this.unlinked_total_spaces)}`
-    );
   };
 
   connectSpaces = () => {

@@ -1,27 +1,28 @@
 import { Container } from "@mui/material";
 import { useFormik } from "formik";
-import { useSubmit } from "react-router-dom";
+import { useSubmit, useParams } from "react-router-dom";
 import * as Yup from "yup";
 
 const schema = Yup.object({
   userName: Yup.string().required("Please enter a valid name"),
-  uuid: Yup.string().uuid(),
+  // gameIntanceId: Yup.string().uuid(),
   avatar: Yup.string()
 })
 
 export const Register = () =>  {
+  const id = useParams().id
   const submit = useSubmit()
-  const data = JSON.parse(sessionStorage.current_game)
+  // const gameID = JSON.parse(sessionStorage.current_game)
   
   const {values, errors, handleBlur, handleChange, handleSubmit, touched} = useFormik({
     initialValues: {
       userName: "",
-      uuid: data,
+      // gameInstanceId: gameID,
       avatar: "",
     },
     validationSchema: schema,
     onSubmit: async(values) => {
-      submit(values, {method: "post"})
+      submit(values, {method: "post", action: `/games/${id}/playGame`})
     },
   });
 
@@ -50,12 +51,12 @@ export const Register = () =>  {
           className={errors.avatar && touched.avatar ? "input-error" : ""}/>
         {errors.avatar && touched.avatar && <p className= "error">{errors.avatar}</p>}
       
-        <input 
-          value={values.uuid}
+        {/* <input 
+          value={values.gameInstanceId}
           onChange={handleChange} 
-          id="uuid"
+          id="gameInstanceId"
           type="hidden"
-        />
+        /> */}
           <button type="submit">Submit</button>
       </form>
     </Container>

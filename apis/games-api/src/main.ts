@@ -7,6 +7,7 @@ import cors from 'cors';
 import express from 'express';
 import * as path from 'path';
 import { GameRoutes } from './routes/game_routes';
+import { Chutes_and_ladders } from '@hjackson/model';
 
 const corsOptions = {
   origin: 'http://localhost:4200',
@@ -19,7 +20,9 @@ const app = express();
 app.use(express.json());
 
 const router = express.Router();
+const gameInstanceMap = new Map<string, unknown>();
 
+app.set('gameInstanceMap', gameInstanceMap);
 app.use(
   '/assets',
   cors(corsOptions),

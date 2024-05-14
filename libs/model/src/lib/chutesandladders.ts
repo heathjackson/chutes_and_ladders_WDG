@@ -2,7 +2,9 @@ import { Board } from './chutesandladders_gl/game_logic/board';
 import { Chutes_and_ladders } from './chutesandladders_gl/game_logic/cl_game';
 import { GameInfoBuilder, IGameInfo, IGameBuilder, GameBuilder } from './model';
 
-export const ChutesAndLaddersRules: IGameInfo = new GameInfoBuilder()
+const gib = new GameInfoBuilder();
+
+export const ChutesAndLaddersRules: IGameInfo = gib
   .setID('1')
   .setName('chutes_and_ladders')
   .setDescription('A virtual game of chutes_and_ladders')
@@ -11,7 +13,7 @@ export const ChutesAndLaddersRules: IGameInfo = new GameInfoBuilder()
   .addRule('roll dice', 'each player takes turns rolling the dice')
   .buildGameInfo();
 
-export const CompleteChutesAndLadders: IGameBuilder = new GameBuilder()
-  .setId('1')
-  .setGameInstance(new Chutes_and_ladders(5, 5))
-  .buildNewGame();
+// export const CompleteChutesAndLadders: IGameBuilder = new GameBuilder()
+//   .setId('1')
+//   .setGameInstance(new Chutes_and_ladders(5, 5))
+//   .buildNewGame();
