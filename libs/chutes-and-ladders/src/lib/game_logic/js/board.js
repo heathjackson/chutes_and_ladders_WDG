@@ -1,4 +1,4 @@
-import { SpaceType, Space } from './space.js';
+import { SpaceType, Space } from '../ts/space.js';
 
 export class Board {
   start;

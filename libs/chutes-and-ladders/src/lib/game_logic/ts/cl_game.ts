@@ -1,58 +1,72 @@
-import { SpaceType, Space } from './space.js';
-import { randomNumber } from './utils.js';
-import { Board } from './board.js';
-import { Player } from './player.js';
-import { Avatar, Color } from './avatar.js';
-import { Die } from './die.js';
+import { Space } from './space';
+import { Board } from './board';
+import { Player } from './player';
+import { Avatar } from './avatar';
+import { Die } from './die';
+import { SpaceType, ISpace, IBoard, IPlayer, Color, IDie } from './interfaces';
+
+import { randomNumber } from './utils';
 
 export class Chutes_and_ladders {
+  LADDERS: number;
+  CHUTES: number;
   MAX_PLAYERS = 4;
   MIN_PLAYERS = 2;
   TOTAL = 100;
   SPAN = 40;
   COLUMNS = 10;
   availableAvatars = [Color.GREEN, Color.BLUE, Color.PURPLE, Color.RED];
-  specialSpaces = [];
-  uniqueValues = [];
-  registeredPlayers = [];
+  specialSpaces!: ISpace[];
+  uniqueValues!: number[];
+  registeredPlayers!: IPlayer[];
+  board: IBoard;
+  dice: IDie;
+  currentPlayer: number;
 
-  constructor(ladders, chutes) {
-    this.ladders = ladders;
-    this.chutes = chutes;
+  constructor(ladders: number, chutes: number) {
+    this.LADDERS = ladders;
+    this.CHUTES = chutes;
     this.createChutesAndLadders();
     this.board = new Board(this.specialSpaces, this.TOTAL);
     this.dice = new Die(6);
+    this.registeredPlayers = [];
+    this.currentPlayer = 0;
   }
 
   getAllSpaces() {
     return this.board.unlinked_total_spaces;
   }
 
-  chooseColor(color) {
+  chooseColor(color: Color) {
     this.availableAvatars = this.availableAvatars.filter(
       (col) => col !== color
     );
   }
 
-  createSpace(startValue, type) {
-    return new Space(startValue, type);
+  createSpace(value: string, type: SpaceType) {
+    return new Space(value, type);
   }
 
-  isUniqueValue(array, value) {
+  isUniqueValue(array: number[], value: number) {
     return array.indexOf(value) === -1;
   }
 
-  isWithinSpan(startSpace, endSpace) {
-    return Math.abs(startSpace - endSpace) < this.SPAN;
+  isWithinSpan(specialStartValue: number, specialEndValue: number) {
+    return Math.abs(specialStartValue - specialEndValue) < this.SPAN;
   }
 
-  calculateEnd(type, start) {
+  calculateEnd(type: SpaceType, start: number) {
     return type === SpaceType.LADDER
       ? start + this.COLUMNS
       : start - this.COLUMNS;
   }
 
-  createSpecialSpaces(startMin, startMax, type, total) {
+  createSpecialSpaces(
+    startMin: number,
+    startMax: number,
+    type: SpaceType,
+    total: number
+  ) {
     let i = 0;
     while (i < total) {
       const specialStart = randomNumber(startMin, startMax);
@@ -65,8 +79,8 @@ export class Chutes_and_ladders {
         this.isUniqueValue(this.uniqueValues, specialStart) &&
         this.isUniqueValue(this.uniqueValues, specialEnd)
       ) {
-        const specialS = this.createSpace(specialStart, type);
-        const specialE = this.createSpace(specialEnd, SpaceType.NORMAL);
+        const specialS = this.createSpace(`${specialStart}`, type);
+        const specialE = this.createSpace(`${specialEnd}`, SpaceType.NORMAL);
         specialS.special = specialE;
         this.specialSpaces.push(specialS, specialE);
         this.uniqueValues.push(specialStart, specialEnd);
@@ -80,17 +94,17 @@ export class Chutes_and_ladders {
       2,
       this.TOTAL - this.COLUMNS,
       SpaceType.LADDER,
-      this.ladders
+      this.LADDERS
     );
     this.createSpecialSpaces(
       this.COLUMNS + 1,
       this.TOTAL - 1,
       SpaceType.CHUTE,
-      this.chutes
+      this.CHUTES
     );
   }
 
-  registerPlayer(playerName, color) {
+  registerPlayer(playerName: string, color: string) {
     let playerRegistered = false;
     if (this.registeredPlayers.length < this.MAX_PLAYERS) {
       const player = new Player(
@@ -110,8 +124,8 @@ export class Chutes_and_ladders {
   setUpGame() {
     if (this.registeredPlayers.length >= this.MIN_PLAYERS) {
       this.registeredPlayers.forEach((player) => {
-        this.board.start.land(player.avatar);
-        player.avatar.winner = false;
+        this.board.start.land(player.Avatar);
+        player.Avatar.winner = false;
       });
     } else {
       console.log('You need more players');
@@ -136,12 +150,20 @@ export class Chutes_and_ladders {
   }
 
   switchTurns() {
-    this.registeredPlayers.push(this.registeredPlayers.shift());
+    // this.registeredPlayers.push(this.registeredPlayers.shift());
+    this.rotatePlayers();
   }
 
-  playTurn(roll) {
-    const player = this.registeredPlayers[0];
-    player.avatar.move(roll);
+  rotatePlayers() {
+    this.currentPlayer++;
+    if (this.currentPlayer === this.registeredPlayers.length) {
+      this.currentPlayer = 0;
+    }
+  }
+
+  playTurn(roll: number) {
+    const player = this.registeredPlayers[this.currentPlayer];
+    player.Avatar.move(roll);
     if (this.checkForWinner(player)) {
       this.resetGame();
     } else {
@@ -149,7 +171,7 @@ export class Chutes_and_ladders {
     }
   }
 
-  checkForWinner(player) {
-    return player.avatar.winner;
+  checkForWinner(player: IPlayer) {
+    return player.Avatar.winner;
   }
 }

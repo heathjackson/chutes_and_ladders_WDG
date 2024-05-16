@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@hjackson/chutes-and-ladders": ["libs/chutes-and-ladders/src/index.ts"],
       "@hjackson/model": ["libs/model/src/index.ts"]
     }
   },

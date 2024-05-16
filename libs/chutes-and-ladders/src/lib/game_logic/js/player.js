@@ -1,6 +1,6 @@
 // Add player implementations here
 
-import { Avatar } from "./avatar.js";
+import { Avatar } from '../avatar.js';
 
 export class Player {
   /**

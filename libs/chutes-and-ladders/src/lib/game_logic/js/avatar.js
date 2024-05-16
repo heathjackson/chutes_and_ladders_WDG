@@ -1,4 +1,4 @@
-import { SpaceType } from './space.js';
+import { SpaceType } from '../ts/space.js';
 
 // Add avatar implementations here
 export class Color {

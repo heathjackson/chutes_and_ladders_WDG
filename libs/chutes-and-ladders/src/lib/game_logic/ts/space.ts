@@ -1,24 +1,18 @@
-export class SpaceType {
-  static START = 0;
-  static NORMAL = 1;
-  static CHUTE = 2;
-  static LADDER = 3;
-  static FINISH = 4;
-}
+import { IAvatar, ISpace, SpaceType } from './interfaces';
 
-Object.freeze(SpaceType);
+export class Space implements ISpace {
+  value: string;
+  type: SpaceType;
+  next!: ISpace;
+  back!: ISpace;
+  special: ISpace | null;
+  avatars: IAvatar[];
 
-export class Space {
-  value = '';
-  type = SpaceType.NORMAL;
-  next = null;
-  back = null;
-  special = null;
-  avatars = [];
-
-  constructor(value, type) {
+  constructor(value: string, type: SpaceType) {
     this.value = value;
     this.type = type;
+    this.special = null;
+    this.avatars = [];
   }
 
   //clone space so a linked list can be created, while creating the same spaces that are unlinked for passing back and forth through JASON
@@ -33,23 +27,19 @@ export class Space {
     this.avatars.pop();
   }
 
-  next(space) {
+  setNext(space: ISpace) {
     if (this.type !== 4) {
       this.next = space;
-    } else {
-      this.next = null;
     }
   }
 
-  back(space) {
+  setBack(space: ISpace) {
     if (this.type !== 0) {
       this.back = space;
-    } else {
-      this.next = null;
     }
   }
 
-  special(space) {
+  setSpecial(space: ISpace) {
     if (this.type === 2 || this.type === 3) {
       this.special = space;
     } else {
@@ -61,7 +51,7 @@ export class Space {
     return this.avatars.length > 0;
   }
 
-  land(avatar) {
+  land(avatar: IAvatar) {
     if (this.occupied() && this.type !== SpaceType.START) {
       this.avatars[0].move(1);
       this.leave();

@@ -1,5 +1,5 @@
-import { Board } from './chutesandladders_gl/game_logic/board';
-import { Chutes_and_ladders } from './chutesandladders_gl/game_logic/cl_game';
+import { Board } from '../../../chutes-and-ladders/src/lib/game_logic/js/board';
+import { Chutes_and_ladders } from '../../../chutes-and-ladders/src/lib/game_logic/js/cl_game';
 import { GameInfoBuilder, IGameInfo, IGameBuilder, GameBuilder } from './model';
 
 const gib = new GameInfoBuilder();

@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router, Request, Response } from 'express';
 import {
   ChutesAndLaddersRules,
   tic_tac_toe,
@@ -6,13 +6,9 @@ import {
 } from '@hjackson/model';
 import { randomUUID } from 'crypto';
 
-const path_method = (req: Request, resp: Response, next: NextFunction) => {
-  console.log(req.path, req.method);
-  next();
-};
-
 const listGames = (req: Request, resp: Response) => {
   resp.json([ChutesAndLaddersRules, tic_tac_toe]);
+  console.log('list games called');
 };
 
 const gameID = (req: Request, resp: Response) => {
@@ -49,7 +45,6 @@ const register = (req: Request, resp: Response) => {
 
 export class GameRoutes {
   constructor(router: Router) {
-    router.use(path_method);
     router.get('/games', listGames); //listGames function is the controller
     router.post('/games/:id', gameID);
     router.post('/games/:id/register', register);

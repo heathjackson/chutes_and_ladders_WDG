@@ -1,9 +1,10 @@
 import axios from "axios";
-import { IGameInfo } from "@hjackson/model";
-import { LoaderFunctionArgs, ActionFunctionArgs, redirect } from "react-router-dom";
+import { ActionFunctionArgs } from "react-router-dom";
 
 export const getGameList = async () => {
   const res = await axios.get('http://localhost:3333/api/v1/games')
+  console.log('get game list')
+  console.log(res.data)
   return res.data
 }
 
