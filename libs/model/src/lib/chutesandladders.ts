@@ -1,6 +1,4 @@
-import { Board } from '../../../chutes-and-ladders/src/lib/game_logic/js/board';
-import { Chutes_and_ladders } from '../../../chutes-and-ladders/src/lib/game_logic/js/cl_game';
-import { GameInfoBuilder, IGameInfo, IGameBuilder, GameBuilder } from './model';
+import { GameInfoBuilder, IGameInfo } from './model';
 
 const gib = new GameInfoBuilder();
 
@@ -12,8 +10,3 @@ export const ChutesAndLaddersRules: IGameInfo = gib
   .addRule('amount of players', 'more than 2 and no more than 4')
   .addRule('roll dice', 'each player takes turns rolling the dice')
   .buildGameInfo();
-
-// export const CompleteChutesAndLadders: IGameBuilder = new GameBuilder()
-//   .setId('1')
-//   .setGameInstance(new Chutes_and_ladders(5, 5))
-//   .buildNewGame();

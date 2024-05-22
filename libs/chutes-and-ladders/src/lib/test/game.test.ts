@@ -1,5 +1,5 @@
 import { Chutes_and_ladders } from '../game_logic/cl_game';
-import { Color } from '../game_logic/avatar';
+import { Color } from '../game_logic/interfaces';
 
 describe('#createSpecialSpaces', () => {
   const game = new Chutes_and_ladders(5, 5);
@@ -32,7 +32,7 @@ describe('#registerPlayer', () => {
   });
 
   describe('test the registerPlayer function as a whole', () => {
-    let game;
+    let game: Chutes_and_ladders;
 
     beforeEach(() => {
       game = new Chutes_and_ladders(5, 5);
@@ -62,7 +62,7 @@ describe('#registerPlayer', () => {
     test('should set up the game with registered players', () => {
       game.setUpGame();
       game.registeredPlayers.map((player) => {
-        expect(player.avatar.location.value).toEqual(1);
+        expect(player.Avatar.location.value).toEqual('1');
       });
     });
   });

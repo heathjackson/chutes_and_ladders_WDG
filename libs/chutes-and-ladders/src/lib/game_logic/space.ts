@@ -3,8 +3,8 @@ import { IAvatar, ISpace, SpaceType } from './interfaces';
 export class Space implements ISpace {
   value: string;
   type: SpaceType;
-  next!: ISpace;
-  back!: ISpace;
+  next!: ISpace | null;
+  back!: ISpace | null;
   special: ISpace | null;
   avatars: IAvatar[];
 
@@ -30,12 +30,16 @@ export class Space implements ISpace {
   setNext(space: ISpace) {
     if (this.type !== 4) {
       this.next = space;
+    } else {
+      this.next = null;
     }
   }
 
   setBack(space: ISpace) {
     if (this.type !== 0) {
       this.back = space;
+    } else {
+      this.back = null;
     }
   }
 
@@ -55,7 +59,8 @@ export class Space implements ISpace {
     if (this.occupied() && this.type !== SpaceType.START) {
       this.avatars[0].move(1);
       this.leave();
-    } else if (this.special !== null) {
+    }
+    if (this.special !== null) {
       avatar.location = this.special;
       avatar.location.avatars.push(avatar);
     } else if (this.type === SpaceType.FINISH) {

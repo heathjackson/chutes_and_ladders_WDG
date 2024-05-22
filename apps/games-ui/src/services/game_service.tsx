@@ -1,15 +1,12 @@
 import axios from "axios";
 import { ActionFunctionArgs } from "react-router-dom";
-
-export const getGameList = async () => {
+//actiopn of what is happening before each function
+export const listGames = async () => {
   const res = await axios.get('http://localhost:3333/api/v1/games')
-  console.log('get game list')
-  console.log(res.data)
   return res.data
 }
 
-export const playGame = async ({params}: ActionFunctionArgs) => {
-  console.log('called')
+export const gameID = async ({params}: ActionFunctionArgs) => {
   if (params.id) {
     const resp = await axios.post(`http://localhost:3333/api/v1/games/${params.id}`)
         sessionStorage.setItem('current_game', resp.data.gameID)
@@ -18,17 +15,15 @@ export const playGame = async ({params}: ActionFunctionArgs) => {
   return null;
 }
 
-export const registerAction = async ({request, params}: ActionFunctionArgs) => {
+export const register = async ({request, params}: ActionFunctionArgs) => {
   const form = await request.formData()
-console.log(sessionStorage.getItem('current_game'))
   const registerInfo = {
     userName: form.get("userName"),
     avatar: form.get("avatar"),
-    gameInstanceId: sessionStorage.getItem('current_game')//get rid of uuid completely - it's saved in session storage
+    gameInstanceId: sessionStorage.getItem('current_game')
   }
     
   const res = await axios.post(`http://localhost:3333/api/v1/games/${params.id}/register`, registerInfo)
-  console.log(`gameService res data = ${JSON.stringify(res.data)}`)
   return res.data 
 }
 

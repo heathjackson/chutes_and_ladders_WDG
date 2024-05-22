@@ -4,23 +4,23 @@ import { SummedRoll } from './summed_roll';
 const minSides = 4;
 
 export class Die implements IDie {
-  Sides: number;
+  sides: number;
 
   constructor(sides: number) {
-    this.Sides = sides;
+    this.sides = sides;
 
-    if (this.Sides < minSides)
+    if (this.sides < minSides)
       throw new Error(`sides must be greater than or equal to ${minSides}`);
   }
 
   // Should return a number of sides
-  get sides() {
-    return this.Sides;
+  get Sides() {
+    return this.sides;
   }
 
   // returns a random number between one and the total sides
   roll() {
-    return Math.floor(Math.random() * this.sides) + 1;
+    return Math.floor(Math.random() * this.Sides) + 1;
   }
 
   //return sum of rolls when number of rolls is indicated

@@ -1,4 +1,4 @@
-import { SpaceType } from '../game_logic/space';
+import { SpaceType } from '../game_logic/interfaces';
 import { Board } from '../game_logic/board';
 
 describe('check that the newBoard is created correctly with the correct amount of spaces and a start and finish', () => {
@@ -11,6 +11,5 @@ describe('check that the newBoard is created correctly with the correct amount o
     expect(newBoard.finish.type).toEqual(SpaceType.FINISH);
     expect(newBoard.finish.next).toBeFalsy();
     expect(newBoard.finish.back).toBeTruthy();
-    expect(newBoard.unlinked_total_spaces.length).toBeGreaterThan(0);
   });
 });

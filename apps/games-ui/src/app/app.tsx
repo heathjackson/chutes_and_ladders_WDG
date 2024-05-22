@@ -1,5 +1,5 @@
 import GameList from "../components/game_list";
-import { getGameList, playGame, registerAction } from "../services/game_service";
+import { listGames, gameID, register } from "../services/game_service";
 import GameLayout from "../components/game_layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GameInfo from "../components/game_info";
@@ -21,7 +21,7 @@ const router = createBrowserRouter (
         {
           path: 'games',
           id: "game_list",
-          loader: getGameList,
+          loader: listGames,
           children: [
             {
               index: true,
@@ -38,7 +38,7 @@ const router = createBrowserRouter (
                 },
                 {
                   path: 'register',
-                  action: playGame,
+                  action: gameID,
                   children:[
                     {
                       index: true,
@@ -48,7 +48,7 @@ const router = createBrowserRouter (
                 },
                 {
                   path: 'playGame',
-                  action: registerAction,
+                  action: register,
                   children: [
                     {
                       index: true,

@@ -1,6 +1,6 @@
 export class Color {
-  // static UNDEFINED = 'UNDEFINED'; //this breaks down to string
-  static RED = 1; // this breaks down to number
+  static UNDEFINED = 0;
+  static RED = 1;
   static BLACK = 2;
   static BROWN = 3;
   static BLUE = 4;
@@ -24,15 +24,15 @@ export interface IAvatar {
   toggleWinner(): void;
   move(numberOfSpaces: number): void;
   winner: boolean;
-  location: ISpace;
   color: Color;
+  location: ISpace;
 }
 
 export interface ISpace {
   value: string;
   type: SpaceType;
-  next: ISpace;
-  back: ISpace;
+  next: ISpace | null;
+  back: ISpace | null;
   special: ISpace | null;
   avatars: IAvatar[];
 
@@ -42,15 +42,14 @@ export interface ISpace {
 export interface IBoard {
   start: ISpace;
   finish: ISpace;
-  total_spaces_array: ISpace[];
-  unlinked_total_spaces: ISpace[];
-  specialArray: ISpace[];
-  totalSpaces: number;
+  allGameSpacesArray: ISpace[];
+  specialSpacesArray: ISpace[];
+  totalAmountOfSpaces: number;
 }
 
 export interface IDie {
   roll(): unknown;
-  Sides: number;
+  sides: number;
 }
 
 export interface ISummedRoll {
@@ -59,7 +58,7 @@ export interface ISummedRoll {
 }
 
 export interface IPlayer {
-  Name: string;
-  Order: number;
-  Avatar: IAvatar;
+  name: string;
+  order: number;
+  avatar: IAvatar;
 }

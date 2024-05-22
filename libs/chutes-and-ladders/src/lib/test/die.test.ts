@@ -4,7 +4,7 @@ describe('Test die class', () => {
   test('Test die class', () => {
     const d6 = new Die(6);
     for (let i = 0; i < 100; i++) {
-      let rollValue = d6.roll();
+      const rollValue = d6.roll();
       expect(rollValue).toBeGreaterThanOrEqual(1);
       expect(rollValue).toBeLessThanOrEqual(d6.sides);
     }

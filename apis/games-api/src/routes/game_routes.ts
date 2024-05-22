@@ -1,26 +1,20 @@
 import { Router, Request, Response } from 'express';
-import {
-  ChutesAndLaddersRules,
-  tic_tac_toe,
-  Chutes_and_ladders,
-} from '@hjackson/model';
+import { ChutesAndLaddersRules, tic_tac_toe } from '@hjackson/model';
+import { Chutes_and_ladders } from '@hjackson/chutes-and-ladders';
+import { ISpace } from '@hjackson/chutes-and-ladders';
 import { randomUUID } from 'crypto';
-
+//put get here in front of constants
 const listGames = (req: Request, resp: Response) => {
   resp.json([ChutesAndLaddersRules, tic_tac_toe]);
-  console.log('list games called');
 };
 
 const gameID = (req: Request, resp: Response) => {
-  console.log('called as well');
   const gameID = randomUUID().toString() as string;
   const gameInstanceMap = req.app.get('gameInstanceMap');
   //map is used as a database to save the game uuid with the game created object which includes the instance of game
 
   const game = new Chutes_and_ladders(5, 5);
   gameInstanceMap.set(gameID, game);
-  console.log(gameID);
-
   resp.json({ gameID: gameID });
 };
 
@@ -29,18 +23,25 @@ const register = (req: Request, resp: Response) => {
   const uuid = body.gameInstanceId as string;
   const gameInstanceMap = req.app.get('gameInstanceMap');
 
-  // console.log('in register', gameInstanceMap);
-
-  // console.log(gameInstanceMap.entries());
   const game = gameInstanceMap.get(uuid as string);
-  console.log('in map in register', game);
 
-  //register player using their name and avatar chosen
-  // game.gameInstance.registerPlayer(body.userName, body.avatar);
-  // const board = game.gameInstance.getUnlinkedArray();
-
-  // resp.json(board);
-  resp.json({ message: 'message' });
+  const gameSpaceValues = game.allGameSpacesArray.map((el: ISpace) => {
+    if (el.special === null) {
+      return {
+        value: el.value,
+        type: el.type,
+      };
+    } else {
+      return {
+        value: el.value,
+        type: el.type,
+        special: el.special.value,
+        specialType: el.special.type,
+      };
+    }
+  });
+  console.log(gameSpaceValues);
+  resp.json({ 'game spaces values': gameSpaceValues });
 };
 
 export class GameRoutes {

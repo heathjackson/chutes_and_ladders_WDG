@@ -4,7 +4,6 @@ import { Player } from './player';
 import { Avatar } from './avatar';
 import { Die } from './die';
 import { SpaceType, ISpace, IBoard, IPlayer, Color, IDie } from './interfaces';
-
 import { randomNumber } from './utils';
 
 export class Chutes_and_ladders {
@@ -16,25 +15,29 @@ export class Chutes_and_ladders {
   SPAN = 40;
   COLUMNS = 10;
   availableAvatars = [Color.GREEN, Color.BLUE, Color.PURPLE, Color.RED];
-  specialSpaces!: ISpace[];
-  uniqueValues!: number[];
+  specialSpacesArray: ISpace[];
+  // allGameSpacesArray: ISpace[];
+  uniqueValues: Array<number>;
   registeredPlayers!: IPlayer[];
-  board: IBoard;
+  // board: IBoard;
   dice: IDie;
   currentPlayer: number;
+  startSpace: ISpace;
 
   constructor(ladders: number, chutes: number) {
     this.LADDERS = ladders;
     this.CHUTES = chutes;
-    this.createChutesAndLadders();
-    this.board = new Board(this.specialSpaces, this.TOTAL);
-    this.dice = new Die(6);
+    this.specialSpacesArray = [];
     this.registeredPlayers = [];
+    this.uniqueValues = [];
     this.currentPlayer = 0;
-  }
-
-  getAllSpaces() {
-    return this.board.unlinked_total_spaces;
+    this.createChutesAndLadders();
+    this.startSpace = new Board(
+      this.specialSpacesArray,
+      this.TOTAL
+    ).createAllSpaces();
+    // this.allGameSpacesArray = this.board.allGameSpacesArray;
+    this.dice = new Die(6);
   }
 
   chooseColor(color: Color) {
@@ -47,7 +50,7 @@ export class Chutes_and_ladders {
     return new Space(value, type);
   }
 
-  isUniqueValue(array: number[], value: number) {
+  isUniqueValue(array: number[], value: number): boolean {
     return array.indexOf(value) === -1;
   }
 
@@ -82,7 +85,7 @@ export class Chutes_and_ladders {
         const specialS = this.createSpace(`${specialStart}`, type);
         const specialE = this.createSpace(`${specialEnd}`, SpaceType.NORMAL);
         specialS.special = specialE;
-        this.specialSpaces.push(specialS, specialE);
+        this.specialSpacesArray.push(specialS, specialE);
         this.uniqueValues.push(specialStart, specialEnd);
         i++;
       }
@@ -104,7 +107,13 @@ export class Chutes_and_ladders {
     );
   }
 
-  registerPlayer(playerName: string, color: string) {
+  displayGameBoard() {
+    const space: Space = this.startSpace;
+    const gameBoardValues: string[][] = [];
+    const row: string[] = [];
+  }
+
+  registerPlayer(playerName: string, color: number) {
     let playerRegistered = false;
     if (this.registeredPlayers.length < this.MAX_PLAYERS) {
       const player = new Player(
@@ -124,8 +133,8 @@ export class Chutes_and_ladders {
   setUpGame() {
     if (this.registeredPlayers.length >= this.MIN_PLAYERS) {
       this.registeredPlayers.forEach((player) => {
-        this.board.start.land(player.Avatar);
-        player.Avatar.winner = false;
+        // this.board.start.land(player.avatar);
+        player.avatar.winner = false;
       });
     } else {
       console.log('You need more players');
@@ -133,16 +142,12 @@ export class Chutes_and_ladders {
   }
 
   resetGame() {
-    this.specialSpaces = [];
+    this.specialSpacesArray = [];
     this.uniqueValues = [];
     this.createChutesAndLadders();
-    this.board = new Board(this.specialSpaces, this.TOTAL);
+    // this.board = new Board(this.specialSpacesArray, this.TOTAL);
     this.switchTurns();
     this.setUpGame();
-  }
-
-  getUnlinkedArray() {
-    return this.board.unlinked_total_spaces;
   }
 
   rollDice() {
@@ -163,7 +168,7 @@ export class Chutes_and_ladders {
 
   playTurn(roll: number) {
     const player = this.registeredPlayers[this.currentPlayer];
-    player.Avatar.move(roll);
+    player.avatar.move(roll);
     if (this.checkForWinner(player)) {
       this.resetGame();
     } else {
@@ -172,6 +177,9 @@ export class Chutes_and_ladders {
   }
 
   checkForWinner(player: IPlayer) {
-    return player.Avatar.winner;
+    return player.avatar.winner;
   }
 }
+const g = new Chutes_and_ladders(5, 5);
+
+console.log(g.startSpace.next);
