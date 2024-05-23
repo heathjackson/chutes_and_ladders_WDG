@@ -3,7 +3,7 @@ import { Board } from './board';
 import { Player } from './player';
 import { Avatar } from './avatar';
 import { Die } from './die';
-import { SpaceType, ISpace, IBoard, IPlayer, Color, IDie } from './interfaces';
+import { SpaceType, ISpace, IPlayer, Color, IDie } from './interfaces';
 import { randomNumber } from './utils';
 
 export class Chutes_and_ladders {
@@ -16,10 +16,8 @@ export class Chutes_and_ladders {
   COLUMNS = 10;
   availableAvatars = [Color.GREEN, Color.BLUE, Color.PURPLE, Color.RED];
   specialSpacesArray: ISpace[];
-  // allGameSpacesArray: ISpace[];
   uniqueValues: Array<number>;
   registeredPlayers!: IPlayer[];
-  // board: IBoard;
   dice: IDie;
   currentPlayer: number;
   startSpace: ISpace;
@@ -36,7 +34,6 @@ export class Chutes_and_ladders {
       this.specialSpacesArray,
       this.TOTAL
     ).createAllSpaces();
-    // this.allGameSpacesArray = this.board.allGameSpacesArray;
     this.dice = new Die(6);
   }
 
@@ -107,11 +104,55 @@ export class Chutes_and_ladders {
     );
   }
 
-  displayGameBoard() {
-    const space: Space = this.startSpace;
-    const gameBoardValues: string[][] = [];
-    const row: string[] = [];
+  printListData() {
+    let space: ISpace | undefined | null = this.startSpace;
+    const boardValueArrays = [];
+    let row = [];
+    while (space?.next) {
+      for (let i = 0; i < 10; i++) {
+        if (space?.special !== null) {
+          row.push({ value: space?.value, special: space?.special.value });
+        } else {
+          row.push({ value: space.value });
+        }
+        space = space?.next;
+      }
+      boardValueArrays.push(row);
+      row = [];
+      for (let i = 0; i < 10; i++) {
+        if (space?.special !== null) {
+          row.unshift({ value: space?.value, special: space?.special.value });
+        } else {
+          row.unshift({ value: space?.value });
+        }
+        space = space?.next;
+      }
+      boardValueArrays.push(row);
+      row = [];
+    }
+    return boardValueArrays;
   }
+
+  // displayGameBoard() {
+  //   let space: ISpace = this.startSpace;
+  //   const gameBoardValues = [];
+  //   const row = [];
+
+  //   while (space.next !== null) {
+  //     if (space.special !== null) {
+  //       row.push({
+  //         value: space.value,
+  //         specialValue: space.special.value,
+  //       });
+  //     } else {
+  //       row.push({
+  //         value: space.value,
+  //       });
+  //     }
+  //     space = space.next;
+  //   }
+  //   return row;
+  // }
 
   registerPlayer(playerName: string, color: number) {
     let playerRegistered = false;
@@ -181,5 +222,4 @@ export class Chutes_and_ladders {
   }
 }
 const g = new Chutes_and_ladders(5, 5);
-
-console.log(g.startSpace.next);
+console.log(g.printListData());
