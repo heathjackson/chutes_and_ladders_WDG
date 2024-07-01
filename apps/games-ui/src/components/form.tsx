@@ -18,7 +18,7 @@ export const Register = () =>  {
     initialValues: {
       userName: "",
       // gameInstanceId: gameID,
-      avatar: "",
+      color: "",
     },
     validationSchema: schema,
     onSubmit: async(values) => {
@@ -42,21 +42,15 @@ export const Register = () =>  {
 
         <label htmlFor="avatar">avatar</label>
         <input 
-          value={values.avatar}
+          value={values.color}
           onChange={handleChange} 
           id="avatar"
           type="text" 
           placeholder="Enter color"
           onBlur={handleBlur}
-          className={errors.avatar && touched.avatar ? "input-error" : ""}/>
-        {errors.avatar && touched.avatar && <p className= "error">{errors.avatar}</p>}
+          className={errors.color && touched.color ? "input-error" : ""}/>
+        {errors.color && touched.color && <p className= "error">{errors.color}</p>}
       
-        {/* <input 
-          value={values.gameInstanceId}
-          onChange={handleChange} 
-          id="gameInstanceId"
-          type="hidden"
-        /> */}
           <button type="submit">Submit</button>
       </form>
     </Container>

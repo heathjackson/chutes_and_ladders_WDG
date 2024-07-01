@@ -1,5 +1,5 @@
 import GameList from "../components/game_list";
-import { listGames, gameID, register } from "../services/game_service";
+import { getListGames, saveGameIDSessionStorage, register } from "../services/game_service";
 import GameLayout from "../components/game_layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GameInfo from "../components/game_info";
@@ -21,7 +21,7 @@ const router = createBrowserRouter (
         {
           path: 'games',
           id: "game_list",
-          loader: listGames,
+          loader: getListGames,
           children: [
             {
               index: true,
@@ -38,7 +38,7 @@ const router = createBrowserRouter (
                 },
                 {
                   path: 'register',
-                  action: gameID,
+                  action: saveGameIDSessionStorage,
                   children:[
                     {
                       index: true,
@@ -49,12 +49,13 @@ const router = createBrowserRouter (
                 {
                   path: 'playGame',
                   action: register,
-                  children: [
-                    {
-                      index: true,
-                      Component: GamePlay
-                    }
-                  ]
+                  Component: GamePlay
+                  // children: [
+                  //   {
+                  //     index: true,
+                      
+                  //   }
+                  // ]
 
                   
                 }
@@ -72,5 +73,3 @@ function App() {
 }
 
 export default App;
-
-//post in form goes to router which then has a function that uses axios

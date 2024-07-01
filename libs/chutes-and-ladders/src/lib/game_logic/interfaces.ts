@@ -42,7 +42,6 @@ export interface ISpace {
 export interface IBoard {
   start: ISpace;
   finish: ISpace;
-  allGameSpacesArray: ISpace[];
   specialSpacesArray: ISpace[];
   totalAmountOfSpaces: number;
 }

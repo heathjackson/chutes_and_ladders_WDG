@@ -104,55 +104,32 @@ export class Chutes_and_ladders {
     );
   }
 
-  printListData() {
-    let space: ISpace | undefined | null = this.startSpace;
-    const boardValueArrays = [];
-    let row = [];
-    while (space?.next) {
+  displayBoard() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let space: any = this.startSpace;
+    let row: { value: string; special?: string }[] = [];
+    const boardValueArrays: { value: string; special?: string }[][] = [];
+    //use array reverse here and remove the multiple loops
+    while (space) {
       for (let i = 0; i < 10; i++) {
-        if (space?.special !== null) {
-          row.push({ value: space?.value, special: space?.special.value });
-        } else {
-          row.push({ value: space.value });
+        for (let j = 0; j < 10; j++) {
+          if (i % 2 === 0 && space.special) {
+            row.push({ value: space.value, special: space.special.value });
+          } else if (i % 2 === 0) {
+            row.push({ value: space.value });
+          } else if (space.special) {
+            row.unshift({ value: space.value, special: space.special.value });
+          } else {
+            row.unshift({ value: space.value });
+          }
+          space = space.next;
         }
-        space = space?.next;
+        boardValueArrays.push(row);
+        row = [];
       }
-      boardValueArrays.push(row);
-      row = [];
-      for (let i = 0; i < 10; i++) {
-        if (space?.special !== null) {
-          row.unshift({ value: space?.value, special: space?.special.value });
-        } else {
-          row.unshift({ value: space?.value });
-        }
-        space = space?.next;
-      }
-      boardValueArrays.push(row);
-      row = [];
     }
     return boardValueArrays;
   }
-
-  // displayGameBoard() {
-  //   let space: ISpace = this.startSpace;
-  //   const gameBoardValues = [];
-  //   const row = [];
-
-  //   while (space.next !== null) {
-  //     if (space.special !== null) {
-  //       row.push({
-  //         value: space.value,
-  //         specialValue: space.special.value,
-  //       });
-  //     } else {
-  //       row.push({
-  //         value: space.value,
-  //       });
-  //     }
-  //     space = space.next;
-  //   }
-  //   return row;
-  // }
 
   registerPlayer(playerName: string, color: number) {
     let playerRegistered = false;
@@ -222,4 +199,4 @@ export class Chutes_and_ladders {
   }
 }
 const g = new Chutes_and_ladders(5, 5);
-console.log(g.printListData());
+console.log(g.displayBoard());

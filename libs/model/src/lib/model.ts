@@ -146,3 +146,7 @@ export class GameBuilder {
     return this.gameBuild;
   }
 }
+
+export interface IGameBoard {
+  gameSpaceValues: string[][];
+}
