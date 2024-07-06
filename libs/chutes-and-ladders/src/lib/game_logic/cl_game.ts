@@ -198,5 +198,3 @@ export class Chutes_and_ladders {
     return player.avatar.winner;
   }
 }
-const g = new Chutes_and_ladders(5, 5);
-console.log(g.displayBoard());

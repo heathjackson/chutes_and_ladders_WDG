@@ -3,21 +3,20 @@ import { useFormik } from "formik";
 import { useSubmit, useParams } from "react-router-dom";
 import * as Yup from "yup";
 
+
 const schema = Yup.object({
   userName: Yup.string().required("Please enter a valid name"),
-  // gameIntanceId: Yup.string().uuid(),
-  avatar: Yup.string()
+  color: Yup.string().required("Require"),
 })
+
 
 export const Register = () =>  {
   const id = useParams().id
   const submit = useSubmit()
-  // const gameID = JSON.parse(sessionStorage.current_game)
-  
+
   const {values, errors, handleBlur, handleChange, handleSubmit, touched} = useFormik({
     initialValues: {
       userName: "",
-      // gameInstanceId: gameID,
       color: "",
     },
     validationSchema: schema,
@@ -40,11 +39,11 @@ export const Register = () =>  {
           className={errors.userName && touched.userName ? "input-error" : ""}/>
         {errors.userName && touched.userName && <p className= "error">{errors.userName}</p>}
 
-        <label htmlFor="avatar">avatar</label>
+        <label htmlFor="color">color</label>
         <input 
           value={values.color}
           onChange={handleChange} 
-          id="avatar"
+          id="color"
           type="text" 
           placeholder="Enter color"
           onBlur={handleBlur}
@@ -52,6 +51,7 @@ export const Register = () =>  {
         {errors.color && touched.color && <p className= "error">{errors.color}</p>}
       
           <button type="submit">Submit</button>
+
       </form>
     </Container>
   )

@@ -28,6 +28,9 @@ const registerAndSendGameBoard = (req: Request, resp: Response) => {
   const game = gameInstanceMap.get(gameInstanceId as string);
   const gameSpaceValues: IGameBoard = game.displayBoard();
 
+  //register the player and their avatar
+  game.registerPlayer(userName, color);
+  console.log(gameInstanceMap);
   resp.json({ gameSpaceValues: gameSpaceValues });
 };
 
