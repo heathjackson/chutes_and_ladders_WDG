@@ -2,22 +2,19 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useSubmit, useParams } from "react-router-dom";
 import * as Yup from "yup";
 
+const colorOptions = ["red","green", "blue", "purple"]
+
 const schema = Yup.object({
   userName: Yup.string().required("Please enter a valid name"),
-  color: Yup.string().required("Required"),
+  color: Yup.string()
+    .oneOf(colorOptions)
+    .required("Required")
 });
 
 export const Register = () => {
   const id = useParams().id;
   const submit = useSubmit();
-
-  // const colorOptions = [
-  //   { value: "red", label: "Red" },
-  //   { value: "green", label: "Green" },
-  //   { value: "blue", label: "Blue" },
-  //   // Add more color options as needed
-  // ];
-
+ 
   return (
    <Formik
     initialValues = {{
@@ -36,10 +33,11 @@ export const Register = () => {
   
         <label htmlFor="color">Color</label>
         <Field name="color" as="select" className="my-select">
-          <option value="null">Please Choose a Color</option>
-          <option value="red">Red</option>
-          <option value="green">Green</option>
-          <option value="blue">Blue</option>
+          <option key="select" value="select a color">select a color</option>
+          {colorOptions.map(color => {
+             return <option key={color} value={color}>{color}</option>
+            })
+          }
         </Field>
         <ErrorMessage name="color"/>
 

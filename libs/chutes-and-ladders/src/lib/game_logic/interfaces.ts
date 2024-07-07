@@ -1,9 +1,15 @@
 export class Color {
   static UNDEFINED = 0;
   static RED = 1;
-  static BLUE = 2;
-  static GREEN = 3;
-  static PURPLE = 4;
+  static BLACK = 2;
+  static BROWN = 3;
+  static BLUE = 4;
+  static GREEN = 5;
+  static PURPLE = 6;
+  static WHITE = 7;
+  static YELLOW = 8;
+  static ORANGE = 9;
+  static PINK = 10;
 }
 
 export enum SpaceType {
