@@ -1,15 +1,22 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useSubmit, useParams } from "react-router-dom";
+import { Color } from "@hjackson/chutes-and-ladders";
 import * as Yup from "yup";
 
-const colorOptions = ["red","green", "blue", "purple"]
+const colorOptions = [Color.BLACK, Color.BLUE, Color.ORANGE, Color.BROWN]
 
 const schema = Yup.object({
   userName: Yup.string().required("Please enter a valid name"),
-  color: Yup.string()
+  color: Yup.number()
     .oneOf(colorOptions)
     .required("Required")
 });
+
+console.log(colorOptions)
+
+colorOptions.forEach((key, index) => {
+  console.log(`index = ${index}, key = ${key} = colorOption[index] = ${colorOptions[index]}` )
+})
 
 export const Register = () => {
   const id = useParams().id;
