@@ -3,11 +3,12 @@ import { useSubmit, useParams } from "react-router-dom";
 import { Color } from "@hjackson/chutes-and-ladders";
 import * as Yup from "yup";
 
-const colorOptions = [Color.BLACK, Color.BLUE, Color.ORANGE, Color.BROWN]
+const color = Color
+const colorOptions = [color[1], color[2], color[3], color[4]]
 
 const schema = Yup.object({
   userName: Yup.string().required("Please enter a valid name"),
-  color: Yup.number()
+  color: Yup.string()
     .oneOf(colorOptions)
     .required("Required")
 });

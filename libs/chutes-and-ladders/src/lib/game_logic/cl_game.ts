@@ -164,17 +164,12 @@ export class Chutes_and_ladders {
     this.uniqueValues = [];
     this.createChutesAndLadders();
     // this.board = new Board(this.specialSpacesArray, this.TOTAL);
-    this.switchTurns();
+    this.rotatePlayers();
     this.setUpGame();
   }
 
   rollDice() {
     return this.dice.roll();
-  }
-
-  switchTurns() {
-    // this.registeredPlayers.push(this.registeredPlayers.shift());
-    this.rotatePlayers();
   }
 
   rotatePlayers() {
@@ -190,7 +185,7 @@ export class Chutes_and_ladders {
     if (this.checkForWinner(player)) {
       this.resetGame();
     } else {
-      this.switchTurns();
+      this.rotatePlayers();
     }
   }
 
