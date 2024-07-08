@@ -151,7 +151,7 @@ export class Chutes_and_ladders {
   setUpGame() {
     if (this.registeredPlayers.length >= this.MIN_PLAYERS) {
       this.registeredPlayers.forEach((player) => {
-        // this.board.start.land(player.avatar);
+        this.startSpace.land(player.avatar);
         player.avatar.winner = false;
       });
     } else {

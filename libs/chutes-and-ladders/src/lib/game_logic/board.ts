@@ -32,13 +32,3 @@ export class Board implements IBoard {
     return start;
   }
 }
-// const board = new Board([], 20);
-
-// let space: ISpace | null = board.createAllSpaces();
-
-// while (space) {
-//   console.log(
-//     `space.value = ${space.value}, special = ${space.special?.value}`
-//   );
-//   space = space.next;
-// }

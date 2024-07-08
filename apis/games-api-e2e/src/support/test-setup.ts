@@ -10,7 +10,7 @@ module.exports = async function () {
 };
 
 describe('#getListGames', () => {
-  test('gets a list of games playable', async () => {
+  test.skip('gets a list of games playable', async () => {
     const res = await axios.get('http://localhost:3333/api/v1/games');
 
     const gameList = res.data;

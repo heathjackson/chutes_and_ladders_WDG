@@ -4,7 +4,7 @@ import { Color } from '../game_logic/interfaces';
 describe('#createSpecialSpaces', () => {
   const game = new Chutes_and_ladders(5, 5);
   test('#createSpecialSpaces', () => {
-    expect(game.specialSpaces.length).toBe(20);
+    expect(game.specialSpacesArray.length).toBe(20);
   });
 
   test('#verifySpan - make sure the span from start to end of a special space is less than 40', () => {
@@ -62,7 +62,7 @@ describe('#registerPlayer', () => {
     test('should set up the game with registered players', () => {
       game.setUpGame();
       game.registeredPlayers.map((player) => {
-        expect(player.Avatar.location.value).toEqual('1');
+        expect(player.avatar.location.value).toEqual('1');
       });
     });
   });
