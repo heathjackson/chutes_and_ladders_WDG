@@ -3,9 +3,7 @@ import { useSubmit, useParams } from "react-router-dom";
 import { Color } from "@hjackson/chutes-and-ladders";
 import * as Yup from "yup";
 
-const colorOptions = [Color.BLUE, Color.GREEN, Color.ORANGE, Color.PURPLE]
-
-console.log(`colorOptions = ${JSON.stringify(colorOptions)}`)
+const colorOptions = [Color.BLACK, Color.BLUE, Color.ORANGE, Color.BROWN]
 
 const schema = Yup.object({
   userName: Yup.string().required("Please enter a valid name"),
@@ -13,6 +11,12 @@ const schema = Yup.object({
     .oneOf(colorOptions)
     .required("Required")
 });
+
+console.log(colorOptions)
+
+colorOptions.forEach((key, index) => {
+  console.log(`index = ${index}, key = ${key} = colorOption[index] = ${colorOptions[index]}` )
+})
 
 export const Register = () => {
   const id = useParams().id;
