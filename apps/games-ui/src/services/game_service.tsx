@@ -1,6 +1,6 @@
 import { IGameBoard } from "@hjackson/model";
 import axios from "axios";
-import { ActionFunctionArgs, redirect } from "react-router-dom";
+import { ActionFunctionArgs } from "react-router-dom";
 
 //actiopn of what is happening before each function
 export const getListGames = async () => {
