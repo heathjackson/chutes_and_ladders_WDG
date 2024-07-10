@@ -12,13 +12,13 @@ const sendListGames = (req: Request, resp: Response) => {
 };
 
 const sendGameID = (req: Request, resp: Response) => {
-  const gameID = randomUUID().toString() as string;
+  const gameInstanceId = randomUUID().toString() as string;
   const gameInstanceMap = req.app.get('gameInstanceMap');
   //map is used as a database to save the game uuid with the game created object which includes the instance of game
 
   const game = new Chutes_and_ladders(5, 5);
-  gameInstanceMap.set(gameID, game);
-  resp.json({ gameID: gameID });
+  gameInstanceMap.set(gameInstanceId, game);
+  resp.json({ gameID: gameInstanceId });
 };
 
 const registerAndSendGameBoard = (req: Request, resp: Response) => {
