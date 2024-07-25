@@ -4,7 +4,7 @@ import { Color } from "@hjackson/chutes-and-ladders";
 import * as Yup from "yup";
 
 const color = Color
-const colorOptions = [color[1], color[2], color[3], color[4]]
+const colorOptions = [color[5], color[4], color[6], color[1]]
 
 const schema = Yup.object({
   userName: Yup.string().required("Please enter a valid name"),
