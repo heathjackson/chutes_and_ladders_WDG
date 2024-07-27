@@ -1,6 +1,6 @@
 {
   "name": "data-api-e2e",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "implicitDependencies": ["data-api"],
   "projectType": "application",
   "targets": {
