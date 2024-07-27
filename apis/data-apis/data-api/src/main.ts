@@ -6,12 +6,9 @@
 import express from 'express';
 import * as path from 'path';
 
-import artists from './routes/artists';
-
 const app = express();
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/', artists);
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to data-api!' });
