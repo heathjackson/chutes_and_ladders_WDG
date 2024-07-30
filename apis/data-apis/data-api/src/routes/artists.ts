@@ -12,6 +12,15 @@ const artists = async (req: Request, resp: Response) => {
   resp.status(200).json(allArtists);
 };
 
+const addArtist = async (req: Request, resp: Response) => {
+  const newArtist = await prisma.artist.create({
+    data: {
+      name: 'Taylor Swift',
+    },
+  });
+  resp.status(200).json(newArtist);
+};
+
 export class ArtistRoutes {
   constructor(router: Router) {
     router.get('/', welcome);
