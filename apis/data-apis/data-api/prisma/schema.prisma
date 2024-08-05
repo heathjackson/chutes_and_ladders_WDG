@@ -18,7 +18,7 @@ model album {
 }
 
 model artist {
-  artist_id Int     @id
+  artist_id Int     @id @default(autoincrement())
   name      String? @db.VarChar(120)
   album     album[]
 }

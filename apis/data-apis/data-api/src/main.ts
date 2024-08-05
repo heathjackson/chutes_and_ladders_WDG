@@ -22,7 +22,7 @@ app.use(
   cors(corsOptions),
   express.static(path.join(__dirname, 'assets'))
 );
-app.use('/api/v1', cors(corsOptions), router);
+app.use('/api/v2', cors(corsOptions), router);
 new ArtistRoutes(router);
 
 const port = process.env.PORT || 3333;
