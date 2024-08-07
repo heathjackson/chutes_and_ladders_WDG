@@ -1,4 +1,4 @@
-import { ISpace, SpaceType } from '../game_logic/interfaces';
+import { ISpace } from '../game_logic/interfaces';
 import { Board } from '../game_logic/board';
 
 describe('check that the newBoard is created correctly with the correct amount of spaces and a start and finish', () => {

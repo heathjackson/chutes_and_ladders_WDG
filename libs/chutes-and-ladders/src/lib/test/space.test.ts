@@ -1,6 +1,6 @@
-import { Space } from '../game_logic/space.js';
-import { Avatar } from '../game_logic/avatar.js';
-import { SpaceType } from '../game_logic/interfaces.js';
+import { Space } from '../game_logic/space';
+import { Avatar } from '../game_logic/avatar';
+import { SpaceType } from '../game_logic/interfaces';
 
 describe('#land(avatar)', () => {
   test('test space', () => {
