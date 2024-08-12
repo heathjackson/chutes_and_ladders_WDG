@@ -30,36 +30,40 @@ const addArtist = async (req: Request, resp: Response) => {
       name,
     },
   });
-  resp.status(201).json(newArtist);
+  resp.status(200).json(newArtist);
 };
 
 const updateArtist = async (req: Request, resp: Response) => {
-  const { id, name } = req.body;
+  const { artist_id, name } = req.body;
 
   const changedArtist = await prisma.artist.update({
     where: {
-      artist_id: id,
+      artist_id
     },
     data: {
-      name: name,
+      name
     },
   });
 
   console.log(
-    `The artist has been changed to ${JSON.stringify(changedArtist)}`
+    `The artist has been changed to ${changedArtist.name}`
   );
-  resp.status(204).json(changedArtist);
+  resp.status(200).json(changedArtist);
 };
 
 const deleteArtist = async (req: Request, resp: Response) => {
-  const { id } = req.body;
+  const {id} = req.params;
+  console.log(`artists.ts id = ${id}`)
 
-  const artistDeleted = await prisma.artist.delete({
+
+  const deleted = await prisma.artist.delete({
     where: {
-      artist_id: id,
-    },
+      artist_id: Number(id)
+    }
   });
-  resp.status(204).json(artistDeleted);
+
+  console.log(`deleted = ${JSON.stringify(deleted)}`)
+  resp.status(200).json(deleted);
 };
 
 export class ArtistRoutes {
@@ -68,7 +72,7 @@ export class ArtistRoutes {
     router.get('/artists', artists);
     router.get('/artists/:name', getArtist);
     router.post('/artists', addArtist);
-    router.put('/artists/:name', updateArtist);
+    router.put('/artists/:id', updateArtist);
     router.delete('/artists/:id', deleteArtist);
   }
 }
