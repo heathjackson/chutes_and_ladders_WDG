@@ -1,11 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import styles from './app.module.css';
+
+import NxWelcome from './nx-welcome';
+
 import { Route, Routes, Link } from 'react-router-dom';
-import DataLayout from '../components/data-layout';
 
 export function App() {
   return (
     <div>
-      <DataLayout title="data-ui" />
+      <NxWelcome title="data-ui" />
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}

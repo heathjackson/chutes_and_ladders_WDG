@@ -44,7 +44,7 @@ const updateAlbum = async (req: Request, resp: Response) => {
   });
 
   console.log(
-    `The album has been changed to ${changedAlbum.title}`
+    `The title has been changed to ${changedAlbum.title}`
   );
   resp.status(200).json(changedAlbum);
 };
