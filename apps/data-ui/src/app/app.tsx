@@ -1,14 +1,17 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import DataLayout from "../components/data-layout";
 
-import NxWelcome from './nx-welcome';
+const router = createBrowserRouter (
+  [
+    {
+      path: '/',
+      Component: DataLayout
+    }
+  ]
+)
 
-export function App() {
-  return (
-    <div>
-      <NxWelcome title="data-ui" />
-    </div>
-  );
+function App() {
+  return <RouterProvider router={router} />
 }
 
 export default App;
