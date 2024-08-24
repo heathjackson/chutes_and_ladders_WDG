@@ -25,10 +25,6 @@
     "src/**/*.spec.js",
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
-    "src/**/*.d.ts",
-    "src/app/app.tsx",
-    "src/components/*.tsx",
-    "src/pages/*.tsx",
-    "src/services/*.tsx"
+    "src/**/*.d.ts"
   ]
 }

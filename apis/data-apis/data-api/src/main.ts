@@ -7,7 +7,6 @@ import cors from 'cors';
 import express from 'express';
 import * as path from 'path';
 import { ArtistRoutes } from './routes/artists';
-import { AlbumRoutes } from './routes/albums';
 
 const corsOptions = {
   origin: 'http://localhost:4200',
@@ -25,9 +24,8 @@ app.use(
 );
 app.use('/api/v2', cors(corsOptions), router);
 new ArtistRoutes(router);
-new AlbumRoutes(router);
 
-const port = process.env.POST || 3333;
+const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api`);
 });
