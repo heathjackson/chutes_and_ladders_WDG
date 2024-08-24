@@ -78,36 +78,16 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
+        "file": "migrations.json",
+        "hash": "3785216647928932397"
       },
       {
-        "file": ".env",
-        "hash": "5238204894158769644"
+        "file": "package.json",
+        "hash": "5826984798567443480"
       },
       {
-        "file": ".eslintignore",
-        "hash": "7663861978715868291"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "18315524891129148814"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "1084955572416661315"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "16448050467312557263"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "8680560858046250684"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "4934098906304722861"
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
       },
       {
         "file": "README.md",
@@ -118,28 +98,48 @@
         "hash": "12333515226966617182"
       },
       {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
+        "file": ".gitignore",
+        "hash": "1084955572416661315"
       },
       {
-        "file": "migrations.json",
-        "hash": "3785216647928932397"
+        "file": ".prettierrc",
+        "hash": "8680560858046250684"
       },
       {
-        "file": "nx.json",
-        "hash": "17872192096956818188"
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
       },
       {
         "file": "package-lock.json",
         "hash": "9375165054372262017"
       },
       {
-        "file": "package.json",
-        "hash": "5826984798567443480"
+        "file": ".env",
+        "hash": "5238204894158769644"
+      },
+      {
+        "file": "nx.json",
+        "hash": "17872192096956818188"
       },
       {
         "file": "tsconfig.base.json",
         "hash": "8974291122009550489"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "4934098906304722861"
+      },
+      {
+        "file": ".eslintignore",
+        "hash": "7663861978715868291"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "16448050467312557263"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "18315524891129148814"
       }
     ],
     "projectFileMap": {
@@ -588,7 +588,7 @@
         },
         {
           "file": "apis/data-apis/data-api/prisma/schema.prisma",
-          "hash": "16410941475448706877"
+          "hash": "12414576016349289880"
         },
         {
           "file": "apis/data-apis/data-api/project.json",
@@ -600,7 +600,7 @@
         },
         {
           "file": "apis/data-apis/data-api/src/main.ts",
-          "hash": "14848919231792805904",
+          "hash": "10378153538745573163",
           "deps": [
             "npm:cors",
             "npm:express"
@@ -631,6 +631,14 @@
           "hash": "5708803163266262522",
           "deps": [
             "npm:@nx/webpack"
+          ]
+        },
+        {
+          "file": "apis/data-apis/data-api/src/routes/albums.ts",
+          "hash": "11256362508504971284",
+          "deps": [
+            "npm:express",
+            "npm:@prisma/client"
           ]
         }
       ],
@@ -703,7 +711,7 @@
         },
         {
           "file": "apis/data-apis/data-api-e2e/src/data-api/data-api.spec.ts",
-          "hash": "300751589820727661",
+          "hash": "7911153701388917366",
           "deps": [
             "npm:axios"
           ]
