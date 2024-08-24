@@ -1133,3 +1133,17 @@
 [NX Daemon Server] - 2024-08-24T02:12:02.156Z - Handled HASH_TASKS. Handling time: 17. Response time: 1.
 [NX Daemon Server] - 2024-08-24T02:12:03.741Z - [WATCHER]: Processing file changes in outputs
 [NX Daemon Server] - 2024-08-24T02:12:06.793Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-24T02:16:06.735Z - [REQUEST]: Responding to the client. recordOutputsHash
+[NX Daemon Server] - 2024-08-24T02:16:06.735Z - Done responding to the client recordOutputsHash
+[NX Daemon Server] - 2024-08-24T02:16:06.736Z - Handled RECORD_OUTPUTS_HASH. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-08-24T02:16:06.924Z - [REQUEST]: Responding to the client. PROCESS_IN_BACKGROUND
+[NX Daemon Server] - 2024-08-24T02:16:06.924Z - Done responding to the client PROCESS_IN_BACKGROUND
+[NX Daemon Server] - 2024-08-24T02:16:06.924Z - Handled PROCESS_IN_BACKGROUND. Handling time: 134. Response time: 0.
+[NX Daemon Server] - 2024-08-24T02:16:06.925Z - Uploading file artifacts
+[NX Daemon Server] - 2024-08-24T02:16:06.925Z - Done uploading file artifacts
+[NX Daemon Server] - 2024-08-24T02:16:06.926Z - Sending EndRun request
+[NX Daemon Server] - 2024-08-24T02:16:06.990Z - Closed a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-08-24T02:16:10.046Z - Error when sending EndRun
+Error: This workspace is more than three days old and is not connected. Workspaces must be connected within 3 days of creation. Claim your workspace at https://cloud.nx.app
+    at Timeout._onTimeout (/Users/heatherjackson/Projects/hjackson/.nx/cache/cloud/2408.12.8.hotfix14/lib/daemon/process-run-end.js:29:7093)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
