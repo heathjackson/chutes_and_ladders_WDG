@@ -489,6 +489,133 @@
         "implicitDependencies": []
       }
     },
+    "data-ui": {
+      "name": "data-ui",
+      "type": "app",
+      "data": {
+        "root": "apps/data-ui",
+        "name": "data-ui",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/data-ui/src",
+        "projectType": "application",
+        "tags": [],
+        "targets": {
+          "build": {
+            "executor": "@nx/vite:build",
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "defaultConfiguration": "production",
+            "options": {
+              "outputPath": "dist/apps/data-ui"
+            },
+            "configurations": {
+              "development": {
+                "mode": "development"
+              },
+              "production": {
+                "mode": "production"
+              }
+            },
+            "parallelism": true,
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ]
+          },
+          "serve": {
+            "executor": "@nx/vite:dev-server",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "data-ui:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "data-ui:build:development",
+                "hmr": true
+              },
+              "production": {
+                "buildTarget": "data-ui:build:production",
+                "hmr": false
+              }
+            },
+            "parallelism": true
+          },
+          "preview": {
+            "dependsOn": [
+              "build"
+            ],
+            "executor": "@nx/vite:preview-server",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "data-ui:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "data-ui:build:development"
+              },
+              "production": {
+                "buildTarget": "data-ui:build:production"
+              }
+            },
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "configurations": {},
+            "options": {},
+            "parallelism": true,
+            "cache": true,
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json",
+              "{workspaceRoot}/.eslintignore",
+              "{workspaceRoot}/eslint.config.js"
+            ]
+          },
+          "serve-static": {
+            "executor": "@nx/web:file-server",
+            "dependsOn": [
+              "build"
+            ],
+            "options": {
+              "buildTarget": "data-ui:build",
+              "spa": true
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+              "jestConfig": "apps/data-ui/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {
+              "ci": {
+                "ci": true,
+                "codeCoverage": true
+              }
+            },
+            "parallelism": true,
+            "cache": true,
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ]
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
     "chain": {
       "name": "chain",
       "type": "lib",
@@ -13141,6 +13268,38 @@
       },
       {
         "source": "games-ui",
+        "target": "npm:@nx/vite",
+        "type": "static"
+      }
+    ],
+    "data-ui": [
+      {
+        "source": "data-ui",
+        "target": "npm:@testing-library/react",
+        "type": "static"
+      },
+      {
+        "source": "data-ui",
+        "target": "npm:react",
+        "type": "static"
+      },
+      {
+        "source": "data-ui",
+        "target": "npm:react-dom",
+        "type": "static"
+      },
+      {
+        "source": "data-ui",
+        "target": "npm:vite",
+        "type": "static"
+      },
+      {
+        "source": "data-ui",
+        "target": "npm:@vitejs/plugin-react",
+        "type": "static"
+      },
+      {
+        "source": "data-ui",
         "target": "npm:@nx/vite",
         "type": "static"
       }
