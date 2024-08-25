@@ -5,7 +5,11 @@ import Footer from "./footer"
 
 export default function DataLayout() {
     return (
-      <Container>
+      <Container sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
         <Header/>
         <Outlet/>
         <Footer />
