@@ -16,6 +16,7 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "^6.22.0",
+    "reactjs-popup": "^2.0.6",
     "tslib": "^2.3.0",
     "yup": "^1.4.0",
     "@nx/eslint": "19.6.2",
@@ -82,44 +83,40 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "tsconfig.base.json",
-        "hash": "8974291122009550489"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "8680560858046250684"
-      },
-      {
         "file": "package-lock.json",
-        "hash": "12067309349781737957"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "4934098906304722861"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "12333515226966617182"
-      },
-      {
-        "file": "migrations.json",
-        "hash": "2095578244385828606"
-      },
-      {
-        "file": "README.md",
-        "hash": "9313067801692306091"
-      },
-      {
-        "file": ".env",
-        "hash": "5238204894158769644"
+        "hash": "1444063190680662023"
       },
       {
         "file": ".editorconfig",
         "hash": "5443105041930014821"
       },
       {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
+        "file": ".env",
+        "hash": "5238204894158769644"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "15629280613521941793"
+      },
+      {
+        "file": "package.json",
+        "hash": "14888564981643639295"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "14688272390704683536"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "4934098906304722861"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "8974291122009550489"
+      },
+      {
+        "file": "migrations.json",
+        "hash": "2095578244385828606"
       },
       {
         "file": "nx.json",
@@ -130,87 +127,78 @@
         "hash": "17635386893005795514"
       },
       {
-        "file": ".prettierignore",
-        "hash": "14688272390704683536"
+        "file": "jest.config.ts",
+        "hash": "12333515226966617182"
       },
       {
         "file": ".eslintignore",
         "hash": "7663861978715868291"
       },
       {
-        "file": ".eslintrc.json",
-        "hash": "15629280613521941793"
+        "file": ".prettierrc",
+        "hash": "8680560858046250684"
       },
       {
-        "file": "package.json",
-        "hash": "17685925152405894771"
+        "file": "README.md",
+        "hash": "9313067801692306091"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
       }
     ],
     "projectFileMap": {
-      "model": [
+      "games-api": [
         {
-          "file": "libs/model/.eslintrc.json",
-          "hash": "10905178498824427073"
+          "file": "apis/games-apis/games-api/.eslintrc.json",
+          "hash": "9703569748258640057"
         },
         {
-          "file": "libs/model/README.md",
-          "hash": "13803745399357716468"
+          "file": "apis/games-apis/games-api/jest.config.ts",
+          "hash": "8826942127422179034"
         },
         {
-          "file": "libs/model/jest.config.ts",
-          "hash": "2875946053738514434"
+          "file": "apis/games-apis/games-api/project.json",
+          "hash": "7412698335213161743"
         },
         {
-          "file": "libs/model/package.json",
-          "hash": "5563888243720140763"
+          "file": "apis/games-apis/games-api/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
         },
         {
-          "file": "libs/model/project.json",
-          "hash": "2735194715656007791"
-        },
-        {
-          "file": "libs/model/src/index.ts",
-          "hash": "2578474892688813126"
-        },
-        {
-          "file": "libs/model/src/lib/chutesandladders.ts",
-          "hash": "17152420435146640851"
-        },
-        {
-          "file": "libs/model/src/lib/data-interfaces.ts",
-          "hash": "3037782939960344142"
-        },
-        {
-          "file": "libs/model/src/lib/data/maps.ts",
-          "hash": "9815385885392048366"
-        },
-        {
-          "file": "libs/model/src/lib/model.ts",
-          "hash": "17363314891770442921"
-        },
-        {
-          "file": "libs/model/src/lib/tictactoe.ts",
-          "hash": "8031203504682199649"
-        },
-        {
-          "file": "libs/model/tsconfig.json",
-          "hash": "9543726183220591718"
-        },
-        {
-          "file": "libs/model/tsconfig.lib.json",
-          "hash": "16772940531292573109"
-        },
-        {
-          "file": "libs/model/tsconfig.spec.json",
-          "hash": "5946338303705494746"
-        },
-        {
-          "file": "libs/model/vite.config.ts",
-          "hash": "5776782429542028998",
+          "file": "apis/games-apis/games-api/src/main.ts",
+          "hash": "11713634875786214616",
           "deps": [
-            "npm:vite",
-            "npm:vite-plugin-dts",
-            "npm:@nx/vite"
+            "npm:cors",
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apis/games-apis/games-api/src/routes/game_routes.ts",
+          "hash": "12450939245148731140",
+          "deps": [
+            "npm:express",
+            "model",
+            "chutes-and-ladders"
+          ]
+        },
+        {
+          "file": "apis/games-apis/games-api/tsconfig.app.json",
+          "hash": "8720073588459143640"
+        },
+        {
+          "file": "apis/games-apis/games-api/tsconfig.json",
+          "hash": "16334508267493443227"
+        },
+        {
+          "file": "apis/games-apis/games-api/tsconfig.spec.json",
+          "hash": "13005487430459178699"
+        },
+        {
+          "file": "apis/games-apis/games-api/webpack.config.js",
+          "hash": "5708803163266262522",
+          "deps": [
+            "npm:@nx/webpack"
           ]
         }
       ],
@@ -287,6 +275,117 @@
           ]
         }
       ],
+      "model": [
+        {
+          "file": "libs/model/.eslintrc.json",
+          "hash": "10905178498824427073"
+        },
+        {
+          "file": "libs/model/README.md",
+          "hash": "13803745399357716468"
+        },
+        {
+          "file": "libs/model/jest.config.ts",
+          "hash": "2875946053738514434"
+        },
+        {
+          "file": "libs/model/package.json",
+          "hash": "5563888243720140763"
+        },
+        {
+          "file": "libs/model/project.json",
+          "hash": "2735194715656007791"
+        },
+        {
+          "file": "libs/model/src/index.ts",
+          "hash": "2578474892688813126"
+        },
+        {
+          "file": "libs/model/src/lib/chutesandladders.ts",
+          "hash": "17152420435146640851"
+        },
+        {
+          "file": "libs/model/src/lib/data-interfaces.ts",
+          "hash": "3037782939960344142"
+        },
+        {
+          "file": "libs/model/src/lib/data/maps.ts",
+          "hash": "9815385885392048366"
+        },
+        {
+          "file": "libs/model/src/lib/model.ts",
+          "hash": "17363314891770442921"
+        },
+        {
+          "file": "libs/model/src/lib/tictactoe.ts",
+          "hash": "8031203504682199649"
+        },
+        {
+          "file": "libs/model/tsconfig.json",
+          "hash": "9543726183220591718"
+        },
+        {
+          "file": "libs/model/tsconfig.lib.json",
+          "hash": "16772940531292573109"
+        },
+        {
+          "file": "libs/model/tsconfig.spec.json",
+          "hash": "5946338303705494746"
+        },
+        {
+          "file": "libs/model/vite.config.ts",
+          "hash": "5776782429542028998",
+          "deps": [
+            "npm:vite",
+            "npm:vite-plugin-dts",
+            "npm:@nx/vite"
+          ]
+        }
+      ],
+      "data-api-e2e": [
+        {
+          "file": "apis/data-apis/data-api-e2e/.eslintrc.json",
+          "hash": "9703569748258640057"
+        },
+        {
+          "file": "apis/data-apis/data-api-e2e/jest.config.ts",
+          "hash": "11611050354712921810"
+        },
+        {
+          "file": "apis/data-apis/data-api-e2e/project.json",
+          "hash": "4705610618198995539"
+        },
+        {
+          "file": "apis/data-apis/data-api-e2e/src/data-api/data-api.spec.ts",
+          "hash": "7911153701388917366",
+          "deps": [
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "apis/data-apis/data-api-e2e/src/support/global-setup.ts",
+          "hash": "2568409276037275290"
+        },
+        {
+          "file": "apis/data-apis/data-api-e2e/src/support/global-teardown.ts",
+          "hash": "5275447082211835490"
+        },
+        {
+          "file": "apis/data-apis/data-api-e2e/src/support/test-setup.ts",
+          "hash": "10984585515912236441",
+          "deps": [
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "apis/data-apis/data-api-e2e/tsconfig.json",
+          "hash": "16437718785875567022"
+        },
+        {
+          "file": "apis/data-apis/data-api-e2e/tsconfig.spec.json",
+          "hash": "13317625184268761619"
+        }
+      ],
       "games-api-e2e": [
         {
           "file": "apis/games-apis/games-api-e2e/.eslintrc.json",
@@ -331,57 +430,147 @@
           "hash": "13317625184268761619"
         }
       ],
-      "games-api": [
+      "data-ui": [
         {
-          "file": "apis/games-apis/games-api/.eslintrc.json",
-          "hash": "9703569748258640057"
+          "file": "apps/data-ui/.eslintrc.json",
+          "hash": "11012487992710232822"
         },
         {
-          "file": "apis/games-apis/games-api/jest.config.ts",
-          "hash": "8826942127422179034"
+          "file": "apps/data-ui/index.html",
+          "hash": "5164451680700394950"
         },
         {
-          "file": "apis/games-apis/games-api/project.json",
-          "hash": "7412698335213161743"
+          "file": "apps/data-ui/jest.config.ts",
+          "hash": "17143398497409279279"
         },
         {
-          "file": "apis/games-apis/games-api/src/assets/.gitkeep",
+          "file": "apps/data-ui/project.json",
+          "hash": "6317246307639865525"
+        },
+        {
+          "file": "apps/data-ui/public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/data-ui/src/app/app.module.css",
+          "hash": "8887387885984320532"
+        },
+        {
+          "file": "apps/data-ui/src/app/app.spec.tsx",
+          "hash": "16640104122177142563"
+        },
+        {
+          "file": "apps/data-ui/src/app/app.tsx",
+          "hash": "5146323575726495965",
+          "deps": [
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/data-ui/src/assets/.gitkeep",
           "hash": "3244421341483603138"
         },
         {
-          "file": "apis/games-apis/games-api/src/main.ts",
-          "hash": "11713634875786214616",
+          "file": "apps/data-ui/src/components/artist-info.tsx",
+          "hash": "10087702673441067893",
           "deps": [
-            "npm:cors",
-            "npm:express"
+            "npm:react-router-dom",
+            "model"
           ]
         },
         {
-          "file": "apis/games-apis/games-api/src/routes/game_routes.ts",
-          "hash": "12450939245148731140",
+          "file": "apps/data-ui/src/components/data-grid.tsx",
+          "hash": "10185776140196110617",
           "deps": [
-            "npm:express",
+            "npm:react",
+            "npm:@mui/material",
+            "npm:@mui/icons-material",
+            "npm:@mui/x-data-grid",
+            "npm:react-router-dom",
             "model",
-            "chutes-and-ladders"
+            "npm:axios"
           ]
         },
         {
-          "file": "apis/games-apis/games-api/tsconfig.app.json",
-          "hash": "8720073588459143640"
-        },
-        {
-          "file": "apis/games-apis/games-api/tsconfig.json",
-          "hash": "16334508267493443227"
-        },
-        {
-          "file": "apis/games-apis/games-api/tsconfig.spec.json",
-          "hash": "13005487430459178699"
-        },
-        {
-          "file": "apis/games-apis/games-api/webpack.config.js",
-          "hash": "5708803163266262522",
+          "file": "apps/data-ui/src/components/data-layout.tsx",
+          "hash": "17755885617211200618",
           "deps": [
-            "npm:@nx/webpack"
+            "npm:@mui/material",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/data-ui/src/components/footer.tsx",
+          "hash": "178407596823402931",
+          "deps": [
+            "npm:@mui/material",
+            "npm:@mui/icons-material"
+          ]
+        },
+        {
+          "file": "apps/data-ui/src/components/form-add-artist.tsx",
+          "hash": "7315033117470564715",
+          "deps": [
+            "npm:formik",
+            "npm:react",
+            "npm:react-router-dom",
+            "npm:yup"
+          ]
+        },
+        {
+          "file": "apps/data-ui/src/components/header.tsx",
+          "hash": "12091179431186253208",
+          "deps": [
+            "npm:@mui/material",
+            "npm:@mui/icons-material"
+          ]
+        },
+        {
+          "file": "apps/data-ui/src/components/welcome.tsx",
+          "hash": "17065190029359320154",
+          "deps": [
+            "npm:@mui/material"
+          ]
+        },
+        {
+          "file": "apps/data-ui/src/main.tsx",
+          "hash": "4731961929376199421",
+          "deps": [
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "apps/data-ui/src/services/data_service.tsx",
+          "hash": "18009599394125512697",
+          "deps": [
+            "npm:axios",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/data-ui/src/styles.css",
+          "hash": "5195668842064076916"
+        },
+        {
+          "file": "apps/data-ui/tsconfig.app.json",
+          "hash": "13568139603233014196"
+        },
+        {
+          "file": "apps/data-ui/tsconfig.json",
+          "hash": "824604371006306276"
+        },
+        {
+          "file": "apps/data-ui/tsconfig.spec.json",
+          "hash": "13954612182344725725"
+        },
+        {
+          "file": "apps/data-ui/vite.config.ts",
+          "hash": "6758664046475735235",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react",
+            "npm:@nx/vite"
           ]
         }
       ],
@@ -480,184 +669,6 @@
           "deps": [
             "npm:vite",
             "npm:vite-plugin-dts",
-            "npm:@nx/vite"
-          ]
-        }
-      ],
-      "data-api-e2e": [
-        {
-          "file": "apis/data-apis/data-api-e2e/.eslintrc.json",
-          "hash": "9703569748258640057"
-        },
-        {
-          "file": "apis/data-apis/data-api-e2e/jest.config.ts",
-          "hash": "11611050354712921810"
-        },
-        {
-          "file": "apis/data-apis/data-api-e2e/project.json",
-          "hash": "4705610618198995539"
-        },
-        {
-          "file": "apis/data-apis/data-api-e2e/src/data-api/data-api.spec.ts",
-          "hash": "7911153701388917366",
-          "deps": [
-            "npm:axios"
-          ]
-        },
-        {
-          "file": "apis/data-apis/data-api-e2e/src/support/global-setup.ts",
-          "hash": "2568409276037275290"
-        },
-        {
-          "file": "apis/data-apis/data-api-e2e/src/support/global-teardown.ts",
-          "hash": "5275447082211835490"
-        },
-        {
-          "file": "apis/data-apis/data-api-e2e/src/support/test-setup.ts",
-          "hash": "10984585515912236441",
-          "deps": [
-            "npm:axios"
-          ]
-        },
-        {
-          "file": "apis/data-apis/data-api-e2e/tsconfig.json",
-          "hash": "16437718785875567022"
-        },
-        {
-          "file": "apis/data-apis/data-api-e2e/tsconfig.spec.json",
-          "hash": "13317625184268761619"
-        }
-      ],
-      "data-ui": [
-        {
-          "file": "apps/data-ui/.eslintrc.json",
-          "hash": "11012487992710232822"
-        },
-        {
-          "file": "apps/data-ui/index.html",
-          "hash": "5164451680700394950"
-        },
-        {
-          "file": "apps/data-ui/jest.config.ts",
-          "hash": "17143398497409279279"
-        },
-        {
-          "file": "apps/data-ui/project.json",
-          "hash": "6317246307639865525"
-        },
-        {
-          "file": "apps/data-ui/public/favicon.ico",
-          "hash": "9303420814833116677"
-        },
-        {
-          "file": "apps/data-ui/src/app/app.module.css",
-          "hash": "8887387885984320532"
-        },
-        {
-          "file": "apps/data-ui/src/app/app.spec.tsx",
-          "hash": "16640104122177142563"
-        },
-        {
-          "file": "apps/data-ui/src/app/app.tsx",
-          "hash": "15994239904476192203",
-          "deps": [
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/data-ui/src/components/artist-info.tsx",
-          "hash": "10087702673441067893",
-          "deps": [
-            "npm:react-router-dom",
-            "model"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/components/data-grid.tsx",
-          "hash": "8381155449250220476",
-          "deps": [
-            "npm:react",
-            "npm:@mui/material",
-            "npm:@mui/icons-material",
-            "npm:@mui/x-data-grid",
-            "npm:@mui/x-data-grid-generator",
-            "npm:react-router-dom",
-            "model",
-            "npm:axios"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/components/data-layout.tsx",
-          "hash": "17755885617211200618",
-          "deps": [
-            "npm:@mui/material",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/components/footer.tsx",
-          "hash": "178407596823402931",
-          "deps": [
-            "npm:@mui/material",
-            "npm:@mui/icons-material"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/components/header.tsx",
-          "hash": "12091179431186253208",
-          "deps": [
-            "npm:@mui/material",
-            "npm:@mui/icons-material"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/components/welcome.tsx",
-          "hash": "17065190029359320154",
-          "deps": [
-            "npm:@mui/material"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/main.tsx",
-          "hash": "4731961929376199421",
-          "deps": [
-            "npm:react",
-            "npm:react-dom"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/services/data_service.tsx",
-          "hash": "3389565215259693721",
-          "deps": [
-            "npm:axios"
-          ]
-        },
-        {
-          "file": "apps/data-ui/src/styles.css",
-          "hash": "5195668842064076916"
-        },
-        {
-          "file": "apps/data-ui/tsconfig.app.json",
-          "hash": "13568139603233014196"
-        },
-        {
-          "file": "apps/data-ui/tsconfig.json",
-          "hash": "824604371006306276"
-        },
-        {
-          "file": "apps/data-ui/tsconfig.spec.json",
-          "hash": "13954612182344725725"
-        },
-        {
-          "file": "apps/data-ui/vite.config.ts",
-          "hash": "6758664046475735235",
-          "deps": [
-            "npm:vite",
-            "npm:@vitejs/plugin-react",
             "npm:@nx/vite"
           ]
         }

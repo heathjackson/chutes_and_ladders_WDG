@@ -12096,6 +12096,15 @@
         "hash": "sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g=="
       }
     },
+    "npm:reactjs-popup": {
+      "type": "npm",
+      "name": "npm:reactjs-popup",
+      "data": {
+        "version": "2.0.6",
+        "packageName": "reactjs-popup",
+        "hash": "sha512-A+tt+x9wdgZiZjv0e2WzYLD3IfFwJALaRaqwrCSXGjo0iQdsry/EtBEbQXRSmQs7cHmOi5eytCiSlOm8k4C+dg=="
+      }
+    },
     "npm:read-cache": {
       "type": "npm",
       "name": "npm:read-cache",
@@ -29703,6 +29712,16 @@
     {
       "source": "npm:react-transition-group",
       "target": "npm:prop-types",
+      "type": "static"
+    },
+    {
+      "source": "npm:reactjs-popup",
+      "target": "npm:react",
+      "type": "static"
+    },
+    {
+      "source": "npm:reactjs-popup",
+      "target": "npm:react-dom",
       "type": "static"
     },
     {

@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import SaveIcon from '@mui/icons-material/Save';
@@ -12,54 +10,18 @@ import {
   GridRowModes,
   DataGrid,
   GridColDef,
-  GridToolbarContainer,
   GridActionsCellItem,
   GridEventListener,
   GridRowId,
   GridRowModel,
-  GridRowEditStopReasons,
-  GridSlots,
+  GridRowEditStopReasons
 } from '@mui/x-data-grid';
-import {
-  randomId
-} from '@mui/x-data-grid-generator';
-import { useRouteLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { IArtist } from '@hjackson/model';
 import axios from 'axios';
 
-
-
-interface EditToolbarProps {
-  setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
-  setRowModesModel: (
-    newModel: (oldModel: GridRowModesModel) => GridRowModesModel,
-  ) => void;
-}
-
-function EditToolbar(props: EditToolbarProps) {
-  const { setRows, setRowModesModel } = props;
-
-  const handleClick = () => {
-    const id = randomId();
-    setRows((oldRows) => [...oldRows, { artist_id: id, name: '', isNew: true }]);
-    setRowModesModel((oldModel) => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
-    }));
-    console.log(`id = ${JSON.stringify([id])}`)
-  };
-
-  return (
-    <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
-        Add record
-      </Button>
-    </GridToolbarContainer>
-  );
-}
-
 export default function FullFeaturedCrudGrid() {
-  const initialRows: GridRowsProp = useRouteLoaderData("artist_list") as IArtist[]
+  const initialRows: GridRowsProp = useLoaderData() as IArtist[]
 
   const [rows, setRows] = React.useState(initialRows);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
@@ -79,10 +41,11 @@ export default function FullFeaturedCrudGrid() {
   };
 
   const handleDeleteClick = (id: GridRowId) => () => {
+    console.log(`id handleDelte = ${id}`)
     const deletedRow = rows.filter((row) => row.artist_id === id)
     console.log(`deletdRow = ${JSON.stringify(deletedRow)}`)
-    setRows(rows.filter((row) => row.artist_id !== id));
     axios.delete(`http://localhost:3333/api/v2/artists/${deletedRow[0].artist_id}`)
+    setRows(rows.filter((row) => row.artist_id !== id));
   };
 
   const handleCancelClick = (id: GridRowId) => () => {
@@ -183,12 +146,6 @@ export default function FullFeaturedCrudGrid() {
         onRowModesModelChange={handleRowModesModelChange}
         onRowEditStop={handleRowEditStop}
         processRowUpdate={processRowUpdate}
-        slots={{
-          toolbar: EditToolbar as GridSlots['toolbar'],
-        }}
-        slotProps={{
-          toolbar: { setRows, setRowModesModel },
-        }}
       />
     </Box>
   );
