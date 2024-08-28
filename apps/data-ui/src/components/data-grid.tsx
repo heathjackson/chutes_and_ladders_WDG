@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
 import {
@@ -38,14 +37,6 @@ export default function FullFeaturedCrudGrid() {
 
   const handleSaveClick = (id: GridRowId) => () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
-  };
-
-  const handleDeleteClick = (id: GridRowId) => () => {
-    console.log(`id handleDelte = ${id}`)
-    const deletedRow = rows.filter((row) => row.artist_id === id)
-    console.log(`deletdRow = ${JSON.stringify(deletedRow)}`)
-    axios.delete(`http://localhost:3333/api/v2/artists/${deletedRow[0].artist_id}`)
-    setRows(rows.filter((row) => row.artist_id !== id));
   };
 
   const handleCancelClick = (id: GridRowId) => () => {
@@ -113,12 +104,6 @@ export default function FullFeaturedCrudGrid() {
             onClick={handleEditClick(id)}
             color="inherit"
           />,
-          <GridActionsCellItem
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={handleDeleteClick(id)}
-            color="inherit"
-          />,
         ];
       },
     },
@@ -128,7 +113,7 @@ export default function FullFeaturedCrudGrid() {
     <Box
       sx={{
         height: 500,
-        width: '100%',
+        width: '50%',
         '& .actions': {
           color: 'text.secondary',
         },
@@ -138,6 +123,10 @@ export default function FullFeaturedCrudGrid() {
       }}
     >
       <DataGrid
+        sx={{
+          boxShadow: 2,
+          border: 2,
+        }}
         rows={rows}
         columns={columns}
         getRowId={(row) =>  row.artist_id}
@@ -150,29 +139,3 @@ export default function FullFeaturedCrudGrid() {
     </Box>
   );
 }
-
-// import { IArtist } from '@hjackson/model';
-// import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-// import { useState } from 'react';
-// import { useRouteLoaderData } from 'react-router-dom';
-
-// export default function DataChart() {
-//     const [artists, setArtists] = useState(useRouteLoaderData("artist_list") as IArtist[])
-    
-//     const columns: GridColDef[] = [
-//         { field: 'artist_id', headerName: 'Artist ID', width: 150 },
-//         { field: 'name', headerName: 'Artist Name', width: 150, editable: true },
-//     ];
-
-//     console.log(JSON.stringify(artists))
-
-//     return (
-//         <div style={{ height: 300, width: '100%' }}>
-//             <DataGrid 
-//                 columns={columns} 
-//                 rows={artists} 
-//                 getRowId={(row) =>  row.artist_id}
-//             />
-//         </div>
-//     );
-// }

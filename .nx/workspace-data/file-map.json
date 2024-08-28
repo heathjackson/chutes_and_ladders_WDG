@@ -83,68 +83,68 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "package-lock.json",
-        "hash": "1444063190680662023"
-      },
-      {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
-      },
-      {
-        "file": ".env",
-        "hash": "5238204894158769644"
-      },
-      {
         "file": ".eslintrc.json",
         "hash": "15629280613521941793"
-      },
-      {
-        "file": "package.json",
-        "hash": "14888564981643639295"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "14688272390704683536"
       },
       {
         "file": ".vscode/extensions.json",
         "hash": "4934098906304722861"
       },
       {
-        "file": "tsconfig.base.json",
-        "hash": "8974291122009550489"
-      },
-      {
-        "file": "migrations.json",
-        "hash": "2095578244385828606"
-      },
-      {
-        "file": "nx.json",
-        "hash": "17872192096956818188"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "17635386893005795514"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "12333515226966617182"
+        "file": "package-lock.json",
+        "hash": "1444063190680662023"
       },
       {
         "file": ".eslintignore",
         "hash": "7663861978715868291"
       },
       {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "17635386893005795514"
+      },
+      {
+        "file": ".env",
+        "hash": "5238204894158769644"
+      },
+      {
+        "file": "package.json",
+        "hash": "14888564981643639295"
+      },
+      {
+        "file": "nx.json",
+        "hash": "17872192096956818188"
+      },
+      {
         "file": ".prettierrc",
         "hash": "8680560858046250684"
       },
       {
-        "file": "README.md",
-        "hash": "9313067801692306091"
-      },
-      {
         "file": "jest.preset.js",
         "hash": "9430166341120122740"
+      },
+      {
+        "file": "migrations.json",
+        "hash": "2095578244385828606"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "8974291122009550489"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "12333515226966617182"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "14688272390704683536"
+      },
+      {
+        "file": "README.md",
+        "hash": "9313067801692306091"
       }
     ],
     "projectFileMap": {
@@ -461,7 +461,7 @@
         },
         {
           "file": "apps/data-ui/src/app/app.tsx",
-          "hash": "5146323575726495965",
+          "hash": "9071916001731973986",
           "deps": [
             "npm:react-router-dom"
           ]
@@ -480,7 +480,7 @@
         },
         {
           "file": "apps/data-ui/src/components/data-grid.tsx",
-          "hash": "10185776140196110617",
+          "hash": "686894813046833729",
           "deps": [
             "npm:react",
             "npm:@mui/material",
@@ -493,7 +493,7 @@
         },
         {
           "file": "apps/data-ui/src/components/data-layout.tsx",
-          "hash": "17755885617211200618",
+          "hash": "2850152802764202196",
           "deps": [
             "npm:@mui/material",
             "npm:react-router-dom"
@@ -509,10 +509,9 @@
         },
         {
           "file": "apps/data-ui/src/components/form-add-artist.tsx",
-          "hash": "7315033117470564715",
+          "hash": "6370666627846995260",
           "deps": [
             "npm:formik",
-            "npm:react",
             "npm:react-router-dom",
             "npm:yup"
           ]
@@ -527,7 +526,7 @@
         },
         {
           "file": "apps/data-ui/src/components/welcome.tsx",
-          "hash": "17065190029359320154",
+          "hash": "16893209070670571285",
           "deps": [
             "npm:@mui/material"
           ]
@@ -542,7 +541,7 @@
         },
         {
           "file": "apps/data-ui/src/services/data_service.tsx",
-          "hash": "18009599394125512697",
+          "hash": "13282526270389393481",
           "deps": [
             "npm:axios",
             "npm:react-router-dom"

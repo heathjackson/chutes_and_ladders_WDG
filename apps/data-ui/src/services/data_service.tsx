@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ActionFunctionArgs } from "react-router-dom";
+import { ActionFunctionArgs, redirect } from "react-router-dom";
 
 //action of what is happening before each function
 export const getListArtists = async () => {
@@ -10,11 +10,13 @@ export const getListArtists = async () => {
 export const addArtist = async ({request}: ActionFunctionArgs)  => {
   const form = await request.formData()
   const artistInfo = {
-    artistName: form.get("userName")
+    artist_id: 0,
+    name: form.get("artistName")
   }
+  console.log(`addArtist = artist_id = ${artistInfo.artist_id} name = ${artistInfo.name}`)
   try {
-    const resp = await axios.post(`http://localhost:3333/api/v2/games/artists`, artistInfo)
-    return resp.data
+    await axios.post(`http://localhost:3333/api/v2/artists`, artistInfo)
+    return redirect('/artists')
   }
     catch(error){
     console.log(error)

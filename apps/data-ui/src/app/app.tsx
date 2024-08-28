@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DataLayout from "../components/data-layout";
 import Welcome from "../components/welcome";
-import { getListArtists } from "../services/data_service";
+import { addArtist, getListArtists } from "../services/data_service";
 import DataChart from "../components/data-grid";
+import { AddArtist } from "../components/form-add-artist";
 
 const router = createBrowserRouter (
   [
@@ -20,6 +21,11 @@ const router = createBrowserRouter (
           loader: getListArtists,
           Component: DataChart
         },
+        {
+          path: 'addArtist',
+          action: addArtist,
+          Component: AddArtist
+        }
       ]
     }
   ]

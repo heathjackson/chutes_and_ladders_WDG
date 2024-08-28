@@ -7,8 +7,7 @@ const Welcome = () => {
         flexDirection: 'column'
     }}>
         <Button href="/artists">List Current Artists</Button>
-        <Button href="/artists/getInfo">Get Artist Info</Button>
-        <Button href="/artists/add">Add Artist</Button>
+        <Button href="/addArtist">Add Artist</Button>
         <Button href="/artists/update">Update Artist</Button>
         <Button href="/artists/delete">Delete Artist</Button>
     </Box>

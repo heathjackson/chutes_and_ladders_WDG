@@ -1,4 +1,4 @@
-import { Container } from "@mui/material"
+import { Box, Container } from "@mui/material"
 import Header from "./header"
 import { Outlet } from "react-router-dom"
 import Footer from "./footer"
@@ -11,7 +11,14 @@ export default function DataLayout() {
         flexDirection: 'column',
       }}>
         <Header/>
-        <Outlet/>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="100vh"
+        >
+          <Outlet/>
+        </Box>
         <Footer />
       </Container>
     )
