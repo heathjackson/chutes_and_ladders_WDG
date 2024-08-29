@@ -12,7 +12,8 @@ export const addArtist = async (name: any)  => {
     name: name
   }
   try {
-    await axios.post(`http://localhost:3333/api/v2/artists`, artistInfo)
+    const res = await axios.post(`http://localhost:3333/api/v2/artists`, artistInfo)
+    return res.data
   }
     catch(error){
     console.log(error)
@@ -30,6 +31,17 @@ export const updateArtists = async (artistId: any, editedRow: any) => {
     return null
   }
 }
+
+export const deleteArtist = async (artistId: any) => {
+  try { await axios.delete(`http://localhost:3333/api/v2/artists/${artistId}`)
+  }
+  catch(error){
+    console.log(error)
+    return null
+  }
+}
+
+
 
 
 

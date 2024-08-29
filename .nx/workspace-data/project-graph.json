@@ -14822,11 +14822,6 @@
       },
       {
         "source": "data-ui",
-        "target": "npm:axios",
-        "type": "static"
-      },
-      {
-        "source": "data-ui",
         "target": "npm:formik",
         "type": "static"
       },
@@ -14838,6 +14833,11 @@
       {
         "source": "data-ui",
         "target": "npm:react-dom",
+        "type": "static"
+      },
+      {
+        "source": "data-ui",
+        "target": "npm:axios",
         "type": "static"
       },
       {

@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import CancelIcon from '@mui/icons-material/Close';
 import {
   GridRowsProp,
@@ -16,14 +17,13 @@ import {
   GridRowModel,
   GridRowEditStopReasons,
   GridToolbarContainer,
-  GridSlots
+  GridSlots,
 } from '@mui/x-data-grid';
 import { useLoaderData } from 'react-router-dom';
 import { IArtist } from '@hjackson/model';
 import { Button } from '@mui/material';
 import { randomId } from '@mui/x-data-grid-generator';
-import { addArtist, updateArtists } from '../services/data_service';
-import axios from 'axios';
+import { addArtist, deleteArtist, updateArtists } from '../services/data_service';
 
 interface EditToolbarProps {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -56,7 +56,6 @@ function EditToolbar(props: EditToolbarProps) {
 
 export default function FullFeaturedCrudGrid() {
   const initialRows: GridRowsProp = useLoaderData() as IArtist[]
-
   const [rows, setRows] = React.useState(initialRows);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
 
@@ -72,6 +71,11 @@ export default function FullFeaturedCrudGrid() {
 
   const handleSaveClick = (id: GridRowId) => () => {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+  };
+
+  const handleDeleteClick = (id: GridRowId) => () => {
+    setRows(rows.filter((row) => row.artist_id !== id));
+    deleteArtist(id)
   };
 
   const handleCancelClick = (id: GridRowId) => () => {
@@ -94,11 +98,9 @@ export default function FullFeaturedCrudGrid() {
     console.log(`newRow after update = ${JSON.stringify(newRow)}`)
     setRows(rows.map((row) => (row.artist_id === newRow.artist_id ? updatedRow : row)));
     console.log(`updatedRow = ${JSON.stringify(updatedRow)}`)
-    
-    const newArtist = async () => await axios.post(`http://localhost:3333/api/v2/artists`, newRow.name)
-    const updatedArtist = async () => await axios.put(`http://localhost:3333/api/v2/artists/${newRow.artist_id}`, newRow)
 
-    newRow.isNew ? newArtist() : updatedArtist() 
+    newRow.isNew ? addArtist(newRow.name) : updateArtists(newRow.artist_id, newRow)
+    
     return updatedRow
   };
 
@@ -146,6 +148,12 @@ export default function FullFeaturedCrudGrid() {
             onClick={handleEditClick(id)}
             color="inherit"
           />,
+          <GridActionsCellItem
+          icon={<DeleteIcon />}
+          label="Delete"
+          onClick={handleDeleteClick(id)}
+          color="inherit"
+        />,
         ];
       },
     },

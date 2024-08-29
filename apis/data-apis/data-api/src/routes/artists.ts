@@ -30,6 +30,7 @@ const addArtist = async (req: Request, resp: Response) => {
       name,
     },
   });
+  console.log(`newArtist = ${JSON.stringify(newArtist)}`)
   resp.status(200).json(newArtist);
 };
 
