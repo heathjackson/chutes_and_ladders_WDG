@@ -14817,6 +14817,11 @@
       },
       {
         "source": "data-ui",
+        "target": "npm:@mui/x-data-grid-generator",
+        "type": "static"
+      },
+      {
+        "source": "data-ui",
         "target": "npm:axios",
         "type": "static"
       },

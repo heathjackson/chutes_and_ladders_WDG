@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ActionFunctionArgs, redirect } from "react-router-dom";
 
 //action of what is happening before each function
 export const getListArtists = async () => {
@@ -7,20 +6,32 @@ export const getListArtists = async () => {
   return res.data
 }
 
-export const addArtist = async ({request}: ActionFunctionArgs)  => {
-  const form = await request.formData()
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addArtist = async (name: any)  => {
   const artistInfo = {
-    artist_id: 0,
-    name: form.get("artistName")
+    name: name
   }
-  console.log(`addArtist = artist_id = ${artistInfo.artist_id} name = ${artistInfo.name}`)
   try {
     await axios.post(`http://localhost:3333/api/v2/artists`, artistInfo)
-    return redirect('/artists')
   }
     catch(error){
     console.log(error)
     return null
   }
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const updateArtists = async (artistId: any, editedRow: any) => {
+  try {
+    await axios.put(`http://localhost:3333/api/v2/artists/${artistId}`, editedRow)
+  }
+  catch(error){
+    console.log(error)
+    return null
+  }
+}
+
+
+
+
 

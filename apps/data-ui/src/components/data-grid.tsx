@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
@@ -13,11 +14,45 @@ import {
   GridEventListener,
   GridRowId,
   GridRowModel,
-  GridRowEditStopReasons
+  GridRowEditStopReasons,
+  GridToolbarContainer,
+  GridSlots
 } from '@mui/x-data-grid';
 import { useLoaderData } from 'react-router-dom';
 import { IArtist } from '@hjackson/model';
+import { Button } from '@mui/material';
+import { randomId } from '@mui/x-data-grid-generator';
+import { addArtist, updateArtists } from '../services/data_service';
 import axios from 'axios';
+
+interface EditToolbarProps {
+  setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
+  setRowModesModel: (
+    newModel: (oldModel: GridRowModesModel) => GridRowModesModel,
+  ) => void;
+}
+
+function EditToolbar(props: EditToolbarProps) {
+  const { setRows, setRowModesModel } = props;
+
+  const handleClick = () => {
+    const id = randomId();
+    console.log( `randomid = ${id}`)
+    setRows((oldRows) => [...oldRows, { artist_id: id, name: '', isNew: true }]);
+    setRowModesModel((oldModel) => ({
+      ...oldModel,
+      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
+    }));
+  };
+
+  return (
+    <GridToolbarContainer>
+      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+        Add record
+      </Button>
+    </GridToolbarContainer>
+  );
+}
 
 export default function FullFeaturedCrudGrid() {
   const initialRows: GridRowsProp = useLoaderData() as IArtist[]
@@ -46,17 +81,24 @@ export default function FullFeaturedCrudGrid() {
     });
 
     const editedRow = rows.find((row) => row.id === id);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     if (editedRow!.isNew) {
       setRows(rows.filter((row) => row.artist_id !== id));
     }
   };
 
   const processRowUpdate = (newRow: GridRowModel) => {
+    console.log(`newRow is new = ${newRow.isNew}`)
+    console.log(`newRow = ${JSON.stringify(newRow)}`)
     const updatedRow = { ...newRow, isNew: false };
+    console.log(`newRow after update = ${JSON.stringify(newRow)}`)
     setRows(rows.map((row) => (row.artist_id === newRow.artist_id ? updatedRow : row)));
+    console.log(`updatedRow = ${JSON.stringify(updatedRow)}`)
+    
+    const newArtist = async () => await axios.post(`http://localhost:3333/api/v2/artists`, newRow.name)
+    const updatedArtist = async () => await axios.put(`http://localhost:3333/api/v2/artists/${newRow.artist_id}`, newRow)
 
-    const updateArtists = async () => await axios.put(`http://localhost:3333/api/v2/artists/${newRow.artist_id}`, newRow)
-    updateArtists()
+    newRow.isNew ? newArtist() : updatedArtist() 
     return updatedRow
   };
 
@@ -129,12 +171,18 @@ export default function FullFeaturedCrudGrid() {
         }}
         rows={rows}
         columns={columns}
-        getRowId={(row) =>  row.artist_id}
+        getRowId={(row) => row.artist_id}
         editMode="row"
         rowModesModel={rowModesModel}
         onRowModesModelChange={handleRowModesModelChange}
         onRowEditStop={handleRowEditStop}
         processRowUpdate={processRowUpdate}
+        slots={{
+          toolbar: EditToolbar as GridSlots['toolbar'],
+        }}
+        slotProps={{
+          toolbar: { setRows, setRowModesModel },
+        }}
       />
     </Box>
   );
