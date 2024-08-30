@@ -24,6 +24,7 @@ import { IArtist } from '@hjackson/model';
 import { Button } from '@mui/material';
 import { randomId } from '@mui/x-data-grid-generator';
 import { addArtist, deleteArtist, updateArtists } from '../services/data_service';
+import axios from 'axios';
 
 interface EditToolbarProps {
   setRows: (newRows: (oldRows: GridRowsProp) => GridRowsProp) => void;
@@ -101,6 +102,8 @@ export default function FullFeaturedCrudGrid() {
 
     newRow.isNew ? addArtist(newRow.name) : updateArtists(newRow.artist_id, newRow)
     
+    const getArtist = axios.get(`http://localhost:3333/api/v2/artists/${newRow.name}`)
+    console.log(getArtist)
     return updatedRow
   };
 

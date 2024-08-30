@@ -12,6 +12,7 @@ const artists = async (req: Request, resp: Response) => {
 };
 
 const getArtist = async (req: Request, resp: Response) => {
+  console.log(req.params)
   const { name } = req.params;
 
   const findArtist = await prisma.artist.findMany({
