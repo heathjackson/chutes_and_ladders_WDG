@@ -96,16 +96,27 @@ export default function FullFeaturedCrudGrid() {
     const updatedRow = { ...newRow, isNew: false };
     setRows(rows.map((row) => (row.artist_id === newRow.artist_id ? updatedRow : row)));
 
-    
-    newRow.isNew ? addArtist(newRow.name) : updateArtists(newRow.artist_id, newRow);
-
     if (newRow.isNew) {
+      addArtist(newRow.name)
       const getListArtists = async () => {
         const res = await axios.get('http://localhost:3333/api/v2/artists')
         setRows(res.data)
       }
       getListArtists()
+    } else {
+      updateArtists(newRow.artist_id, newRow);
     }
+
+    
+    // newRow.isNew ? addArtist(newRow.name) : updateArtists(newRow.artist_id, newRow);
+
+    // if (newRow.isNew) {
+    //   const getListArtists = async () => {
+    //     const res = await axios.get('http://localhost:3333/api/v2/artists')
+    //     setRows(res.data)
+    //   }
+    //   getListArtists()
+    // }
     return updatedRow
   }
 

@@ -83,14 +83,6 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "8974291122009550489"
-      },
-      {
         "file": ".env",
         "hash": "5238204894158769644"
       },
@@ -99,32 +91,44 @@
         "hash": "17635386893005795514"
       },
       {
-        "file": ".eslintrc.json",
-        "hash": "15629280613521941793"
-      },
-      {
-        "file": "nx.json",
-        "hash": "17872192096956818188"
-      },
-      {
-        "file": "migrations.json",
-        "hash": "2095578244385828606"
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
       },
       {
         "file": ".eslintignore",
         "hash": "7663861978715868291"
       },
       {
-        "file": "jest.config.ts",
-        "hash": "12333515226966617182"
+        "file": "tsconfig.base.json",
+        "hash": "8974291122009550489"
       },
       {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
+        "file": "nx.json",
+        "hash": "17872192096956818188"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "14688272390704683536"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "15629280613521941793"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
       },
       {
         "file": "package-lock.json",
         "hash": "1444063190680662023"
+      },
+      {
+        "file": "migrations.json",
+        "hash": "2095578244385828606"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "12333515226966617182"
       },
       {
         "file": "README.md",
@@ -133,10 +137,6 @@
       {
         "file": "package.json",
         "hash": "14888564981643639295"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "14688272390704683536"
       },
       {
         "file": ".prettierrc",
@@ -483,7 +483,7 @@
         },
         {
           "file": "apps/data-ui/src/components/data-grid.tsx",
-          "hash": "3130710640206282134",
+          "hash": "5831172801103728207",
           "deps": [
             "npm:react",
             "npm:@mui/material",
