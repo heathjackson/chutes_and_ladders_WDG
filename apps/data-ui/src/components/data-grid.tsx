@@ -93,23 +93,43 @@ export default function FullFeaturedCrudGrid() {
   };
 
   const processRowUpdate = (newRow: GridRowModel) => {
-    console.log(`newRow is new = ${newRow.isNew}`)
-    console.log(`newRow = ${JSON.stringify(newRow)}`)
     const updatedRow = { ...newRow, isNew: false };
-    console.log(`newRow after update = ${JSON.stringify(newRow)}`)
     setRows(rows.map((row) => (row.artist_id === newRow.artist_id ? updatedRow : row)));
-    console.log(`updatedRow = ${JSON.stringify(updatedRow)}`)
 
-    newRow.isNew ? addArtist(newRow.name) : updateArtists(newRow.artist_id, newRow)
     
-    const getArtist = axios.get(`http://localhost:3333/api/v2/artists/${newRow.name}`)
-    console.log(getArtist)
+    newRow.isNew ? addArtist(newRow.name) : updateArtists(newRow.artist_id, newRow);
+
+    if (newRow.isNew) {
+      const getListArtists = async () => {
+        const res = await axios.get('http://localhost:3333/api/v2/artists')
+        setRows(res.data)
+      }
+      getListArtists()
+    }
     return updatedRow
-  };
+  }
+
+
+
+
+
+    // const getArtist = async () => {
+    //   try {
+    //     const resp = await axios.get(`http://localhost:3333/api/v2/artists/$`)
+    //     console.log(`getArtistData = ${JSON.stringify(resp)}`)
+    //     return resp
+    //   }
+    //   catch(error){
+    //     console.log(error)
+    //     return null
+    //   }
+    // }
+
+    // getArtist()
+  
 
   const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
     setRowModesModel(newRowModesModel);
-    console.log(`rowModesModel = ${JSON.stringify(rowModesModel)}`)
   };
 
   const columns: GridColDef[] = [

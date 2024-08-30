@@ -20,6 +20,7 @@ const getArtist = async (req: Request, resp: Response) => {
       name
     },
   });
+  console.log(`findArtist = ${JSON.stringify(findArtist)}`)
   resp.status(200).json(findArtist);
 };
 

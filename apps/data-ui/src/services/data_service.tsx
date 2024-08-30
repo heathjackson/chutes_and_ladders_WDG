@@ -32,6 +32,18 @@ export const updateArtists = async (artistId: any, editedRow: any) => {
   }
 }
 
+export const getArtist = async (artistName: any) => {
+  try {
+    const resp = await axios.get(`http://localhost:3333/api/v2/artists/${artistName}`)
+    return resp.data
+  }
+  catch(error){
+    console.log(error)
+    return null
+  }
+}
+
+
 export const deleteArtist = async (artistId: any) => {
   try { await axios.delete(`http://localhost:3333/api/v2/artists/${artistId}`)
   }
