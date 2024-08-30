@@ -48,7 +48,7 @@ function EditToolbar(props: EditToolbarProps) {
 
   return (
     <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+      <Button sx={{fontSize: 22}}color="primary" startIcon={<AddIcon />} onClick={handleClick}>
         Add record
       </Button>
     </GridToolbarContainer>
@@ -95,17 +95,16 @@ export default function FullFeaturedCrudGrid() {
   const processRowUpdate = (newRow: GridRowModel) => {
     const updatedRow = { ...newRow, isNew: false };
     setRows(rows.map((row) => (row.artist_id === newRow.artist_id ? updatedRow : row)));
+    newRow.isNew ? addArtist(newRow.name) : updateArtists(newRow.artist_id, newRow);
 
-    if (newRow.isNew) {
-      addArtist(newRow.name)
-      const getListArtists = async () => {
-        const res = await axios.get('http://localhost:3333/api/v2/artists')
-        setRows(res.data)
-      }
-      getListArtists()
-    } else {
-      updateArtists(newRow.artist_id, newRow);
-    }
+    window.location.reload();
+    // const getListArtists = async () => {
+    //   const res = await axios.get('http://localhost:3333/api/v2/artists')
+    //   setRows(res.data)
+    // }
+    //   getListArtists()
+    
+
     return updatedRow
   }
 
@@ -181,6 +180,7 @@ export default function FullFeaturedCrudGrid() {
         sx={{
           boxShadow: 2,
           border: 2,
+          fontSize: 25
         }}
         rows={rows}
         columns={columns}
